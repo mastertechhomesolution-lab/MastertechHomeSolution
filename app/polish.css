@@ -311,3 +311,28 @@ footer:before {
     width: calc(100% - 40px);
   }
 }
+.about-brands img {
+  width: auto;
+  height: 110px;
+  padding: 10px;
+  border-radius: 16px;
+  object-fit: contain;
+}
+@media (max-width: 700px) {
+  .about-brands {
+    gap: 16px;
+  }
+  .about-brands img {
+    height: 84px;
+    padding: 6px;
+  }
+}
+@media (max-width: 374px) {
+  .about-brands img {
+    height: 70px;
+  }
+  .button {
+    max-width: 100%;
+    white-space: normal;
+  }
+}

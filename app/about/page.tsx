@@ -34,9 +34,9 @@ export default function Page() {
             ให้คำปรึกษา วางแผนติดตั้ง ไปจนถึงการดูแลหลังส่งมอบ เพื่อให้ทุกองค์ประกอบทำงานร่วมกันอย่างเหมาะสม
           </p>
           <div className="about-brands">
-            <Image src="/brand/mast-tech.png" width={100} height={100} alt="Mast Tech" />
+            <Image src="/brand/mast-tech-logo.png" width={495} height={360} alt="Mast Tech" unoptimized />
             <span />
-            <Image src="/brand/neramit.png" width={100} height={100} alt="Neramit" />
+            <Image src="/brand/neramit-logo.png" width={360} height={360} alt="Neramit" unoptimized />
           </div>
         </div>
       </section>

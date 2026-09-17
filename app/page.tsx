@@ -196,7 +196,7 @@ export default function Home() {
             ค้นพบลิฟต์สำหรับบ้านคุณ <ArrowUpRight size={19} />
           </Link>
           <div className="partner-mark">
-            <Image src="/brand/neramit.png" width={65} height={65} alt="Neramit" />
+            <Image src="/brand/neramit-logo.png" width={360} height={360} alt="Neramit" unoptimized />
             <span>
               CRAFTED FOR
               <br />

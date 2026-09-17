@@ -331,9 +331,25 @@ export function Website({ children }: { children: ReactNode }) {
           <div className="container nav-inner">
             <Link href="/" className="brand" aria-label="MasterTechhomesolution หน้าแรก">
               <span className="brand-logos">
-                <Image src="/brand/mast-tech.png" width={96} height={96} alt="Mast Tech" priority />
+                <Image
+                  className="brand-logo-mast"
+                  src="/brand/mast-tech-logo.png"
+                  width={495}
+                  height={360}
+                  alt="Mast Tech"
+                  priority
+                  unoptimized
+                />
                 <i aria-hidden="true" />
-                <Image src="/brand/neramit.png" width={96} height={96} alt="Neramit" priority />
+                <Image
+                  className="brand-logo-neramit"
+                  src="/brand/neramit-logo.png"
+                  width={360}
+                  height={360}
+                  alt="Neramit"
+                  priority
+                  unoptimized
+                />
               </span>
               <span className="brand-tagline">ELEVATOR &amp; DOOR SOLUTIONS</span>
             </Link>

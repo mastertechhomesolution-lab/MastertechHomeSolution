@@ -45,7 +45,7 @@
   align-items: stretch;
   justify-content: space-between;
   gap: 24px;
-  min-height: 112px;
+  min-height: 128px;
 }
 .brand {
   display: flex;
@@ -61,18 +61,21 @@
   gap: 12px;
 }
 .brand-logos img {
-  width: 80px;
-  height: 80px;
+  width: auto;
+  height: 92px;
   object-fit: contain;
+}
+.brand-logos .brand-logo-neramit {
+  height: 86px;
 }
 .brand-logos i {
   width: 1px;
-  height: 46px;
+  height: 60px;
   background: currentColor;
   opacity: 0.3;
 }
 .brand-tagline {
-  font-size: 9px;
+  font-size: 10px;
   letter-spacing: 0.34em;
   font-weight: 500;
   white-space: nowrap;
@@ -157,8 +160,8 @@
 /* Hero */
 .hero {
   position: relative;
-  margin-top: -112px;
-  padding-top: 112px;
+  margin-top: -128px;
+  padding-top: 128px;
   background: var(--hero-bg);
   color: var(--hero-text);
   overflow: hidden;
@@ -527,8 +530,10 @@
     display: none;
   }
   .brand-logos img {
-    width: 54px;
-    height: 54px;
+    height: 74px;
+  }
+  .brand-logos .brand-logo-neramit {
+    height: 70px;
   }
   .brand-tagline {
     font-size: 8px;
@@ -560,15 +565,15 @@
 }
 @media (max-width: 1000px) {
   .nav-inner {
-    min-height: 76px;
+    min-height: 92px;
     align-items: center;
   }
-  .brand-logos img {
-    width: 46px;
-    height: 46px;
+  .brand-logos img,
+  .brand-logos .brand-logo-neramit {
+    height: 58px;
   }
   .brand-logos i {
-    height: 32px;
+    height: 40px;
   }
   .brand-tagline {
     font-size: 7px;
@@ -599,8 +604,8 @@
   .hero {
     display: flex;
     flex-direction: column;
-    margin-top: -76px;
-    padding-top: 76px;
+    margin-top: -92px;
+    padding-top: 92px;
   }
   .hero-inner {
     display: block;
@@ -644,19 +649,19 @@
     padding: 0;
   }
   .nav-inner {
-    min-height: 68px;
+    min-height: 80px;
     gap: 10px;
   }
   .hero {
-    margin-top: -68px;
-    padding-top: 68px;
+    margin-top: -80px;
+    padding-top: 80px;
   }
   .brand-logos {
     gap: 8px;
   }
-  .brand-logos img {
-    width: 40px;
-    height: 40px;
+  .brand-logos img,
+  .brand-logos .brand-logo-neramit {
+    height: 50px;
   }
   .brand-tagline {
     font-size: 6.5px;
@@ -754,9 +759,9 @@
   .hero-divider {
     letter-spacing: 0.22em;
   }
-  .brand-logos img {
-    width: 34px;
-    height: 34px;
+  .brand-logos img,
+  .brand-logos .brand-logo-neramit {
+    height: 42px;
   }
   .brand-tagline {
     display: none;
