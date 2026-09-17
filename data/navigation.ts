@@ -1,0 +1,1 @@
+export const navigation = [{href:'/',label:'หน้าแรก'},{href:'/products',label:'สินค้า'},{href:'/services',label:'บริการ'},{href:'/projects',label:'ผลงานของเรา'},{href:'/about',label:'เกี่ยวกับเรา'},{href:'/news',label:'ข่าวสาร'},{href:'/contact',label:'ติดต่อเรา'}];
