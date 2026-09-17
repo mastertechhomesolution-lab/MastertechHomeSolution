@@ -27,6 +27,9 @@
     radial-gradient(ellipse 50% 50% at 30% 100%, #6b2a9c66 0%, transparent 70%),
     linear-gradient(160deg, #0a1e52 0%, #071641 45%, #0b1d57 100%);
   --hero-fade-end: 44%;
+  --hero-mobile-scrim: linear-gradient(180deg, #07164199 0%, #0716414d 22%, #07164126 45%, #0a1d5299 72%, #0a1d52 100%);
+  --hero-mobile-shadow: 0 2px 14px #000a;
+  --hero-mobile-drop: 0 2px 8px #000000b3;
   --hero-image-filter: none;
   --hero-muted: #d7def0;
   --hero-title-accent: linear-gradient(90deg, #ff8cc8, #f3a0ff);
@@ -69,6 +72,9 @@
   --hero-bg: radial-gradient(ellipse 55% 60% at 8% 20%, #fde9f4 0%, transparent 70%),
     radial-gradient(ellipse 50% 60% at 25% 95%, #ece4ff 0%, transparent 70%), linear-gradient(160deg, #ffffff, #f6f1fc);
   --hero-fade-end: 48%;
+  --hero-mobile-scrim: linear-gradient(180deg, #fbf8fee0 0%, #fbf8feb8 34%, #fbf8fe73 56%, #f6f1fcb3 76%, #f6f1fc 100%);
+  --hero-mobile-shadow: 0 1px 12px #ffffffd9;
+  --hero-mobile-drop: 0 1px 6px #ffffffe6;
   --hero-image-filter: brightness(1.08) saturate(0.9);
   --hero-muted: #4b4f73;
   --hero-title-accent: linear-gradient(90deg, #e8418f, #b24fd8);
