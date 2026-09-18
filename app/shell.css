@@ -293,6 +293,41 @@
   justify-content: space-between;
   padding-inline: 34px 24px;
 }
+/* Primary hero CTA: warm halo and a specular gleam along the top edge, as in Mock/HeroMock.png. */
+.hero-actions .button:not(.button-ghost) {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  background: linear-gradient(135deg, #eccb8a 0%, #d5ab5e 46%, #b98b3e 100%);
+  border-color: #f0dbab66;
+  box-shadow:
+    0 0 38px #d9b06a59,
+    0 12px 30px #1a12064d,
+    inset 0 1px 0 #fff4d9a6;
+}
+.hero-actions .button:not(.button-ghost):before {
+  content: '';
+  position: absolute;
+  top: -122%;
+  left: 16%;
+  right: 16%;
+  height: 134%;
+  border-radius: 50%;
+  z-index: -1;
+  background: radial-gradient(ellipse at 50% 100%, #fffaf0e6 0%, #fff4dc8c 45%, transparent 75%);
+  opacity: 0.85;
+  pointer-events: none;
+  transition: opacity 0.25s;
+}
+.hero-actions .button:not(.button-ghost):hover {
+  box-shadow:
+    0 0 52px #e2bb7a7a,
+    0 14px 34px #1a120659,
+    inset 0 1px 0 #fff8e6bf;
+}
+.hero-actions .button:not(.button-ghost):hover:before {
+  opacity: 1;
+}
 .hero .button-ghost {
   color: var(--hero-text);
   background: var(--ghost-bg);
