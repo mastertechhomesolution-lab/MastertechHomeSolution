@@ -44,7 +44,7 @@ body {
   border-radius: var(--radius);
 }
 .product-card {
-  box-shadow: 0 6px 22px #0a1f4d0d;
+  box-shadow: 0 6px 22px #2a21150d;
 }
 .product-card h3 {
   font-size: 18px;
@@ -95,7 +95,7 @@ body {
   padding: 28px 22px;
   border: 1px solid var(--card-border);
   background: var(--surface);
-  box-shadow: 0 6px 22px #0a1f4d0a;
+  box-shadow: 0 6px 22px #2a21150a;
   transition:
     transform 0.25s,
     box-shadow 0.25s;
@@ -188,8 +188,8 @@ body {
   bottom: -120px;
   height: 200px;
   border-radius: 50%;
-  border-top: 2px solid #ff7cc6;
-  box-shadow: 0 -6px 26px #ff5fb899;
+  border-top: 2px solid #e2c48e;
+  box-shadow: 0 -6px 26px #d4b07899;
   opacity: 0.55;
   pointer-events: none;
 }
@@ -208,7 +208,7 @@ footer:before {
   left: 0;
   right: 0;
   height: 2px;
-  background: linear-gradient(90deg, transparent, #5ab8ff, #f2459b, transparent);
+  background: linear-gradient(90deg, transparent, #d9bd8f, #c69a4e, transparent);
   opacity: 0.8;
 }
 .footer-top h2 {
@@ -335,4 +335,17 @@ footer:before {
     max-width: 100%;
     white-space: normal;
   }
+}
+
+/* Design B preview reads light ivory/bronze, Design A stays dark champagne */
+.theme-option.luxury .theme-sample {
+  background: linear-gradient(135deg, #fbf8f3, #ece0c9);
+}
+.theme-option.luxury .theme-sample > span {
+  border-color: #a8823c;
+  background: linear-gradient(90deg, #c9a559, #e2cb9b);
+  box-shadow: 0 0 15px #a8823c33;
+}
+.theme-option.luxury .theme-sample > span:nth-child(2) {
+  border-color: #8c6a2f;
 }

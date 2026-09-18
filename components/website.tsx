@@ -490,18 +490,18 @@ export function Website({ children }: { children: ReactNode }) {
                 {
                   id: 'midnight',
                   label: 'Design A',
-                  name: 'MIDNIGHT NEON',
-                  sub: 'Technology / Futuristic',
-                  desc: 'โทนกรมท่าเข้ม แสงนีออนฟ้า-ชมพู ภาพลักษณ์ Smart Solution ที่ทันสมัย',
-                  colors: ['#061538', '#1F6FE5', '#F2459B', '#C85BF0'],
+                  name: 'CHAMPAGNE METALLIC',
+                  sub: 'Premium / Architectural',
+                  desc: 'โทนน้ำตาลเทาเข้ม ตัดด้วยแชมเปญโกลด์และบรอนซ์ ภาพลักษณ์ลิฟต์บ้านระดับพรีเมียม',
+                  colors: ['#221D17', '#6B5433', '#C09447', '#E0C391'],
                 },
                 {
                   id: 'luxury',
                   label: 'Design B',
-                  name: 'BRIGHT LIVING',
+                  name: 'IVORY BRONZE',
                   sub: 'Light / Modern Living',
-                  desc: 'โทนขาวสว่าง ชมพูอมม่วง ดูเป็นมิตร เหมาะกับบ้านพักอาศัยและโครงการที่อยู่อาศัย',
-                  colors: ['#FBF9FE', '#1D2150', '#E23E8E', '#A657E8'],
+                  desc: 'โทนงาช้างอบอุ่น ตัดด้วยบรอนซ์ ดูโปร่งสบาย เหมาะกับบ้านพักอาศัยและโครงการที่อยู่อาศัย',
+                  colors: ['#FBF8F3', '#2B2620', '#A8823C', '#C9A559'],
                 },
               ].map((t) => (
                 <article className={'theme-option ' + t.id + (theme === t.id ? ' selected' : '')} key={t.id}>

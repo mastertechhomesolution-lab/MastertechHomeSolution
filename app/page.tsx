@@ -2,13 +2,8 @@ import Image from 'next/image';
 import Link from 'next/link';
 import {
   ArrowUpRight,
-  ArrowRight,
   ShieldCheck,
   Gem,
-  Settings,
-  Users,
-  BadgeCheck,
-  FileText,
   ChevronRight,
   Headset,
   Building2,
@@ -22,7 +17,6 @@ import {
 } from 'lucide-react';
 import { categories, products } from '@/data/products';
 import { articles } from '@/data/news';
-import { QuoteButton } from '@/components/website';
 import { Cta, Eyebrow, SectionHeading, ProductCard, Process } from '@/components/ui';
 import { ProjectGrid } from '@/components/catalog';
 import { pageMeta } from '@/lib/seo';
@@ -31,17 +25,11 @@ export const metadata = pageMeta(
   'MasterTechhomesolution โซลูชันลิฟต์บ้าน ประตูลิฟต์ Smart Lock และระบบประตู พร้อมให้คำปรึกษา ติดตั้ง และดูแลหลังการขาย',
   '/',
 );
-const benefits = [
-  { icon: ShieldCheck, title: 'ใส่ใจความปลอดภัย', text: 'ในทุกการใช้งาน' },
-  { icon: Gem, title: 'ดีไซน์ทันสมัย', text: 'หรูหรา' },
-  { icon: Settings, title: 'เทคโนโลยี', text: 'เพื่อการอยู่อาศัย' },
-  { icon: Users, title: 'บริการครบวงจร', text: 'ติดตั้งและดูแล' },
-];
-const trust = [
-  { icon: Building2, title: 'เหมาะสำหรับบ้าน', text: 'คอนโด อาคารสำนักงาน' },
-  { icon: BadgeCheck, title: 'ใส่ใจคุณภาพวัสดุ', text: 'ดีไซน์หลากหลาย' },
-  { icon: Headset, title: 'ทีมงานดูแลโครงการ', text: 'และบริการหลังการขาย' },
-  { icon: Globe2, title: 'ปรึกษาพื้นที่ให้บริการ', text: 'ทั่วประเทศไทย' },
+const strip = [
+  { icon: Gem, title: 'วัสดุคุณภาพระดับพรีเมียม' },
+  { icon: ShieldCheck, title: 'ดีไซน์หรู ทันสมัย' },
+  { icon: Headset, title: 'บริการมืออาชีพ' },
+  { icon: Globe2, title: 'ครอบคลุมทั่วประเทศ' },
 ];
 export default function Home() {
   return (
@@ -49,55 +37,47 @@ export default function Home() {
       <section className="hero">
         <div className="hero-visual">
           <Image
-            src="/images/hero-mock.webp"
-            alt="แนวคิดทางเข้าสถาปัตยกรรม ลิฟต์ ประตู และ Smart Lock จากภาพอ้างอิงของบริษัท"
+            src="/images/hero-bg.webp"
+            alt="บ้านโมเดิร์นพร้อมลิฟต์บ้านกระจก ประตูไม้ และระบบล็อคอัจฉริยะ ในบรรยากาศยามเย็น"
             fill
             priority
-            sizes="(max-width:1000px) 100vw, 72vw"
+            sizes="100vw"
           />
         </div>
-        <div className="hero-glow" aria-hidden="true" />
+        <div className="hero-scrim" aria-hidden="true" />
         <div className="container hero-inner">
           <div className="hero-copy">
+            <p className="hero-eyebrow">MAST TECH &times; NERAMIT</p>
             <h1>
-              ยกระดับ
+              มากกว่าเพียงสินค้า
               <br />
-              <span>ทุกพื้นที่ของคุณ</span>
+              <span>คือความมั่นใจ</span>
+              <br />
+              ในทุกการใช้งาน
             </h1>
             <p className="hero-description">
-              ลิฟต์ ประตูลิฟต์ ระบบล็อคประตู
+              ลิฟต์ ประตู ระบบล็อค และอุปกรณ์ตกแต่ง
               <br />
-              ดีไซน์สวย ปลอดภัย ทันสมัย
+              ตอบโจทย์ทุกพื้นที่ของคุณ
             </p>
-            <p className="hero-divider">
-              <span />
-              LIFT YOUR LIFE
-              <span />
+            <p className="hero-kicker">
+              SMART SOLUTIONS
+              <br />
+              FOR EVERY SPACE
             </p>
-            <ul className="hero-benefits">
-              {benefits.map((b) => (
-                <li key={b.title}>
-                  <span className="hero-benefit-icon">
-                    <b.icon size={26} />
-                  </span>
-                  <strong>{b.title}</strong>
-                  <span>{b.text}</span>
-                </li>
-              ))}
-            </ul>
             <div className="hero-actions">
               <Link className="button" href="/products">
-                เลือกดูสินค้า <ChevronRight size={20} />
+                เลือกชมสินค้า <ChevronRight size={20} />
               </Link>
               <Link className="button button-ghost" href="/contact">
-                ติดต่อเรา <ChevronRight size={20} />
+                ติดต่อทีมงาน <ChevronRight size={20} />
               </Link>
             </div>
           </div>
-          <p className="hero-quote">
-            “มากกว่าการเดินทาง
-            <br />
-            คือความปลอดภัยในทุกวัน”
+          <p className="hero-lifestyle" aria-hidden="true">
+            <span>ELEVATE</span>
+            <span>YOUR</span>
+            <span>LIFESTYLE</span>
           </p>
         </div>
         <div className="container hero-categories" id="collections">
@@ -125,27 +105,14 @@ export default function Home() {
       <section className="trust-section" aria-label="จุดเด่นของเรา">
         <div className="container">
           <div className="trust-inner">
-            {trust.map((t) => (
+            {strip.map((t) => (
               <div key={t.title}>
-                <t.icon size={38} />
-                <p>
-                  {t.title}
-                  <span>{t.text}</span>
-                </p>
+                <t.icon size={34} strokeWidth={1.4} />
+                <p>{t.title}</p>
               </div>
             ))}
-            <QuoteButton className="trust-cta">
-              <FileText size={34} />
-              <span>
-                ขอใบเสนอราคา
-                <strong>ฟรี !</strong>
-              </span>
-              <ChevronRight size={26} />
-            </QuoteButton>
+            <p className="trust-quote">&ldquo;ด้วยเทคโนโลยี เพื่อชีวิตที่ดีกว่า&rdquo;</p>
           </div>
-          <p className="trust-tagline">
-            MAST TECH <i>|</i> NERAMIT <i>|</i> ELEVATOR &amp; DOOR SOLUTIONS <i>|</i> A SAFER, SMARTER TOMORROW
-          </p>
         </div>
       </section>
       <section className="section featured-section">
