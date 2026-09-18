@@ -4,7 +4,7 @@ import { ArrowUpRight } from 'lucide-react';
 import { products, categories, productImage } from '@/data/products';
 import { ProductGallery } from '@/components/catalog';
 import { QuoteButton } from '@/components/website';
-import { Eyebrow, FeatureList, ProductCard, SectionHeading, JsonLd } from '@/components/ui';
+import { Eyebrow, FeatureList, ProductCard, SectionHeading, JsonLd, GoldLayers } from '@/components/ui';
 import { pageMeta, breadcrumbs, siteUrl } from '@/lib/seo';
 export const generateStaticParams = () => products.map((p) => ({ slug: p.slug }));
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }) {
@@ -58,8 +58,9 @@ export default async function Page({ params }: { params: Promise<{ slug: string 
             )}
             <FeatureList items={p.features} />
             <div className="detail-cta">
-              <QuoteButton product={p.name}>
-                ขอใบเสนอราคา <ArrowUpRight size={18} />
+              <QuoteButton product={p.name} className="button button-gold">
+                <GoldLayers />
+                <span className="gold-label">ขอใบเสนอราคา</span> <ArrowUpRight size={18} />
               </QuoteButton>
               <QuoteButton product={p.name} className="button button-outline">
                 ปรึกษาผู้เชี่ยวชาญ

@@ -3,6 +3,8 @@ import Link from 'next/link';
 import { ArrowUpRight, ArrowRight, Check } from 'lucide-react';
 import { Product, productImage, categories } from '@/data/products';
 import { QuoteButton } from './website';
+export { GoldLayers } from './website';
+
 export function JsonLd({ data }: { data: unknown }) {
   return data ? (
     <script

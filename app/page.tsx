@@ -17,7 +17,7 @@ import {
 } from 'lucide-react';
 import { categories, products } from '@/data/products';
 import { articles } from '@/data/news';
-import { Cta, Eyebrow, SectionHeading, ProductCard, Process } from '@/components/ui';
+import { Cta, Eyebrow, SectionHeading, ProductCard, Process, GoldLayers } from '@/components/ui';
 import { ProjectGrid } from '@/components/catalog';
 import { pageMeta } from '@/lib/seo';
 export const metadata = pageMeta(
@@ -35,15 +35,19 @@ export default function Home() {
   return (
     <>
       <section className="hero">
-        <div className="hero-visual">
-          <Image
+        {/* Art-directed hero photo: phones get the client's portrait PhoneBG so the
+            glass lift stays in frame; wider screens keep the approved landscape HeroBG. */}
+        <picture className="hero-visual">
+          <source media="(max-width: 820px)" srcSet="/images/hero-bg-mobile.webp" width={941} height={1672} />
+          <img
             src="/images/hero-bg.webp"
             alt="บ้านโมเดิร์นพร้อมลิฟต์บ้านกระจก ประตูไม้ และระบบล็อคอัจฉริยะ ในบรรยากาศยามเย็น"
-            fill
-            priority
-            sizes="100vw"
+            width={1774}
+            height={887}
+            fetchPriority="high"
+            decoding="async"
           />
-        </div>
+        </picture>
         <div className="hero-scrim" aria-hidden="true" />
         <div className="container hero-inner">
           <div className="hero-copy">
@@ -66,8 +70,10 @@ export default function Home() {
               FOR EVERY SPACE
             </p>
             <div className="hero-actions">
-              <Link className="button" href="/products">
-                เลือกชมสินค้า <ChevronRight size={20} />
+              <Link className="button button-gold" href="/products">
+                <GoldLayers />
+                <span className="gold-label">เลือกชมสินค้า</span>
+                <ChevronRight size={20} aria-hidden="true" />
               </Link>
               <Link className="button button-ghost" href="/contact">
                 ติดต่อทีมงาน <ChevronRight size={20} />

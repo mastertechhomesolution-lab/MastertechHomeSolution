@@ -43,6 +43,17 @@ export function QuoteButton({
     </button>
   );
 }
+// Decorative layers for the champagne-gold CTA treatment (styles in app/shell.css).
+// Both spans are inert, out of flow and pointer-events: none, so they never affect
+// a button's layout, hit area or behaviour.
+export function GoldLayers() {
+  return (
+    <>
+      <span className="gold-sheen" aria-hidden="true" />
+      <span className="gold-sparks" aria-hidden="true" />
+    </>
+  );
+}
 export function LineButton({ className = 'button button-outline' }: { className?: string }) {
   const { openLine } = useContext(SiteContext);
   return (
@@ -371,8 +382,9 @@ export function Website({ children }: { children: ReactNode }) {
                   <Search size={19} />
                   <span>ค้นหาสินค้า...</span>
                 </button>
-                <QuoteButton className="button header-quote">
-                  <FileText size={18} /> <span>ขอใบเสนอราคา</span>
+                <QuoteButton className="button header-quote button-gold">
+                  <GoldLayers />
+                  <FileText size={18} /> <span className="gold-label">ขอใบเสนอราคา</span>
                 </QuoteButton>
                 <button
                   className="icon-button hamburger"
@@ -478,8 +490,9 @@ export function Website({ children }: { children: ReactNode }) {
             <MessageCircle size={18} />
             LINE
           </button>
-          <QuoteButton>
-            ขอใบเสนอราคา <ArrowUpRight size={16} />
+          <QuoteButton className="button button-gold">
+            <GoldLayers />
+            <span className="gold-label">ขอใบเสนอราคา</span> <ArrowUpRight size={16} />
           </QuoteButton>
         </div>
         {panel && (

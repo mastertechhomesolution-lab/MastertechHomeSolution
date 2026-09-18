@@ -31,6 +31,8 @@
   --hero-scrim-bottom: #100c07b8;
   --hero-copy-shadow: 0 2px 16px #000000a6;
   --hero-copy-drop: 0 2px 10px #000000a6;
+  /* Stacked-hero scrim for 821-1000px, where the landscape HeroBG.png is still the
+     loaded photo. Phones get their own portrait-tuned wash in app/shell.css. */
   --hero-mobile-scrim: linear-gradient(180deg, #100c07bf 0%, #100c0782 32%, #100c076b 62%, #100c07ad 100%);
   --hero-image-filter: none;
   --hero-muted: #e2d8c6;
