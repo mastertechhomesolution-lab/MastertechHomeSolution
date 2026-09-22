@@ -198,7 +198,7 @@ export const products: Product[] = [
     ],
     applications: 'คอนโดมิเนียม อาคารสำนักงาน โรงแรม และอาคารพาณิชย์',
     rendered: true,
-    pages: [5, 6, 7, 8, 10, 11, 12, 33, 34],
+    pages: [5, 10, 11, 12, 33, 34],
   },
   {
     slug: 'small-machine-room-passenger-elevator',
@@ -239,7 +239,7 @@ export const products: Product[] = [
     name: 'ลิฟต์แก้ว (Panoramic)',
     en: 'Panoramic Elevator NY-G001 – G004',
     category: 'passenger',
-    image: 'panoramic-elevator',
+    image: 'panoramic-g003',
     description:
       'ลิฟต์ชมวิวที่ผสานความสวยงาม รสนิยม และความสะดวกสบาย สร้างภูมิทัศน์ใหม่ให้อาคาร ออกแบบรูปทรงและโครงสร้างให้เข้ากับสถาปัตยกรรมของแต่ละพื้นที่',
     features: ['รูปทรงครึ่งวงกลม ทรงเหลี่ยม ทรงเพชร และแบบชมวิวเต็มด้าน', 'ครอบห้องโดยสารวัสดุ FRP (glass fiber reinforced plastic)', 'ชมวิวภายนอกได้หลายมุมระหว่างโดยสาร'],
@@ -257,7 +257,7 @@ export const products: Product[] = [
     ],
     applications: 'ห้างสรรพสินค้า โรงแรม อาคารสำนักงาน และอาคารที่ต้องการลิฟต์เป็นจุดเด่นทางสถาปัตยกรรม',
     rendered: true,
-    pages: [13, 14, 42],
+    pages: [14, 42],
   },
   {
     slug: 'hospital-elevator',
@@ -284,7 +284,7 @@ export const products: Product[] = [
     ],
     applications: 'โรงพยาบาล คลินิก ศูนย์การแพทย์ และสถานดูแลผู้สูงอายุ',
     rendered: true,
-    pages: [15, 42],
+    pages: [42],
   },
   // ---------- Freight elevator ----------
   {
@@ -292,7 +292,7 @@ export const products: Product[] = [
     name: 'ลิฟต์ขนส่งสินค้า',
     en: 'Freight Elevator NY-F01',
     category: 'freight',
-    image: 'freight-elevator',
+    image: 'freight-f01',
     description:
       'ลิฟต์ขนส่งสินค้าโครงสร้างห้องโดยสารแข็งแรง ใช้งานปลอดภัยและติดตั้งสะดวก เหมาะกับโรงงาน คลังสินค้า ซูเปอร์มาร์เก็ต และศูนย์กระจายสินค้า',
     features: [
@@ -314,7 +314,7 @@ export const products: Product[] = [
     ],
     applications: 'โรงงาน คลังสินค้า ห้างสรรพสินค้า ศูนย์การค้า และศูนย์กระจายสินค้า',
     rendered: true,
-    pages: [29, 32, 43],
+    pages: [32, 43],
   },
   {
     slug: 'machine-roomless-freight-elevator',
@@ -348,7 +348,7 @@ export const products: Product[] = [
       ['Door', 'Center-opening & double-folded'],
     ],
     applications: 'อาคารจอดรถ โชว์รูมรถยนต์ (4S stores) และคลังสินค้าขนาดใหญ่',
-    pages: [31, 43],
+    pages: [43],
   },
   // ---------- Escalator & moving walk ----------
   {
@@ -370,7 +370,7 @@ export const products: Product[] = [
       { code: '30° / 35° escalator', spec: ['600 — Center distance of handrail 838, outer width 1140, load-bearing beam ≥ 1200', '800 — Center distance of handrail 1038, outer width 1340, load-bearing beam ≥ 1400', '1000 — Center distance of handrail 1238, outer width 1540, load-bearing beam ≥ 1600'] },
     ],
     applications: 'ห้างสรรพสินค้า อาคารสำนักงาน สนามบิน และอาคารสาธารณะ',
-    pages: [35, 38, 39, 40, 45, 46],
+    pages: [35, 38, 39, 45, 46],
   },
   {
     slug: 'public-traffic-escalator',
@@ -388,7 +388,7 @@ export const products: Product[] = [
       ['Center distance of handrail', '1110 / 1310 mm'],
     ],
     applications: 'สถานีรถไฟฟ้า สะพานลอย ทางเชื่อมสาธารณะ และพื้นที่กลางแจ้ง',
-    pages: [36, 39, 47],
+    pages: [39, 47],
   },
   {
     slug: 'moving-walk',
@@ -406,7 +406,7 @@ export const products: Product[] = [
       ['Rated speed', '0.5 m/s'],
     ],
     applications: 'สนามบิน ห้างสรรพสินค้า ไฮเปอร์มาร์เก็ต และอาคารสาธารณะ',
-    pages: [37, 38, 48],
+    pages: [38, 48],
   },
   // ---------- Doors ----------
   {

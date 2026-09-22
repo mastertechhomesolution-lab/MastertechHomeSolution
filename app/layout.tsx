@@ -39,14 +39,6 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="th" data-theme="midnight" suppressHydrationWarning>
-      <head>
-        <script
-          dangerouslySetInnerHTML={{
-            __html:
-              "try{var t=localStorage.getItem('mastertech-theme');if(t==='luxury'||t==='midnight')document.documentElement.dataset.theme=t}catch(e){}",
-          }}
-        />
-      </head>
       <body className={sans.variable + ' ' + serif.variable}>
         <JsonLd
           data={{

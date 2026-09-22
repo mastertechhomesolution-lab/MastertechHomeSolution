@@ -235,7 +235,15 @@ Asset note: `node scripts/prepare-assets.mjs` now chains `prepare-catalog-images
 
 ## 2026-09-22 (later) — Inner-page heroes, Neramit mark, services image
 
-- `PageHero` (components/ui.tsx) is now a full-bleed photo hero matching the homepage: transparent header over it (`heroPaths` in components/website.tsx), dark scrim, gold second headline line, gold hairline at the bottom, and the Neramit mark on the right (in-flow under the copy on phones). Styles are at the end of `app/polish.css`; the old split-layout `.page-hero-inner/.page-hero-image` rules in globals.css are now unused.
+- `PageHero` (components/ui.tsx) is now a full-bleed photo hero matching the homepage: transparent header over it (`heroPaths` in components/website.tsx), dark scrim, gold second headline line, gold hairline at the bottom. The Neramit mark was later moved out of the hero (it duplicated the header logo) into the "NERAMIT COLLECTION" badge on every product card. Styles are at the end of `app/polish.css`; the old split-layout `.page-hero-inner/.page-hero-image` rules in globals.css are now unused.
 - Backgrounds: `Mock/generated/hero-{products,services,projects,about,news,contact}.png`, generated with Codex (user-authorised) from `public/images/hero-bg.webp` as style reference; built to `public/images/heroes/*.webp` by `scripts/prepare-page-heroes.mjs`. Ambient scenes only; not product or project claims.
 - `public/brand/neramit-logo-light.png` (scripts/prepare-logo-light.mjs): knocked-out Neramit mark with the navy "NERA" turned ivory for dark surfaces. White boxes behind the Neramit logo (about brands row, homepage partner mark) were removed.
 - The woman photo (catalog p.49) was removed from Services and is no longer generated; catalog page 49 is not rendered.
+
+## 2026-09-22 — Theme decision
+
+The client chose **Design A — Premium / Architectural (CHAMPAGNE METALLIC, `data-theme="midnight"`)** as the only theme. The floating "เลือกดีไซน์" button, the theme comparison dialog and the pre-paint localStorage theme script were removed; `<html data-theme="midnight">` is fixed in `app/layout.tsx`. The `luxury` token block and `.theme-option` styles remain in CSS but are unused.
+
+## 2026-09-22 — Product-only imagery (no people)
+
+Client rule: images show products only, no people. Removed crops `hospital-elevator` (woman at lift button), `freight-elevator`, `panoramic-elevator`; products/projects now use `hospital-y001`, `freight-f01`, `panoramic-g003`. `public-traffic-escalator` and `moving-walk` crop people-free photos. Catalog pages with people (7, 8, 13, 15, 29, 31, 36, 37, 40, 49) are no longer rendered or shown. Where a photo is still needed, people were removed with Codex image edits: `Mock/edited/{p24-person,p31-doorway,p37-walk}.png` (originals beside them as `*-source.png`), composited by `scripts/prepare-catalog-images.mjs`. Legacy unused images (old concept crops, `public/catalog/106xxx_0.jpg`) were deleted.

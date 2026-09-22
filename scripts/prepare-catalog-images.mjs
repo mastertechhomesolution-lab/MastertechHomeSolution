@@ -23,10 +23,8 @@ const crops = [
   [11, 'passenger-k004', 50, 121, 386, 662],
   [12, 'passenger-k007', 49, 121, 384, 662],
   [12, 'passenger-k008', 656, 90, 891, 447],
-  [13, 'panoramic-elevator', 34, 46, 560, 795],
   [14, 'panoramic-g003', 664, 76, 847, 458],
   [15, 'hospital-y001', 652, 154, 978, 645],
-  [15, 'hospital-elevator', 307, 158, 530, 318],
   [16, 'operation-panel', 76, 150, 470, 577],
   [17, 'landing-door', 48, 108, 540, 745],
   [18, 'ceiling-series', 46, 108, 549, 458],
@@ -44,13 +42,20 @@ const crops = [
   [27, 'man-machine-interface', 34, 95, 560, 795],
   [27, 'touch-screen-panel', 653, 401, 1137, 775],
   [28, 'ceiling-handrail-floor', 58, 173, 537, 678],
-  [29, 'freight-elevator', 32, 44, 564, 798],
   [30, 'machine-roomless-freight', 33, 44, 563, 797],
   [31, 'large-tonnage-freight', 32, 44, 756, 798],
   [32, 'freight-f01', 49, 146, 551, 554],
   [35, 'escalator', 34, 44, 563, 797],
-  [36, 'public-traffic-escalator', 32, 44, 562, 798],
-  [37, 'moving-walk', 32, 44, 562, 797],
+  [36, 'public-traffic-escalator', 911, 236, 1140, 363],
+  [37, 'moving-walk', 914, 193, 1140, 334],
+];
+// Product-only imagery: regions of catalog photos that contained people are replaced with
+// Codex-edited versions (people removed, scene kept) from Mock/edited/<name>.png; the
+// untouched source crop sits next to each as <name>-source.png. [page, name, x0, y0, x1, y1]
+const cleaned = [
+  [24, 'p24-person', 430, 350, 610, 600],
+  [31, 'p31-doorway', 200, 200, 540, 580],
+  [37, 'p37-walk', 914, 193, 1140, 334],
 ];
 // [page, x0, y0, x1, y1, replacement text, font size, color] in PDF points
 const redactions = [
@@ -61,7 +66,7 @@ const redactions = [
   [44, 408, 789, 426, 804, 'the', 6.5, '#6f6f6f'],
   [44, 1009, 789, 1028, 804, 'the', 6.5, '#6f6f6f'],
 ];
-const pages = [5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48];
+const pages = [5, 9, 10, 11, 12, 14, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 30, 32, 33, 34, 35, 38, 39, 41, 42, 43, 44, 45, 46, 47, 48];
 
 await mkdir('public/products', { recursive: true });
 await mkdir('public/catalog', { recursive: true });
@@ -74,6 +79,11 @@ function render(pageNumber) {
     cache.set(pageNumber, Buffer.from(pix.asPNG()));
   }
   return cache.get(pageNumber);
+}
+for (const [n, name, x0, y0, x1, y1] of cleaned) {
+  const [left, top, width, height] = [x0, y0, x1 - x0, y1 - y0].map((v) => Math.round(v * SCALE));
+  const patch = await sharp(`Mock/edited/${name}.png`).resize(width, height, { fit: 'fill' }).toBuffer();
+  cache.set(n, await sharp(render(n)).composite([{ input: patch, left, top }]).png().toBuffer());
 }
 for (const n of new Set(redactions.map((r) => r[0]))) {
   const { width, height } = await sharp(render(n)).metadata();

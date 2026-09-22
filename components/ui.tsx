@@ -94,9 +94,6 @@ export function PageHero({
           <p className="page-hero-description">{description}</p>
           <p className="page-hero-kicker">{kicker}</p>
         </div>
-        <div className="page-hero-mark" aria-hidden="true">
-          <Image src="/brand/neramit-logo-light.png" width={360} height={360} alt="" unoptimized />
-        </div>
       </div>
     </section>
   );
@@ -111,7 +108,10 @@ export function ProductCard({ product: p }: { product: Product }) {
           fill
           sizes="(max-width: 600px) 85vw, (max-width: 1000px) 45vw, 30vw"
         />
-        <span className="image-index">NERAMIT COLLECTION</span>
+        <span className="image-index">
+          <Image src="/brand/neramit-logo.png" width={360} height={360} alt="" unoptimized />
+          NERAMIT COLLECTION
+        </span>
         <span className="round-arrow">
           <ArrowUpRight size={20} />
         </span>
@@ -135,13 +135,13 @@ export function ProductCard({ product: p }: { product: Product }) {
   );
 }
 export const steps = [
-  'พูดคุยความต้องการ',
-  'สำรวจพื้นที่',
-  'แนะนำผลิตภัณฑ์และออกแบบ',
-  'เสนอราคา',
-  'ติดตั้ง',
-  'ตรวจสอบและส่งมอบ',
-  'บริการหลังการขาย',
+  { th: 'พูดคุยความต้องการ', en: 'CONSULTATION', text: 'รับฟังการใช้งาน จำนวนชั้น และงบประมาณ' },
+  { th: 'สำรวจพื้นที่', en: 'SITE SURVEY', text: 'วัดขนาดปล่อง ความลึกบ่อ และความสูงชั้นจริง' },
+  { th: 'แนะนำผลิตภัณฑ์และออกแบบ', en: 'DESIGN', text: 'เลือกรุ่น วัสดุ และแบบห้องโดยสารที่ใช่' },
+  { th: 'เสนอราคา', en: 'QUOTATION', text: 'สรุปรุ่น ขอบเขตงาน และราคาอย่างชัดเจน' },
+  { th: 'ติดตั้ง', en: 'INSTALLATION', text: 'ติดตั้งตามแบบของฝ่ายเทคนิคอย่างเป็นระบบ' },
+  { th: 'ตรวจสอบและส่งมอบ', en: 'HANDOVER', text: 'ทดสอบระบบและแนะนำการใช้งานก่อนส่งมอบ' },
+  { th: 'บริการหลังการขาย', en: 'AFTER-SALES', text: 'ดูแลและบำรุงรักษาอย่างต่อเนื่อง' },
 ];
 export function Process() {
   return (
@@ -154,9 +154,11 @@ export function Process() {
         />
         <ol className="process">
           {steps.map((s, i) => (
-            <li key={s}>
+            <li key={s.en}>
               <span>{String(i + 1).padStart(2, '0')}</span>
-              <h3>{s}</h3>
+              <p className="process-en">{s.en}</p>
+              <h3>{s.th}</h3>
+              <p className="process-text">{s.text}</p>
             </li>
           ))}
         </ol>

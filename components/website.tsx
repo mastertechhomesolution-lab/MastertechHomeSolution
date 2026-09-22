@@ -11,7 +11,6 @@ import {
   Phone,
   MessageCircle,
   Check,
-  Palette,
   ArrowRight,
   Mail,
   MapPin,
@@ -293,8 +292,6 @@ export function ContactDetails() {
 const heroPaths = ['/', '/products', '/services', '/projects', '/about', '/news', '/contact'];
 export function Website({ children }: { children: ReactNode }) {
   const pathname = usePathname();
-  const [theme, setTheme] = useState('midnight');
-  const [panel, setPanel] = useState(false);
   const [menu, setMenu] = useState(false);
   const [search, setSearch] = useState(false);
   const [query, setQuery] = useState('');
@@ -303,7 +300,6 @@ export function Website({ children }: { children: ReactNode }) {
   const [scrolled, setScrolled] = useState(false);
   const [presentation, setPresentation] = useState(false);
   useEffect(() => {
-    setTheme(document.documentElement.dataset.theme || 'midnight');
     setPresentation(new URLSearchParams(window.location.search).get('presentation') === 'true');
     const onScroll = () => setScrolled(window.scrollY > 30);
     onScroll();
@@ -314,13 +310,6 @@ export function Website({ children }: { children: ReactNode }) {
     setMenu(false);
     setSearch(false);
   }, [pathname]);
-  function changeTheme(value: string) {
-    setTheme(value);
-    document.documentElement.dataset.theme = value;
-    try {
-      localStorage.setItem('mastertech-theme', value);
-    } catch {}
-  }
   function togglePresentation() {
     const next = !presentation;
     setPresentation(next);
@@ -474,11 +463,6 @@ export function Website({ children }: { children: ReactNode }) {
           </div>
         </footer>
         <div className="floating-tools">
-          <button className="design-toggle" onClick={() => setPanel(true)}>
-            <Palette size={17} />
-            <span>เลือกดีไซน์</span>
-            <b>{theme === 'midnight' ? 'A' : 'B'}</b>
-          </button>
           <button className="floating-line" aria-label="ติดต่อผ่าน LINE" onClick={() => setLine(true)}>
             <MessageCircle size={21} />
           </button>
@@ -497,57 +481,6 @@ export function Website({ children }: { children: ReactNode }) {
             <span className="gold-label">ขอใบเสนอราคา</span> <ArrowUpRight size={16} />
           </QuoteButton>
         </div>
-        {panel && (
-          <Dialog title="เลือกแนวทางเว็บไซต์" onClose={() => setPanel(false)} wide>
-            <p className="muted">สองมุมมองของแบรนด์ เพื่อพื้นที่และการใช้ชีวิตที่ดีกว่า</p>
-            <div className="theme-options">
-              {[
-                {
-                  id: 'midnight',
-                  label: 'Design A',
-                  name: 'CHAMPAGNE METALLIC',
-                  sub: 'Premium / Architectural',
-                  desc: 'โทนน้ำตาลเทาเข้ม ตัดด้วยแชมเปญโกลด์และบรอนซ์ ภาพลักษณ์ลิฟต์บ้านระดับพรีเมียม',
-                  colors: ['#221D17', '#6B5433', '#C09447', '#E0C391'],
-                },
-                {
-                  id: 'luxury',
-                  label: 'Design B',
-                  name: 'IVORY BRONZE',
-                  sub: 'Light / Modern Living',
-                  desc: 'โทนงาช้างอบอุ่น ตัดด้วยบรอนซ์ ดูโปร่งสบาย เหมาะกับบ้านพักอาศัยและโครงการที่อยู่อาศัย',
-                  colors: ['#FBF8F3', '#2B2620', '#A8823C', '#C9A559'],
-                },
-              ].map((t) => (
-                <article className={'theme-option ' + t.id + (theme === t.id ? ' selected' : '')} key={t.id}>
-                  <span className="theme-label">
-                    {t.label}
-                    {theme === t.id && <Check size={17} />}
-                  </span>
-                  <div className="theme-sample">
-                    <span />
-                    <span />
-                    <span />
-                  </div>
-                  <h3>{t.name}</h3>
-                  <small>
-                    {t.label} — {t.sub}
-                  </small>
-                  <p>{t.desc}</p>
-                  <div className="swatches">
-                    {t.colors.map((c) => (
-                      <i style={{ background: c }} key={c} />
-                    ))}
-                  </div>
-                  <button className="button" onClick={() => changeTheme(t.id)} aria-pressed={theme === t.id}>
-                    {theme === t.id ? 'กำลังใช้ดีไซน์นี้' : 'ใช้ดีไซน์นี้'}
-                    <ArrowRight size={16} />
-                  </button>
-                </article>
-              ))}
-            </div>
-          </Dialog>
-        )}
         {quote !== null && (
           <Dialog title="เริ่มต้นพื้นที่ที่ดีกว่าของคุณ" onClose={() => setQuote(null)} wide>
             <p className="muted">ขอใบเสนอราคา / ปรึกษาโซลูชันสำหรับโครงการ</p>

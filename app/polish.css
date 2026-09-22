@@ -681,3 +681,225 @@ footer:before {
     flex-direction: row;
   }
 }
+
+/* Neramit mark on collection cards (replaces the mark previously repeated in every page hero) */
+.product-card .image-index {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 4px 12px 4px 5px;
+  font-weight: 600;
+  box-shadow: 0 4px 14px #00000026;
+}
+.product-card .image-index img {
+  position: static;
+  width: 26px;
+  height: 26px;
+  object-fit: contain;
+}
+.page-hero-content {
+  align-items: flex-end;
+}
+.product-card:hover .image-index img {
+  transform: none;
+}
+
+/* Homepage process markers — same champagne metallic gold as the quote CTA (.button-gold):
+   multi-stop body with an upper-left sheen, polished edge, top reflection and a light sweep
+   that travels along the seven steps in turn. Decoration sits under the number (z-index -1
+   inside an isolated stacking context) and stops under prefers-reduced-motion. */
+.process li > span {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  border: 1px solid #f7e0aa;
+  color: #fff8e7;
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-shadow: 0 1px 2px #5a390b80;
+  background:
+    radial-gradient(118% 150% at 28% -26%, #fff4d073 0%, #fff4d000 52%),
+    linear-gradient(
+      104deg,
+      #8a5a12 0%,
+      #a97122 13%,
+      #c58a24 30%,
+      #eabd55 45%,
+      #f3c65d 53%,
+      #e2b043 63%,
+      #d79a2b 78%,
+      #a86c19 92%,
+      #9b6417 100%
+    );
+  box-shadow:
+    0 10px 24px #1a12064d,
+    0 0 26px #d6a44a3d,
+    0 0 6px #f3c65d2e,
+    inset 0 1px 0 #fff4d4b8,
+    inset 0 -1px 0 #66400c73;
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
+}
+.process li > span:before {
+  content: '';
+  position: absolute;
+  inset: 1px 1px auto 1px;
+  height: 48%;
+  border-radius: 9999px 9999px 46% 46% / 9999px 9999px 100% 100%;
+  background: linear-gradient(180deg, #fff7e08c 0%, #fff7e033 52%, #fff7e000 100%);
+  z-index: -1;
+  pointer-events: none;
+}
+.process li > span:after {
+  content: '';
+  position: absolute;
+  top: -40%;
+  bottom: -40%;
+  left: -70%;
+  width: 45%;
+  background: linear-gradient(100deg, #fff6e000 0%, #fff6e0cc 44%, #fffdf5 52%, #fff6e000 100%);
+  transform: skewX(-18deg);
+  opacity: 0;
+  z-index: -1;
+  pointer-events: none;
+  animation: processSheen 7s ease-in-out infinite;
+}
+.process li:nth-child(2) > span:after {
+  animation-delay: 0.35s;
+}
+.process li:nth-child(3) > span:after {
+  animation-delay: 0.7s;
+}
+.process li:nth-child(4) > span:after {
+  animation-delay: 1.05s;
+}
+.process li:nth-child(5) > span:after {
+  animation-delay: 1.4s;
+}
+.process li:nth-child(6) > span:after {
+  animation-delay: 1.75s;
+}
+.process li:nth-child(7) > span:after {
+  animation-delay: 2.1s;
+}
+.process li:hover > span {
+  transform: translateY(-3px);
+  box-shadow:
+    0 16px 30px #1a120659,
+    0 0 36px #e6b8604d,
+    0 0 8px #f3c65d4d,
+    inset 0 1px 0 #fff4d4d9,
+    inset 0 -1px 0 #66400c73;
+}
+.process li:after {
+  background: linear-gradient(90deg, #d6a44a, #f0ddb455 60%, transparent);
+  opacity: 0.55;
+}
+@keyframes processSheen {
+  0%,
+  55% {
+    opacity: 0;
+    transform: translateX(0) skewX(-18deg);
+  }
+  62% {
+    opacity: 0.55;
+  }
+  80% {
+    opacity: 0.4;
+  }
+  90%,
+  100% {
+    opacity: 0;
+    transform: translateX(420%) skewX(-18deg);
+  }
+}
+
+/* Process copy — English gold micro label, Thai title with a growing gold rule, short line
+   of detail. Hovering a step lights the title in the CTA gold; steps fade up on scroll where
+   scroll-driven animations are supported. */
+.process li {
+  cursor: default;
+}
+.process .process-en {
+  margin-top: 24px;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.3em;
+  background: linear-gradient(90deg, #a86c19, #d79a2b 40%, #eabd55 70%, #a97122);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+.process h3 {
+  position: relative;
+  margin-top: 6px;
+  padding-bottom: 12px;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 1.45;
+  max-width: 170px;
+  transition: color 0.35s ease;
+}
+.process h3:after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 26px;
+  height: 2px;
+  border-radius: 2px;
+  background: linear-gradient(90deg, #c58a24, #f3c65d, #fff4d0);
+  box-shadow: 0 0 8px #e6b86066;
+  transition: width 0.45s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+.process .process-text {
+  margin-top: 10px;
+  max-width: 175px;
+  font-size: 13px;
+  line-height: 1.65;
+  color: var(--muted);
+}
+.process li:hover h3 {
+  background: linear-gradient(95deg, #8a5a12 0%, #c58a24 30%, #eabd55 55%, #a86c19 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+.process li:hover h3:after {
+  width: 72px;
+}
+@media (prefers-reduced-motion: no-preference) {
+  @supports (animation-timeline: view()) {
+    .process li {
+      animation: processReveal linear both;
+      animation-timeline: view();
+      animation-range: entry 5% entry 70%;
+    }
+  }
+}
+@keyframes processReveal {
+  from {
+    opacity: 0;
+    transform: translateY(28px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+@media (max-width: 700px) {
+  .process .process-en {
+    margin-top: 18px;
+    font-size: 9px;
+    letter-spacing: 0.24em;
+  }
+  .process h3 {
+    font-size: 14px;
+    padding-bottom: 10px;
+  }
+  .process .process-text {
+    font-size: 12px;
+  }
+}
