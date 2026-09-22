@@ -62,6 +62,7 @@ export function Catalog() {
           />
         </label>
       </div>
+      <h2 className="sr-only">รายการสินค้าทั้งหมด</h2>
       <p className="result-count" aria-live="polite">
         คอลเลกชันของเรา <span>{visible.length} รายการ</span>
       </p>
@@ -107,6 +108,7 @@ export function ProjectGrid({ preview = false }: { preview?: boolean }) {
           ))}
         </div>
       )}
+      {!preview && <h2 className="sr-only">ผลงานและแนวคิดการออกแบบ</h2>}
       <div className="project-grid">
         {visible.map((p) => (
           <Link href={'/projects/' + p.slug} className="project-card" key={p.slug}>

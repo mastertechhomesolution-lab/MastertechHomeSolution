@@ -17,7 +17,7 @@ import {
 } from 'lucide-react';
 import { categories, products } from '@/data/products';
 import { articles } from '@/data/news';
-import { Cta, Eyebrow, SectionHeading, ProductCard, Process, GoldLayers } from '@/components/ui';
+import { Cta, Eyebrow, SectionHeading, ProductCard, Process, GoldLayers, JsonLd } from '@/components/ui';
 import { ProjectGrid } from '@/components/catalog';
 import { pageMeta } from '@/lib/seo';
 export const metadata = pageMeta(
@@ -31,9 +31,38 @@ const strip = [
   { icon: Headset, title: 'บริการมืออาชีพ' },
   { icon: Globe2, title: 'ลิฟต์ครบทุกประเภทอาคาร' },
 ];
+const faqs = [
+  [
+    'ต้องเตรียมอะไรบ้างก่อนติดตั้งลิฟต์บ้าน?',
+    'เตรียมแบบอาคาร จำนวนชั้น และภาพพื้นที่ที่ต้องการติดตั้ง ทีมงานจะประเมินโครงสร้างและงานระบบก่อนแนะนำผลิตภัณฑ์ที่เหมาะสม',
+  ],
+  [
+    'สามารถเลือกสีและวัสดุประตูลิฟต์ได้หรือไม่?',
+    'ได้ ประตูหน้าชั้นมี 24 แบบ (NY-M101–M124) ทั้งเหล็กพ่นสี สเตนเลสแฮร์ไลน์ สเตนเลสกัดลาย และลายไม้ โดยต้องยืนยันความเข้ากันได้กับรุ่นลิฟต์ก่อนสั่งซื้อ',
+  ],
+  [
+    'บริษัทมีลิฟต์ประเภทใดบ้าง?',
+    'ลิฟต์บ้าน (Traction และ Steel Belt) ลิฟต์โดยสารแบบห้องเครื่องเล็กและไม่มีห้องเครื่อง ลิฟต์แก้ว ลิฟต์โรงพยาบาล ลิฟต์ขนส่งสินค้า ลิฟต์รถยนต์ รวมถึงบันไดเลื่อนและทางเลื่อน',
+  ],
+  [
+    'ขอใบเสนอราคาได้อย่างไร?',
+    'ติดต่อ 02-956-9876 หรือสแกน QR LINE พร้อมแจ้งประเภทสินค้าและพื้นที่ติดตั้ง แบบฟอร์มบนเว็บไซต์เวอร์ชันนี้เป็นการสาธิตเท่านั้น',
+  ],
+];
 export default function Home() {
   return (
     <>
+      <JsonLd
+        data={{
+          '@context': 'https://schema.org',
+          '@type': 'FAQPage',
+          mainEntity: faqs.map(([q, a]) => ({
+            '@type': 'Question',
+            name: q,
+            acceptedAnswer: { '@type': 'Answer', text: a },
+          })),
+        }}
+      />
       <section className="hero">
         {/* Art-directed hero photo: phones get the client's portrait PhoneBG so the
             glass lift stays in frame; wider screens keep the approved landscape HeroBG. */}
@@ -369,24 +398,7 @@ export default function Home() {
             <p>คำถามที่พบบ่อยก่อนเลือกโซลูชัน</p>
           </div>
           <div>
-            {[
-              [
-                'ต้องเตรียมอะไรบ้างก่อนติดตั้งลิฟต์บ้าน?',
-                'เตรียมแบบอาคาร จำนวนชั้น และภาพพื้นที่ที่ต้องการติดตั้ง ทีมงานจะประเมินโครงสร้างและงานระบบก่อนแนะนำผลิตภัณฑ์ที่เหมาะสม',
-              ],
-              [
-                'สามารถเลือกสีและวัสดุประตูลิฟต์ได้หรือไม่?',
-                'ได้ ประตูหน้าชั้นมี 24 แบบ (NY-M101–M124) ทั้งเหล็กพ่นสี สเตนเลสแฮร์ไลน์ สเตนเลสกัดลาย และลายไม้ โดยต้องยืนยันความเข้ากันได้กับรุ่นลิฟต์ก่อนสั่งซื้อ',
-              ],
-              [
-                'บริษัทมีลิฟต์ประเภทใดบ้าง?',
-                'ลิฟต์บ้าน (Traction และ Steel Belt) ลิฟต์โดยสารแบบห้องเครื่องเล็กและไม่มีห้องเครื่อง ลิฟต์แก้ว ลิฟต์โรงพยาบาล ลิฟต์ขนส่งสินค้า ลิฟต์รถยนต์ รวมถึงบันไดเลื่อนและทางเลื่อน',
-              ],
-              [
-                'ขอใบเสนอราคาได้อย่างไร?',
-                'ติดต่อ 02-956-9876 หรือสแกน QR LINE พร้อมแจ้งประเภทสินค้าและพื้นที่ติดตั้ง แบบฟอร์มบนเว็บไซต์เวอร์ชันนี้เป็นการสาธิตเท่านั้น',
-              ],
-            ].map(([q, a]) => (
+            {faqs.map(([q, a]) => (
               <details key={q}>
                 <summary>
                   {q}

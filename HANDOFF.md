@@ -247,3 +247,11 @@ The client chose **Design A — Premium / Architectural (CHAMPAGNE METALLIC, `da
 ## 2026-09-22 — Product-only imagery (no people)
 
 Client rule: images show products only, no people. Removed crops `hospital-elevator` (woman at lift button), `freight-elevator`, `panoramic-elevator`; products/projects now use `hospital-y001`, `freight-f01`, `panoramic-g003`. `public-traffic-escalator` and `moving-walk` crop people-free photos. Catalog pages with people (7, 8, 13, 15, 29, 31, 36, 37, 40, 49) are no longer rendered or shown. Where a photo is still needed, people were removed with Codex image edits: `Mock/edited/{p24-person,p31-doorway,p37-walk}.png` (originals beside them as `*-source.png`), composited by `scripts/prepare-catalog-images.mjs`. Legacy unused images (old concept crops, `public/catalog/106xxx_0.jpg`) were deleted.
+
+## 2026-09-22 — SEO / GEO / AEO pass
+
+- Removed the unused light theme (`[data-theme='luxury']` tokens) and theme-switcher/`.theme-option` CSS.
+- Structured data: `FAQPage` on the homepage (from the visible FAQ), `Article` on each guide (no invented dates/authors), Organization now has `brand: Neramit` and `knowsAbout` from the categories. Product JSON-LD intentionally has **no `offers`** (no public prices, AGENTS.md) — Google may warn; do not add invented prices.
+- Headings: product model codes are no longer `<h3>` (`.model-code`), catalog/project grids have a visually-hidden `<h2>`, so every page goes h1 → h2 → h3. Product titles fall back to the Thai name when the Thai + English title exceeds 60 characters.
+- `/llms.txt` (app/llms.txt/route.ts) serves a company + catalog summary generated from `data/`.
+- Still gated on a real domain (by design): canonical URLs, `og:image`, BreadcrumbList JSON-LD, robots allow + sitemap URLs — set `NEXT_PUBLIC_SITE_URL` and `SITE_INDEXABLE=true` at launch.

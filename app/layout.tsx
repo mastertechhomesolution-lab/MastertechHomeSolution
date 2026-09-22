@@ -3,6 +3,7 @@ import { Noto_Sans_Thai, Noto_Serif_Thai } from 'next/font/google';
 import { Website } from '@/components/website';
 import { JsonLd } from '@/components/ui';
 import { company } from '@/data/company';
+import { categories } from '@/data/products';
 import { isIndexable, siteUrl } from '@/lib/seo';
 import './globals.css';
 import './shell.css';
@@ -47,6 +48,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             name: company.name,
             alternateName: [company.siteName, company.shortName, 'Mast Tech'],
             slogan: company.slogan,
+            brand: { '@type': 'Brand', name: company.brand },
+            knowsAbout: categories.map((c) => c.name + ' (' + c.en + ')'),
             description: company.description,
             telephone: company.COMPANY_PHONE,
             address: company.postalAddress,

@@ -43,36 +43,6 @@
   --ghost-border: #ffffffb3;
   --category-bar-bg: #fff;
 }
-[data-theme='luxury'] {
-  --background: #fbf8f3;
-  --background-secondary: #f3ede3;
-  --surface: #fff;
-  --surface-elevated: #fff;
-  --foreground: #2b2620;
-  --muted: #6c6355;
-  --primary: #8c6a2f;
-  --secondary: #262019;
-  --accent: #8c6a2f;
-  --nav-active: #8c6a2f;
-  --border: #e4dbcc;
-  --shadow: 0 18px 50px #4a3a2414;
-  --nav-background: #fffdfae6;
-  --card-background: #fff;
-  --heading-font: var(--font-sans), sans-serif;
-  --cta-bg: linear-gradient(112deg, #262019, #3f3424 60%, #6b5433);
-  --radius: 18px;
-  --icon-bg: #f4ecdd;
-  --hero-accent: #a8823c;
-  --button-bg: linear-gradient(90deg, #a07a34, #c9a559);
-  --button-shadow: 0 10px 28px #8a692c38;
-  --card-border: #ebe3d6;
-  --header-bg: #fffdfa;
-  --header-text: #2b2620;
-  --hero-image-filter: brightness(1.04) saturate(1.02);
-  --round-go: #a8823c;
-  --strip-bg: linear-gradient(180deg, #1f2b45, #151d33);
-  --category-bar-bg: #fffdfaeb;
-}
 * {
   box-sizing: border-box;
 }
@@ -961,28 +931,6 @@ footer {
   gap: 9px;
   align-items: center;
 }
-.design-toggle {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  padding: 10px 13px;
-  background: var(--surface);
-  color: var(--foreground);
-  border: 1px solid var(--border);
-  box-shadow: 0 4px 24px #0002;
-  border-radius: 4px;
-  font-size: 11px;
-}
-.design-toggle > b {
-  font-size: 9px;
-  background: var(--primary);
-  color: #fff;
-  width: 20px;
-  height: 20px;
-  display: grid;
-  place-items: center;
-  border-radius: 2px;
-}
 .floating-line {
   display: grid;
   place-items: center;
@@ -1692,83 +1640,6 @@ footer {
 .search-results > a:hover {
   color: var(--primary);
 }
-.theme-options {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 20px;
-  margin-top: 25px;
-}
-.theme-option {
-  padding: 24px;
-  border: 1px solid var(--border);
-}
-.theme-option.selected {
-  outline: 2px solid var(--primary);
-  outline-offset: 0;
-}
-.theme-label {
-  display: flex;
-  justify-content: space-between;
-  font-size: 13px;
-  font-weight: 600;
-}
-.theme-option h3 {
-  font-size: 13px;
-  letter-spacing: 0.03em;
-  margin-top: 20px;
-}
-.theme-option small {
-  font-size: 10px;
-  color: var(--muted);
-}
-.theme-option p {
-  font-size: 12px;
-  color: var(--muted);
-  margin-top: 13px;
-  min-height: 69px;
-}
-.theme-option .button {
-  font-size: 11px;
-  width: 100%;
-  padding: 10px;
-  gap: 15px;
-}
-.swatches {
-  display: flex;
-  margin: 20px 0;
-  gap: 6px;
-}
-.swatches i {
-  display: block;
-  height: 20px;
-  flex: 1;
-  border: 1px solid #0001;
-}
-.theme-sample {
-  height: 115px;
-  margin-top: 18px;
-  display: flex;
-  gap: 9px;
-  align-items: flex-end;
-  padding: 18px;
-  background: linear-gradient(135deg, #1b1814, #4a3a24);
-  overflow: hidden;
-}
-.theme-sample > span {
-  display: block;
-  width: 30%;
-  height: 82%;
-  border: 1px solid #d9bd8f;
-  background: linear-gradient(90deg, #3a2f20, #6b5433);
-  box-shadow: 0 0 15px #d9bd8f40;
-}
-.theme-sample > span:nth-child(2) {
-  height: 105%;
-  border-color: #c08b3c;
-}
-.theme-sample > span:nth-child(3) {
-  height: 65%;
-}
 .mobile-nav {
   display: flex;
   flex-direction: column;
@@ -2402,19 +2273,6 @@ footer {
   .floating-line {
     display: none;
   }
-  .design-toggle {
-    padding: 8px 10px;
-    font-size: 10px;
-    gap: 8px;
-  }
-  .design-toggle > b {
-    width: 17px;
-    height: 17px;
-    font-size: 8px;
-  }
-  .design-toggle > svg {
-    width: 14px;
-  }
   .mobile-contact {
     display: grid;
     position: fixed;
@@ -2717,31 +2575,6 @@ footer {
   }
   .dialog-content > .muted {
     font-size: 12px;
-  }
-  .theme-options {
-    grid-template-columns: 1fr;
-    gap: 20px;
-  }
-  .theme-option {
-    padding: 20px;
-  }
-  .theme-sample {
-    height: 95px;
-  }
-  .theme-option p {
-    min-height: 0;
-  }
-  .theme-option .button {
-    font-size: 12px;
-  }
-  .dialog-wide .theme-option .theme-sample {
-    display: none;
-  }
-  .dialog-wide .theme-option h3 {
-    margin-top: 15px;
-  }
-  .swatches {
-    margin: 17px 0;
   }
   .search-results strong {
     font-size: 12px;

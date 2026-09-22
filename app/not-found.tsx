@@ -1,4 +1,5 @@
 import Link from 'next/link';
+export const metadata = { title: 'ไม่พบหน้าที่ต้องการ' };
 export default function NotFound() {
   return (
     <section className="empty-state container">

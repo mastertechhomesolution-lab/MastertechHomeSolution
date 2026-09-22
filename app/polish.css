@@ -239,13 +239,8 @@ footer:before {
 }
 
 /* Floating tools and dialogs */
-.design-toggle,
 .floating-line {
   border-radius: 999px;
-}
-.design-toggle > b {
-  border-radius: 50%;
-  background: var(--button-bg);
 }
 .floating-line {
   background: var(--button-bg);
@@ -337,19 +332,6 @@ footer:before {
   }
 }
 
-/* Design B preview reads light ivory/bronze, Design A stays dark champagne */
-.theme-option.luxury .theme-sample {
-  background: linear-gradient(135deg, #fbf8f3, #ece0c9);
-}
-.theme-option.luxury .theme-sample > span {
-  border-color: #a8823c;
-  background: linear-gradient(90deg, #c9a559, #e2cb9b);
-  box-shadow: 0 0 15px #a8823c33;
-}
-.theme-option.luxury .theme-sample > span:nth-child(2) {
-  border-color: #8c6a2f;
-}
-
 /* Catalog specification table and model list on product detail pages */
 .spec-table {
   width: 100%;
@@ -378,7 +360,7 @@ footer:before {
   gap: 18px;
   padding-bottom: 22px;
 }
-.model-list h3 {
+.model-list .model-code {
   font-family: var(--font-sans), sans-serif;
   font-size: 14px;
   font-weight: 600;

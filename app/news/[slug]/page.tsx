@@ -3,7 +3,8 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { articles } from '@/data/news';
 import { Cta, Eyebrow, JsonLd } from '@/components/ui';
-import { pageMeta, breadcrumbs } from '@/lib/seo';
+import { pageMeta, breadcrumbs, siteUrl } from '@/lib/seo';
+import { company } from '@/data/company';
 export const generateStaticParams = () => articles.map((a) => ({ slug: a.slug }));
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
@@ -21,6 +22,20 @@ export default async function Page({ params }: { params: Promise<{ slug: string 
           { name: 'ข่าวสาร', path: '/news' },
           { name: a.title, path: '/news/' + a.slug },
         ])}
+      />
+      <JsonLd
+        data={{
+          '@context': 'https://schema.org',
+          '@type': 'Article',
+          headline: a.title,
+          description: a.intro,
+          articleSection: a.category,
+          inLanguage: 'th',
+          about: a.sections.map(([heading]) => heading),
+          articleBody: a.sections.map(([heading, body]) => heading + ': ' + body).join('\n'),
+          publisher: { '@type': 'Organization', name: company.name, alternateName: company.siteName },
+          ...(siteUrl ? { url: siteUrl + '/news/' + a.slug, image: siteUrl + '/products/' + a.image + '.webp' } : {}),
+        }}
       />
       <article className="article container">
         <div className="breadcrumb">

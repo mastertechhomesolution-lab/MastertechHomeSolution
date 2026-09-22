@@ -10,7 +10,9 @@ export const generateStaticParams = () => products.map((p) => ({ slug: p.slug })
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
   const p = products.find((p) => p.slug === slug);
-  return p ? pageMeta(p.name + ' — ' + p.en, p.description, '/products/' + p.slug) : {};
+  return p
+    ? pageMeta((p.name + ' — ' + p.en).length <= 60 ? p.name + ' — ' + p.en : p.name, p.description, '/products/' + p.slug)
+    : {};
 }
 export default async function Page({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
@@ -94,10 +96,10 @@ export default async function Page({ params }: { params: Promise<{ slug: string 
                   <div className="model-list">
                     {p.models.map((m) => (
                       <div key={m.code}>
-                        <h3>
+                        <p className="model-code">
                           {m.code}
                           {m.tag && <small> ({m.tag})</small>}
-                        </h3>
+                        </p>
                         <ul>
                           {m.spec.map((x) => (
                             <li key={x}>{x}</li>
