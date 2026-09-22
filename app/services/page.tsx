@@ -4,7 +4,7 @@ import { QuoteButton } from '@/components/website';
 import { pageMeta } from '@/lib/seo';
 export const metadata = pageMeta(
   'บริการติดตั้งและบำรุงรักษา',
-  'ให้คำปรึกษา สำรวจพื้นที่ ออกแบบ ติดตั้ง ตรวจสอบ และดูแลลิฟต์ ประตู และระบบ Smart Living',
+  'ให้คำปรึกษา สำรวจพื้นที่ ออกแบบ ติดตั้ง ตรวจสอบ และบำรุงรักษาลิฟต์บ้าน ลิฟต์โดยสาร ลิฟต์ขนส่งสินค้า บันไดเลื่อน และทางเลื่อน',
   '/services',
 );
 export default function Page() {
@@ -14,7 +14,8 @@ export default function Page() {
         label="SERVICE & CARE"
         title={'บริการครบวงจร\nตั้งแต่การออกแบบจนถึงการดูแล'}
         description="เข้าใจพื้นที่ ใส่ใจผู้ใช้งาน และดูแลทุกรายละเอียดของโครงการ"
-        image="modern"
+        image="hero-services"
+        alt="ห้องเครื่องลิฟต์พร้อมเครื่องลากแบบ gearless และรางนำ"
       />
       <section className="section container">
         <SectionHeading eyebrow="EXPERTISE AT EVERY STEP" title="ดูแลด้วยความเข้าใจ" />
@@ -65,7 +66,7 @@ export default function Page() {
           <SectionHeading
             eyebrow="LONG-TERM PEACE OF MIND"
             title="ความใส่ใจที่ไม่จบในวันส่งมอบ"
-            description="แจ้งประเภทผลิตภัณฑ์ อาการที่พบ และสถานที่ติดตั้ง เพื่อให้ทีมงานประเมินและประสานบริการได้อย่างเหมาะสม"
+            description="บริษัทยึดแนวทาง Customer focus ดูแลตั้งแต่ช่วงก่อสร้างโครงการตลอดอายุการใช้งานของผลิตภัณฑ์ แจ้งประเภทผลิตภัณฑ์ อาการที่พบ และสถานที่ติดตั้ง เพื่อให้ทีมงานประเมินและประสานบริการได้อย่างเหมาะสม"
           />
           <QuoteButton product="บริการบำรุงรักษา">นัดหมายปรึกษาทีมบริการ</QuoteButton>
         </div>

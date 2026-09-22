@@ -59,8 +59,8 @@ export default async function Page({ params }: { params: Promise<{ slug: string 
                 <dd>แนวคิดการออกแบบ</dd>
               </div>
             </dl>
-            <Link className="text-link" href="/products">
-              สำรวจผลิตภัณฑ์ →
+            <Link className="text-link" href={'/products/' + p.productSlug}>
+              ดูรายละเอียด {p.product} →
             </Link>
           </div>
         </div>

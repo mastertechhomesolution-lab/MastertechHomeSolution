@@ -289,6 +289,8 @@ export function ContactDetails() {
     </div>
   );
 }
+// Pages that open with a full-bleed photo hero; the header sits transparently over them.
+const heroPaths = ['/', '/products', '/services', '/projects', '/about', '/news', '/contact'];
 export function Website({ children }: { children: ReactNode }) {
   const pathname = usePathname();
   const [theme, setTheme] = useState('midnight');
@@ -328,7 +330,7 @@ export function Website({ children }: { children: ReactNode }) {
     window.history.replaceState(null, '', u);
   }
   const results = products.filter((p) =>
-    (p.name + ' ' + p.description + ' ' + categories.find((c) => c.id === p.category)?.name)
+    (p.name + ' ' + p.en + ' ' + p.description + ' ' + categories.find((c) => c.id === p.category)?.name)
       .toLowerCase()
       .includes(query.toLowerCase()),
   );
@@ -338,7 +340,7 @@ export function Website({ children }: { children: ReactNode }) {
         <a className="skip-link" href="#main">
           ข้ามไปยังเนื้อหา
         </a>
-        <header className={'header' + (scrolled ? ' scrolled' : '') + (pathname === '/' ? ' header-home' : '')}>
+        <header className={'header' + (scrolled ? ' scrolled' : '') + (heroPaths.includes(pathname) ? ' header-home' : '')}>
           <div className="container nav-inner">
             <Link href="/" className="brand" aria-label="MasterTechhomesolution หน้าแรก">
               <span className="brand-logos">
@@ -422,7 +424,7 @@ export function Website({ children }: { children: ReactNode }) {
                   <span>SAFER LIVING.</span>
                 </h2>
                 <p className="footer-company">{company.name}</p>
-                <p>เทคโนโลยีที่ออกแบบเพื่อคุณภาพชีวิตที่ดีกว่า</p>
+                <p>{company.slogan}</p>
               </div>
               <QuoteButton className="button button-outline">
                 เริ่มต้นโครงการของคุณ <ArrowUpRight size={18} />
@@ -431,7 +433,7 @@ export function Website({ children }: { children: ReactNode }) {
             <div className="footer-columns">
               <div>
                 <h3>ผลิตภัณฑ์</h3>
-                {categories.slice(0, 5).map((c) => (
+                {categories.map((c) => (
                   <Link key={c.id} href={'/products?category=' + c.id}>
                     {c.name}
                   </Link>
@@ -576,7 +578,7 @@ export function Website({ children }: { children: ReactNode }) {
               <Search size={20} />
               <input
                 aria-label="ค้นหาชื่อหรือประเภทสินค้า"
-                placeholder="ค้นหาลิฟต์ ประตู Smart Lock…"
+                placeholder="ค้นหาลิฟต์ บันไดเลื่อน ประตูลิฟต์…"
                 value={query}
                 onChange={(e) => setQuery(e.target.value)}
               />

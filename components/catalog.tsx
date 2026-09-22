@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 import { Search, SlidersHorizontal, ArrowUpRight } from 'lucide-react';
 import Link from 'next/link';
 import Image from 'next/image';
-import { categories, products } from '@/data/products';
+import { categories, products, catalogPage } from '@/data/products';
 import { projects } from '@/data/projects';
 import { ProductCard } from './ui';
 export function Catalog() {
@@ -25,7 +25,7 @@ export function Catalog() {
   const visible = products.filter(
     (p) =>
       (category === 'all' || p.category === category) &&
-      (p.name + ' ' + p.description + ' ' + categories.find((c) => c.id === p.category)?.name)
+      (p.name + ' ' + p.en + ' ' + p.description + ' ' + categories.find((c) => c.id === p.category)?.name)
         .toLowerCase()
         .includes(query.toLowerCase()),
   );
@@ -41,7 +41,7 @@ export function Catalog() {
           หมวดสินค้า
         </button>
         <div className={'filter-tabs ' + (filters ? 'filters-open' : '')} aria-label="ประเภทสินค้า">
-          {[{ id: 'all', name: 'ทั้งหมด' }, ...categories.filter((c) => c.id !== 'services')].map((c) => (
+          {[{ id: 'all', name: 'ทั้งหมด' }, ...categories].map((c) => (
             <button
               key={c.id}
               aria-pressed={category === c.id}
@@ -95,7 +95,7 @@ export function ProjectGrid({ preview = false }: { preview?: boolean }) {
     <>
       {!preview && (
         <div className="filter-tabs project-filters">
-          {['ทั้งหมด', 'Residential', 'Condominium', 'Commercial', 'Hotel', 'Other'].map((f) => (
+          {['ทั้งหมด', 'Residential', 'Condominium', 'Commercial', 'Hospital', 'Other'].map((f) => (
             <button
               key={f}
               aria-pressed={filter === f}
@@ -133,19 +133,19 @@ export function ProjectGrid({ preview = false }: { preview?: boolean }) {
     </>
   );
 }
-export function ProductGallery({ image, catalog, name }: { image: string; catalog?: string; name: string }) {
+export function ProductGallery({ image, pages = [], name }: { image: string; pages?: number[]; name: string }) {
   const [active, setActive] = useState(0);
-  const images = ['/products/' + image + '.webp', ...(catalog ? ['/catalog/' + catalog + '.jpg'] : [])];
+  const images = ['/products/' + image + '.webp', ...pages.map(catalogPage)];
   return (
     <div className="gallery">
-      <div className={'gallery-main ' + (active === 1 ? 'catalog-image' : '')}>
+      <div className={'gallery-main ' + (active > 0 ? 'catalog-image' : '')}>
         <Image
           key={active}
           src={images[active]}
-          alt={active === 0 ? name : 'แค็ตตาล็อก ' + name}
+          alt={active === 0 ? name : 'หน้าแค็ตตาล็อก ' + name + ' หน้า ' + pages[active - 1]}
           fill
           sizes="(max-width:800px) 90vw, 50vw"
-          priority
+          priority={active === 0}
         />
       </div>
       <div className="gallery-thumbnails">
@@ -153,15 +153,15 @@ export function ProductGallery({ image, catalog, name }: { image: string; catalo
           <button
             key={src}
             className={active === i ? 'active' : ''}
-            aria-label={i === 0 ? 'ดูภาพสินค้า' : 'ดูแค็ตตาล็อกต้นฉบับ'}
+            aria-label={i === 0 ? 'ดูภาพสินค้า' : 'ดูหน้าแค็ตตาล็อก ' + pages[i - 1]}
             aria-pressed={active === i}
             onClick={() => setActive(i)}
           >
             <Image src={src} width={72} height={72} alt="" />
           </button>
         ))}
-        {active === 1 && (
-          <a className="text-link" href={images[1]} target="_blank" rel="noopener noreferrer">
+        {active > 0 && (
+          <a className="text-link" href={images[active]} target="_blank" rel="noopener noreferrer">
             เปิดภาพขนาดเต็ม <ArrowUpRight size={16} />
           </a>
         )}

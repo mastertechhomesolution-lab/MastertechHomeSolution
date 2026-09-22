@@ -22,7 +22,7 @@ const serif = Noto_Serif_Thai({
 export const metadata: Metadata = {
   metadataBase: siteUrl ? new URL(siteUrl) : undefined,
   title: {
-    default: 'MasterTechhomesolution | MASTER SCIENCE AND TECHNOLOGY — Elevator, Door & Smart Living Solutions',
+    default: 'MasterTechhomesolution | MASTER SCIENCE AND TECHNOLOGY — Home Lift, Elevator & Escalator Solutions',
     template: '%s | MasterTechhomesolution',
   },
   description: company.description,
@@ -53,16 +53,11 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             '@context': 'https://schema.org',
             '@type': 'Organization',
             name: company.name,
-            alternateName: company.siteName,
+            alternateName: [company.siteName, company.shortName, 'Mast Tech'],
+            slogan: company.slogan,
             description: company.description,
             telephone: company.COMPANY_PHONE,
-            address: {
-              '@type': 'PostalAddress',
-              streetAddress: '36/19 หมู่ 1 ถนนเลียบวารี ซอยเลียบวารี 61',
-              addressLocality: 'แขวงโคกแฝด เขตหนองจอก',
-              addressRegion: 'กรุงเทพมหานคร',
-              addressCountry: 'TH',
-            },
+            address: company.postalAddress,
             ...(siteUrl ? { url: siteUrl, logo: siteUrl + '/brand/mast-tech.png' } : {}),
           }}
         />

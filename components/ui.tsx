@@ -50,32 +50,52 @@ export function SectionHeading({
     </div>
   );
 }
+/** Full-bleed inner-page hero, styled after the homepage hero. Backgrounds live in
+ *  public/images/heroes/<image>.webp (built by scripts/prepare-page-heroes.mjs). */
 export function PageHero({
   label,
   title,
   description,
-  image = 'hall-door',
+  image,
+  alt,
+  kicker = 'NERAMIT · MASTER SCIENCE & TECHNOLOGY',
 }: {
   label: string;
   title: string;
   description: string;
-  image?: string;
+  image: string;
+  alt: string;
+  kicker?: string;
 }) {
+  const [first, ...rest] = title.split('\n');
   return (
     <section className="page-hero">
-      <div className="container page-hero-inner">
-        <div>
+      <div className="page-hero-visual">
+        <Image src={`/images/heroes/${image}.webp`} alt={alt} fill sizes="100vw" priority />
+      </div>
+      <div className="page-hero-scrim" aria-hidden="true" />
+      <div className="container page-hero-content">
+        <div className="page-hero-copy">
           <div className="breadcrumb">
             <Link href="/">หน้าแรก</Link>
             <span>/</span>
             <span>{label}</span>
           </div>
-          <Eyebrow>{label}</Eyebrow>
-          <h1>{title}</h1>
-          <p>{description}</p>
+          <p className="page-hero-eyebrow">{label}</p>
+          <h1>
+            {first}
+            {rest.length > 0 && (
+              <>
+                <br />
+                <span>{rest.join(' ')}</span>
+              </>
+            )}
+          </h1>
+          <p className="page-hero-description">{description}</p>
+          <p className="page-hero-kicker">{kicker}</p>
         </div>
-        <div className="page-hero-image">
-          <Image src={`/products/${image}.webp`} alt={title} fill sizes="(max-width: 700px) 100vw, 40vw" priority />
+        <div className="page-hero-mark" aria-hidden="true">
+          <Image src="/brand/neramit-logo-light.png" width={360} height={360} alt="" unoptimized />
         </div>
       </div>
     </section>
@@ -91,7 +111,7 @@ export function ProductCard({ product: p }: { product: Product }) {
           fill
           sizes="(max-width: 600px) 85vw, (max-width: 1000px) 45vw, 30vw"
         />
-        <span className="image-index">{p.concept ? 'CONCEPT COLLECTION' : 'MASTER COLLECTION'}</span>
+        <span className="image-index">NERAMIT COLLECTION</span>
         <span className="round-arrow">
           <ArrowUpRight size={20} />
         </span>

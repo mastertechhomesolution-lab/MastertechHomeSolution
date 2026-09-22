@@ -11,9 +11,10 @@ export default function Page() {
     <>
       <PageHero
         label="SPACES & POSSIBILITIES"
-        title="ทุกพื้นที่ มีเรื่องราวของตัวเอง"
+        title={'ทุกพื้นที่\nมีเรื่องราวของตัวเอง'}
         description="สำรวจแนวทางที่เทคโนโลยีและสถาปัตยกรรมสร้างประสบการณ์ร่วมกัน"
-        image="champagne"
+        image="hero-projects"
+        alt="บ้านโมเดิร์นยามค่ำพร้อมปล่องลิฟต์บ้านกระจก"
       />
       <section className="section container">
         <p className="concept-note">

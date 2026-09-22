@@ -186,7 +186,7 @@ Run in `D:\Mastertech`:
 
 ```powershell
 npm.cmd install
-node scripts/prepare-assets.mjs
+node scripts/prepare-assets.mjs   # also builds product images from Product/ข้อมูลบริษัทสินค้า.pdf
 npm.cmd run dev
 ```
 
@@ -216,3 +216,26 @@ npm.cmd run start
 ## Definition of done
 
 The site runs on localhost and has been visually and interactively checked at the requested sizes in both themes, with issues fixed. Build/typecheck pass after final edits. Git setup is usable, README exists, real contact data is consistent, demo/unknown information remains honest, and the user receives a concise Thai delivery with a working local URL and next-step config instructions.
+
+## 2026-09-22 — Real company/product data from the catalog PDF
+
+The client supplied `Product/ข้อมูลบริษัทสินค้า.pdf` (375 MB, 49 spreads, "THE ELEVATOR GENERAL CATALOG" 2026.8, MASTER SCIENCE AND TECHNOLOGY CO., LTD.). The 12 `Product/106xxx_0.jpg` files are pages of this same catalog. Decisions confirmed by the user this session:
+
+- Address is now the catalog address **36/33 หมู่ 1 ซอยเลียบวารี 61 ถนนเลียบวารี แขวงโคกแฝด เขตหนองจอก กรุงเทพมหานคร 10530** (replaces 36/19 from the legacy site). `data/company.ts` holds structured `postalAddress` and `openingHoursSpecification`, used by the Organization (layout) and LocalBusiness (contact) JSON-LD.
+- Smart Lock and Automatic Door (concept-only, not in the catalog) were **removed** and replaced with real categories: `elevators` (Home), `passenger`, `freight`, `escalators`, `doors`, `accessories`. The homepage category bar still has six items; the old `services` tile was dropped (Services stays in nav/footer).
+- Technical specs, model codes (NY-…) and finish strings stay in the catalog's English; only general copy is Thai (user instruction).
+
+Implementation: `scripts/prepare-catalog-images.mjs` (mupdf + sharp, `mupdf` added as devDependency) renders catalog spreads to `public/catalog/page-XX.webp` and crops product images to `public/products/*.webp` (QR codes excluded). `data/products.ts` now has 23 products with `en`, `specs`, `models`, `applications`, `pages`, `rendered` (shows the "drawn by computer" disclosure). The product gallery shows the product image plus its catalog pages. About, homepage, services, news (6 catalog-based guides), projects (still labelled design concepts) and metadata were rewritten from the catalog. `Product/*.pdf` is git-ignored because of its size.
+
+Products are imported and sold under the company's own brand **Neramit** (user, 2026-09-22): never mention the supplier/manufacturer brand anywhere on the site. The catalog script covers supplier names printed on catalog pages (13, 29, 43, 44) and page 3 is not rendered; product JSON-LD brand and card badge use Neramit. Also not transplanted (unverifiable): TÜV badge, "nation-wide branches in every major city", 24-hour hotline promise. Catalog percentage figures are shown only as attributed product specs. Old unreferenced assets (`public/products/smart-lock.webp`, `automatic-door.webp`, old crops, `public/catalog/106xxx_0.jpg`) remain on disk.
+
+Verified: typecheck + production build pass (45 static pages); puppeteer-core/Edge sweep of all linked routes at 1440/768/390/320 shows no horizontal overflow, no broken images, no console errors.
+
+Asset note: `node scripts/prepare-assets.mjs` now chains `prepare-catalog-images.mjs`. Because `Product/*.pdf` is git-ignored, the generated `public/products/*.webp` and `public/catalog/page-*.webp` are the committed artifacts; the client must keep the original PDF to regenerate them.
+
+## 2026-09-22 (later) — Inner-page heroes, Neramit mark, services image
+
+- `PageHero` (components/ui.tsx) is now a full-bleed photo hero matching the homepage: transparent header over it (`heroPaths` in components/website.tsx), dark scrim, gold second headline line, gold hairline at the bottom, and the Neramit mark on the right (in-flow under the copy on phones). Styles are at the end of `app/polish.css`; the old split-layout `.page-hero-inner/.page-hero-image` rules in globals.css are now unused.
+- Backgrounds: `Mock/generated/hero-{products,services,projects,about,news,contact}.png`, generated with Codex (user-authorised) from `public/images/hero-bg.webp` as style reference; built to `public/images/heroes/*.webp` by `scripts/prepare-page-heroes.mjs`. Ambient scenes only; not product or project claims.
+- `public/brand/neramit-logo-light.png` (scripts/prepare-logo-light.mjs): knocked-out Neramit mark with the navy "NERA" turned ivory for dark surfaces. White boxes behind the Neramit logo (about brands row, homepage partner mark) were removed.
+- The woman photo (catalog p.49) was removed from Services and is no longer generated; catalog page 49 is not rendered.

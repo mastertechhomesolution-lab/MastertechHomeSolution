@@ -21,15 +21,15 @@ import { Cta, Eyebrow, SectionHeading, ProductCard, Process, GoldLayers } from '
 import { ProjectGrid } from '@/components/catalog';
 import { pageMeta } from '@/lib/seo';
 export const metadata = pageMeta(
-  'ลิฟต์บ้าน ประตูลิฟต์ และ Smart Living',
-  'MasterTechhomesolution โซลูชันลิฟต์บ้าน ประตูลิฟต์ Smart Lock และระบบประตู พร้อมให้คำปรึกษา ติดตั้ง และดูแลหลังการขาย',
+  'ลิฟต์บ้าน ลิฟต์โดยสาร และบันไดเลื่อน',
+  'MasterTechhomesolution โดย MASTER SCIENCE AND TECHNOLOGY ลิฟต์บ้าน ลิฟต์โดยสาร ลิฟต์โรงพยาบาล ลิฟต์ขนส่งสินค้า บันไดเลื่อน ทางเลื่อน ประตูลิฟต์ และอุปกรณ์ตกแต่ง พร้อมให้คำปรึกษาและติดตั้ง',
   '/',
 );
 const strip = [
   { icon: Gem, title: 'วัสดุคุณภาพระดับพรีเมียม' },
   { icon: ShieldCheck, title: 'ดีไซน์หรู ทันสมัย' },
   { icon: Headset, title: 'บริการมืออาชีพ' },
-  { icon: Globe2, title: 'ครอบคลุมทั่วประเทศ' },
+  { icon: Globe2, title: 'ลิฟต์ครบทุกประเภทอาคาร' },
 ];
 export default function Home() {
   return (
@@ -60,7 +60,7 @@ export default function Home() {
               ในทุกการใช้งาน
             </h1>
             <p className="hero-description">
-              ลิฟต์ ประตู ระบบล็อค และอุปกรณ์ตกแต่ง
+              ลิฟต์บ้าน ลิฟต์โดยสาร บันไดเลื่อน และอุปกรณ์ตกแต่ง
               <br />
               ตอบโจทย์ทุกพื้นที่ของคุณ
             </p>
@@ -91,7 +91,7 @@ export default function Home() {
           <ul className="category-bar">
             {categories.map((c) => (
               <li key={c.id}>
-                <Link href={c.id === 'services' ? '/services' : '/products?category=' + c.id} className="category-item">
+                <Link href={'/products?category=' + c.id} className="category-item">
                   <span className="category-thumb">
                     <Image src={'/products/' + c.image + '.webp'} alt="" fill sizes="96px" />
                   </span>
@@ -131,7 +131,9 @@ export default function Home() {
             label="สำรวจคอลเลกชัน"
           />
           <div className="product-grid featured-grid">
-            {[products[0], products[2], products[6], products[9]].map((p) => (
+            {['sightseeing-home-elevator', 'passenger-elevator', 'panoramic-elevator', 'escalator']
+              .map((slug) => products.find((p) => p.slug === slug)!)
+              .map((p) => (
               <ProductCard key={p.slug} product={p} />
             ))}
           </div>
@@ -140,10 +142,10 @@ export default function Home() {
       <section className="editorial-showcase">
         <div className="showcase-image">
           <Image
-            src="/products/champagne.webp"
+            src="/products/home-v104.webp"
             fill
             sizes="(max-width:700px) 100vw, 50vw"
-            alt="ห้องโดยสารลิฟต์คอลเลกชันแชมเปญ"
+            alt="ห้องโดยสารลิฟต์บ้านรุ่น NY-V104 โทนแชมเปญโกลด์"
           />
           <span>THE ART OF EVERYDAY LIVING</span>
         </div>
@@ -162,14 +164,14 @@ export default function Home() {
             <span>01</span>
             <div>
               <h3>ออกแบบให้เป็นส่วนหนึ่งของบ้าน</h3>
-              <p>เลือกวัสดุ โทนสี และรูปแบบที่สะท้อนตัวตนของคุณ</p>
+              <p>ลิฟต์บ้านระบบ Traction และสายพานเหล็ก ไม่ต้องมีห้องเครื่อง พร้อมห้องโดยสารซีรีส์ V100–V400 ให้เลือกวัสดุตามสไตล์บ้าน</p>
             </div>
           </div>
           <Link href="/products?category=elevators" className="text-link">
             ค้นพบลิฟต์สำหรับบ้านคุณ <ArrowUpRight size={19} />
           </Link>
           <div className="partner-mark">
-            <Image src="/brand/neramit-logo.png" width={360} height={360} alt="Neramit" unoptimized />
+            <Image src="/brand/neramit-logo-light.png" width={360} height={360} alt="Neramit" unoptimized />
             <span>
               CRAFTED FOR
               <br />
@@ -182,14 +184,14 @@ export default function Home() {
         <div className="container dual-showcase">
           {[
             {
-              image: 'smart-lock',
-              label: 'SMART LOCK',
-              title: 'ความปลอดภัย\nที่เริ่มต้นตั้งแต่หน้าประตู',
-              href: '/products?category=locks',
+              image: 'escalator',
+              label: 'ESCALATOR & MOVING WALK',
+              title: 'บันไดเลื่อนและทางเลื่อน\nสำหรับพื้นที่สาธารณะ',
+              href: '/products?category=escalators',
             },
             {
               image: 'hall-door',
-              label: 'ELEVATOR DOOR',
+              label: 'HALL DOOR DESIGN',
               title: 'ทุกรายละเอียด\nสะท้อนคุณภาพ',
               href: '/products?category=doors',
             },
@@ -220,7 +222,7 @@ export default function Home() {
                 icon: House,
                 title: 'บ้านพักอาศัย',
                 en: 'LUXURY HOME',
-                text: 'ลิฟต์บ้าน · Smart Lock',
+                text: 'ลิฟต์บ้าน · ห้องโดยสารซีรีส์ V',
                 category: 'elevators',
               },
               {
@@ -228,29 +230,29 @@ export default function Home() {
                 title: 'คอนโดมิเนียม',
                 en: 'CONDOMINIUM',
                 text: 'ลิฟต์โดยสาร · ประตูลิฟต์',
-                category: 'doors',
+                category: 'passenger',
               },
               {
                 icon: BriefcaseBusiness,
                 title: 'อาคารสำนักงาน',
                 en: 'WORKPLACE',
-                text: 'ระบบประตู · ระบบเข้าออก',
-                category: 'automatic',
+                text: 'ลิฟต์โดยสาร · ลิฟต์ MRL',
+                category: 'passenger',
               },
-              { icon: Hotel, title: 'โรงแรม', en: 'HOSPITALITY', text: 'ประตูลิฟต์ · งานตกแต่ง', category: 'doors' },
+              { icon: Hotel, title: 'โรงพยาบาล', en: 'HEALTHCARE', text: 'ลิฟต์โรงพยาบาล · ลิฟต์เตียง', category: 'passenger' },
               {
                 icon: Building2,
-                title: 'โครงการอสังหาริมทรัพย์',
-                en: 'DEVELOPMENT',
-                text: 'โซลูชันลิฟต์และประตูครบวงจร',
-                category: 'elevators',
+                title: 'โรงงาน / คลังสินค้า',
+                en: 'INDUSTRIAL',
+                text: 'ลิฟต์ขนส่งสินค้า · ลิฟต์รถยนต์',
+                category: 'freight',
               },
               {
                 icon: Store,
-                title: 'ร้านค้า / Commercial',
-                en: 'COMMERCIAL',
-                text: 'ประตูอัตโนมัติ · Smart Lock',
-                category: 'automatic',
+                title: 'ห้าง / ระบบขนส่ง',
+                en: 'COMMERCIAL & TRANSIT',
+                text: 'บันไดเลื่อน · ทางเลื่อน · ลิฟต์แก้ว',
+                category: 'escalators',
               },
             ].map((s) => (
               <Link href={'/products?category=' + s.category} className="solution-card" key={s.en}>
@@ -281,7 +283,7 @@ export default function Home() {
           <div className="why-list">
             {[
               ['โซลูชันครบวงจร', 'ตั้งแต่การให้คำปรึกษา เลือกผลิตภัณฑ์ ออกแบบ ติดตั้ง และดูแลหลังการขาย'],
-              ['ใส่ใจมาตรฐานความปลอดภัย', 'พิจารณาคุณภาพ ความปลอดภัย และความเหมาะสมกับการใช้งานของแต่ละพื้นที่'],
+              ['ใส่ใจมาตรฐานความปลอดภัย', 'ระบบป้องกัน UCMP ม่านแสง 3D light curtain อุปกรณ์กันความเร็วเกิน safety gear และ buffer ตามแค็ตตาล็อกสินค้า'],
               ['ดีไซน์ที่เข้ากับสถาปัตยกรรม', 'เลือกวัสดุ สี และรูปแบบให้เข้ากับบ้าน อาคาร หรือโครงการ'],
               ['ดูแลโครงการอย่างเป็นระบบ', 'ให้คำแนะนำและประสานงานในทุกขั้นตอนของโครงการ'],
               ['บริการหลังการขาย', 'วางแผนตรวจสอบ บำรุงรักษา และดูแลผลิตภัณฑ์หลังติดตั้ง'],
@@ -304,7 +306,7 @@ export default function Home() {
           <SectionHeading
             eyebrow="SPACES THAT INSPIRE"
             title="ผลงานของเรา"
-            description="แนวคิดการประยุกต์ใช้ผลิตภัณฑ์ในพื้นที่หลากรูปแบบ"
+            description="แนวคิดการประยุกต์ใช้ผลิตภัณฑ์จากแค็ตตาล็อกในพื้นที่หลากรูปแบบ"
             href="/projects"
           />
           <ProjectGrid preview />
@@ -374,7 +376,11 @@ export default function Home() {
               ],
               [
                 'สามารถเลือกสีและวัสดุประตูลิฟต์ได้หรือไม่?',
-                'มีตัวเลือกในแค็ตตาล็อก เช่น โทนโลหะและลวดลายตกแต่ง โดยต้องยืนยันความพร้อมและความเข้ากันได้กับรุ่นที่เลือกก่อนสั่งซื้อ',
+                'ได้ ประตูหน้าชั้นมี 24 แบบ (NY-M101–M124) ทั้งเหล็กพ่นสี สเตนเลสแฮร์ไลน์ สเตนเลสกัดลาย และลายไม้ โดยต้องยืนยันความเข้ากันได้กับรุ่นลิฟต์ก่อนสั่งซื้อ',
+              ],
+              [
+                'บริษัทมีลิฟต์ประเภทใดบ้าง?',
+                'ลิฟต์บ้าน (Traction และ Steel Belt) ลิฟต์โดยสารแบบห้องเครื่องเล็กและไม่มีห้องเครื่อง ลิฟต์แก้ว ลิฟต์โรงพยาบาล ลิฟต์ขนส่งสินค้า ลิฟต์รถยนต์ รวมถึงบันไดเลื่อนและทางเลื่อน',
               ],
               [
                 'ขอใบเสนอราคาได้อย่างไร?',

@@ -3,7 +3,7 @@ import { PageHero, Cta, JsonLd } from '@/components/ui';
 import { pageMeta, breadcrumbs } from '@/lib/seo';
 export const metadata = pageMeta(
   'สินค้าและโซลูชัน',
-  'สำรวจลิฟต์บ้าน ประตูลิฟต์ Smart Lock ระบบประตูอัตโนมัติ และอุปกรณ์ตกแต่ง พร้อมปรึกษาการเลือกผลิตภัณฑ์',
+  'สำรวจลิฟต์บ้าน ลิฟต์โดยสาร ลิฟต์แก้ว ลิฟต์โรงพยาบาล ลิฟต์ขนส่งสินค้า บันไดเลื่อน ทางเลื่อน ประตูลิฟต์ และอุปกรณ์ตกแต่ง จากแค็ตตาล็อก MASTER SCIENCE AND TECHNOLOGY',
   '/products',
 );
 export default function Page() {
@@ -12,9 +12,10 @@ export default function Page() {
       <JsonLd data={breadcrumbs([{ name: 'สินค้า', path: '/products' }])} />
       <PageHero
         label="OUR COLLECTIONS"
-        title="เทคโนโลยีที่ลงตัวกับทุกพื้นที่"
-        description="คัดสรรรายละเอียดที่ใช่ เพื่อการอยู่อาศัยที่สะดวก ปลอดภัย และสวยงาม"
-        image="panorama"
+        title={'เทคโนโลยีที่ลงตัว\nกับทุกพื้นที่'}
+        description="ลิฟต์บ้าน ลิฟต์โดยสาร ลิฟต์ขนส่งสินค้า บันไดเลื่อน ประตูลิฟต์ และอุปกรณ์ตกแต่ง แบรนด์ Neramit"
+        image="hero-products"
+        alt="โถงลิฟต์หินอ่อนพร้อมประตูลิฟต์สีทองแชมเปญในแสงยามเย็น"
       />
       <Catalog />
       <Cta />

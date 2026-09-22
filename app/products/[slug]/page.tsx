@@ -10,7 +10,7 @@ export const generateStaticParams = () => products.map((p) => ({ slug: p.slug })
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
   const p = products.find((p) => p.slug === slug);
-  return p ? pageMeta(p.name, p.description, '/products/' + p.slug) : {};
+  return p ? pageMeta(p.name + ' — ' + p.en, p.description, '/products/' + p.slug) : {};
 }
 export default async function Page({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
@@ -25,18 +25,19 @@ export default async function Page({ params }: { params: Promise<{ slug: string 
           { name: p.name, path: '/products/' + p.slug },
         ])}
       />
-      {!p.concept && (
-        <JsonLd
-          data={{
-            '@context': 'https://schema.org',
-            '@type': 'Product',
-            name: p.name,
-            description: p.description,
-            category: category.name,
-            ...(siteUrl ? { image: siteUrl + productImage(p), url: siteUrl + '/products/' + p.slug } : {}),
-          }}
-        />
-      )}
+      <JsonLd
+        data={{
+          '@context': 'https://schema.org',
+          '@type': 'Product',
+          name: p.name,
+          alternateName: p.en,
+          description: p.description,
+          brand: { '@type': 'Brand', name: 'Neramit' },
+          ...(p.models ? { model: p.models.map((m) => m.code).join(', ') } : {}),
+          category: category.name,
+          ...(siteUrl ? { image: siteUrl + productImage(p), url: siteUrl + '/products/' + p.slug } : {}),
+        }}
+      />
       <div className="container section">
         <div className="breadcrumb">
           <Link href="/">หน้าแรก</Link>
@@ -46,14 +47,14 @@ export default async function Page({ params }: { params: Promise<{ slug: string 
           <span>{p.name}</span>
         </div>
         <div className="product-detail">
-          <ProductGallery image={p.image} catalog={p.catalog} name={p.name} />
+          <ProductGallery image={p.image} pages={p.pages} name={p.name} />
           <div className="product-info">
-            <Eyebrow>{category.en}</Eyebrow>
+            <Eyebrow>{category.en} · {p.en}</Eyebrow>
             <h1>{p.name}</h1>
             <p className="lead">{p.description}</p>
-            {p.concept && (
+            {p.rendered && (
               <p className="concept-note">
-                ภาพแนวคิดจากแบบอ้างอิง ไม่ใช่การระบุรุ่นสินค้าจริง กรุณาปรึกษาทีมงานเพื่อเลือกรุ่นและฟังก์ชัน
+                ภาพจากแค็ตตาล็อกเป็นภาพกราฟิกคอมพิวเตอร์ สินค้าจริงอาจแตกต่างเล็กน้อย (The picture is drawn by computer)
               </p>
             )}
             <FeatureList items={p.features} />
@@ -66,28 +67,64 @@ export default async function Page({ params }: { params: Promise<{ slug: string 
                 ปรึกษาผู้เชี่ยวชาญ
               </QuoteButton>
             </div>
-            <p className="privacy-note">ราคาและรายละเอียดขึ้นอยู่กับรุ่น ตัวเลือก และพื้นที่ติดตั้ง</p>
+            <p className="privacy-note">ราคาและรายละเอียดขึ้นอยู่กับรุ่น ตัวเลือก และพื้นที่ติดตั้ง ข้อมูลทางเทคนิคใช้เพื่ออ้างอิงในการเลือกรุ่น แบบก่อสร้างจริงยึดตามแบบของฝ่ายเทคนิค</p>
             <div className="product-accordions">
-              <details open>
-                <summary>
-                  ภาพรวมผลิตภัณฑ์ <span>+</span>
-                </summary>
-                <p>{p.description} ทีมงานพร้อมให้คำปรึกษาเพื่อเลือกผลิตภัณฑ์ให้เหมาะกับการใช้งานจริง</p>
-              </details>
+              {p.specs && (
+                <details open>
+                  <summary>
+                    ข้อมูลทางเทคนิค (Specification) <span>+</span>
+                  </summary>
+                  <table className="spec-table">
+                    <tbody>
+                      {p.specs.map(([k, v]) => (
+                        <tr key={k}>
+                          <th scope="row">{k}</th>
+                          <td>{v}</td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </details>
+              )}
+              {p.models && (
+                <details open={!p.specs}>
+                  <summary>
+                    รุ่นและวัสดุ (Models) <span>+</span>
+                  </summary>
+                  <div className="model-list">
+                    {p.models.map((m) => (
+                      <div key={m.code}>
+                        <h3>
+                          {m.code}
+                          {m.tag && <small> ({m.tag})</small>}
+                        </h3>
+                        <ul>
+                          {m.spec.map((x) => (
+                            <li key={x}>{x}</li>
+                          ))}
+                        </ul>
+                      </div>
+                    ))}
+                  </div>
+                </details>
+              )}
               <details>
                 <summary>
                   พื้นที่และการใช้งาน <span>+</span>
                 </summary>
                 <p>
-                  บ้านพักอาศัย อาคาร และโครงการ โดยประเมินประเภทอาคาร ขนาดพื้นที่
-                  และความต้องการของผู้ใช้งานก่อนเสนอผลิตภัณฑ์
+                  {p.applications ??
+                    'บ้านพักอาศัย อาคาร และโครงการ โดยประเมินประเภทอาคาร ขนาดพื้นที่ และความต้องการของผู้ใช้งานก่อนเสนอผลิตภัณฑ์'}
                 </p>
               </details>
               <details>
                 <summary>
-                  ดีไซน์และวัสดุ <span>+</span>
+                  แค็ตตาล็อกต้นฉบับ <span>+</span>
                 </summary>
-                <p>ดูตัวอย่างการตกแต่งในภาพประกอบและแค็ตตาล็อก ตัวเลือกสี วัสดุ และขนาดต้องยืนยันตามรุ่นที่เสนอจริง</p>
+                <p>
+                  ข้อมูลจาก THE ELEVATOR GENERAL CATALOG ของ MASTER SCIENCE AND TECHNOLOGY CO., LTD. หน้า{' '}
+                  {p.pages.join(', ')} — กดภาพย่อด้านซ้ายเพื่อดูหน้าแค็ตตาล็อก
+                </p>
               </details>
               <details>
                 <summary>

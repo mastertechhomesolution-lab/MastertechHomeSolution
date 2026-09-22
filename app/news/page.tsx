@@ -6,7 +6,7 @@ import { PageHero, Cta } from '@/components/ui';
 import { pageMeta } from '@/lib/seo';
 export const metadata = pageMeta(
   'ข่าวสารและความรู้',
-  'แนวทางเลือกลิฟต์บ้าน Smart Lock ประตูลิฟต์ และการดูแลระบบ เพื่อการอยู่อาศัยที่สะดวกและปลอดภัย',
+  'ความรู้เรื่องลิฟต์บ้าน ลิฟต์โดยสาร ประตูลิฟต์ และบันไดเลื่อน จากข้อมูลแค็ตตาล็อกสินค้า เพื่อช่วยเลือกผลิตภัณฑ์ให้เหมาะกับอาคาร',
   '/news',
 );
 export default function Page() {
@@ -14,9 +14,10 @@ export default function Page() {
     <>
       <PageHero
         label="JOURNAL & INSIGHTS"
-        title="แรงบันดาลใจสำหรับพื้นที่ที่ดีกว่า"
+        title={'แรงบันดาลใจ\nสำหรับพื้นที่ที่ดีกว่า'}
         description="เรื่องน่ารู้เกี่ยวกับดีไซน์ เทคโนโลยี และการดูแลบ้านของคุณ"
-        image="classic"
+        image="hero-news"
+        alt="ห้องนั่งเล่นเพดานสูงพร้อมลิฟต์บ้านกระจกในแสงยามเย็น"
       />
       <section className="section container">
         <div className="news-grid">

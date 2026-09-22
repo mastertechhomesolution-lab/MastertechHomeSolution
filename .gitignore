@@ -11,3 +11,6 @@ next-env.d.ts
 Thumbs.db
 *.log
 .vercel/
+
+# Source catalog PDF is 375 MB (over GitHub's 100 MB limit); generated images live in public/
+Product/*.pdf
