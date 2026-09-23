@@ -10,9 +10,10 @@ export const generateStaticParams = () => products.map((p) => ({ slug: p.slug })
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
   const p = products.find((p) => p.slug === slug);
-  return p
-    ? pageMeta((p.name + ' — ' + p.en).length <= 60 ? p.name + ' — ' + p.en : p.name, p.description, '/products/' + p.slug)
-    : {};
+  // The title template appends " | MasterTechhomesolution" (25 chars), so the page part has
+  // to stay within 60 - 25 = 35 to survive SERP truncation; otherwise use the Thai name only.
+  const withEn = p ? p.name + ' — ' + p.en : '';
+  return p ? pageMeta(withEn.length <= 35 ? withEn : p.name, p.description, '/products/' + p.slug) : {};
 }
 export default async function Page({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;

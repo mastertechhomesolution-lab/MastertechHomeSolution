@@ -9,3 +9,4 @@ await import('./prepare-catalog-images.mjs');
 await import('./prepare-page-heroes.mjs');
 await import('./prepare-logo-light.mjs');
 await import('./prepare-hero.mjs');
+await import('./prepare-homelift-card.mjs');

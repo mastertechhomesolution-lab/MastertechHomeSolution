@@ -4,7 +4,7 @@ import { company } from '@/data/company';
 import { pageMeta, siteUrl } from '@/lib/seo';
 export const metadata = pageMeta(
   'ติดต่อเรา',
-  'ติดต่อ MASTER SCIENCE AND TECHNOLOGY (MasterTechhomesolution) โทร 02-956-9876 สำนักงาน 36/33 หมู่ 1 ซอยเลียบวารี 61 แขวงโคกแฝด เขตหนองจอก กรุงเทพฯ 10530 จันทร์–เสาร์ 08.00–17.00 น.',
+  'ติดต่อ MASTER SCIENCE AND TECHNOLOGY โทร 02-956-9876 สำนักงาน 36/33 หมู่ 1 ซอยเลียบวารี 61 แขวงโคกแฝด เขตหนองจอก กรุงเทพฯ 10530 เปิดจันทร์–เสาร์ 08.00–17.00 น.',
   '/contact',
 );
 export default function Page() {

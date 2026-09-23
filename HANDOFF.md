@@ -255,3 +255,153 @@ Client rule: images show products only, no people. Removed crops `hospital-eleva
 - Headings: product model codes are no longer `<h3>` (`.model-code`), catalog/project grids have a visually-hidden `<h2>`, so every page goes h1 → h2 → h3. Product titles fall back to the Thai name when the Thai + English title exceeds 60 characters.
 - `/llms.txt` (app/llms.txt/route.ts) serves a company + catalog summary generated from `data/`.
 - Still gated on a real domain (by design): canonical URLs, `og:image`, BreadcrumbList JSON-LD, robots allow + sitemap URLs — set `NEXT_PUBLIC_SITE_URL` and `SITE_INDEXABLE=true` at launch.
+
+## 2026-09-23 — Site SEO audit + article (บทความ) rewrite for SEO / GEO / AEO
+
+**Audit method.** `npm.cmd run build` prerenders every route to `.next/server/app/**/*.html`, so
+the rendered SEO surface was audited directly from those files (title length, meta description
+length, exactly one `<h1>`, h1→h2→h3 order, JSON-LD parse + `@type`, `<img alt>`, robots,
+canonical). A responsive/console sweep then ran against `npm.cmd run start`.
+
+**New dev tooling.** `puppeteer-core` added as a devDependency and `scripts/qa-sweep.mjs` added:
+it drives headless Edge over 10 routes × 1440/1024/768/390/320 and reports non-200 responses,
+horizontal overflow, broken images and console errors. Last run: **NO PROBLEMS FOUND**.
+Note: run it against a *freshly started* server — `next start` left running across a rebuild
+serves stale HTML pointing at renamed CSS chunks, which shows up as a false 500 + overflow.
+
+### Articles — `data/news.ts` rewritten (same 6 guides, no new ones)
+
+New `Article` type fields, all rendered and fed to structured data:
+
+- `answer` — a short direct answer rendered in `.article-answer` right under the lead. This is
+  the extractable unit for answer engines; also emitted as `abstract` and as the first line of
+  `articleBody`, and printed in `/llms.txt`.
+- `faq` — 3–4 Q&A per article, rendered as a visible `<dl>` and emitted as a per-article
+  `FAQPage`. FAQ *rich results* are restricted to government/health sites, so this is a
+  retrieval/AI-citation signal, **not** a SERP feature — do not promise rich snippets.
+- `related` — product slugs rendered as descriptive in-body links to `/products/[slug]`
+  (previously every article had one generic `/products` link) and reused as Article `about`.
+- `alt` — real descriptive alt text; card and hero images previously reused the title.
+- `metaTitle` — optional short `<title>` (used on 3 articles) so the H1 can stay a natural
+  question. The title template adds " | MasterTechhomesolution" (25 chars), so keep it ≤ 35.
+
+Section bodies were expanded with catalog figures only (hoistway layouts, pit/overhead,
+0.4 m/s, 250–400 kg, 1.5KW, NY-M1xx/M2xx door codes, V100–V400 car series, escalator step
+widths and beam clearances, MRL 40%/10%, small machine room 50%). **Nothing was added about
+coverage area, warranty, lead time, price, headcount, experience or certification.**
+
+Accuracy tightening: the old version presented VVVF control, the automatic door operator, UPS
+and "no machine room" as shared by *both* home-lift systems. `data/products.ts` lists those
+under the Traction product only, so they are now attributed to "ลิฟต์บ้านระบบ Traction
+ในแค็ตตาล็อก". Only the genuinely shared `homeSpecs`/`homeLayout` figures are stated as shared.
+
+`app/news/[slug]/page.tsx`: answer block, related-products block, visible FAQ, FAQPage JSON-LD,
+richer Article JSON-LD (`abstract`, `keywords`, `about` as Products, `mainEntityOfPage`, and an
+`author` Organization matching the visible byline — Google's Article type errors without one;
+`headline` deliberately mirrors the visible H1, never `metaTitle`), TOC entry for the FAQ, and "อ่านต่อ" now prefers same-category guides
+(it used to `.slice(0, 2)` and link the same two articles from every page).
+`app/news/page.tsx`: `ItemList` JSON-LD (domain-gated), descriptive image alts, intro paragraph.
+`app/llms.txt/route.ts`: new "## คู่มือ / Guides" section with each answer and its Q&A pairs.
+`app/polish.css`: styles for `.article-answer`, `.article-related`, `.article-faq`, `.news-intro`.
+
+### Site-wide SEO fixes found by the audit
+
+- **Homepage `<title>` had no brand.** Next's `title.template` does not apply to the segment
+  that defines it, and `app/page.tsx` is that segment — so `/` rendered a bare
+  "ลิฟต์บ้าน ลิฟต์โดยสาร และบันไดเลื่อน". The brand is now spelled out in `app/page.tsx`.
+- **Product `<title>`s were up to 85 chars.** The `p.name + ' — ' + p.en` fallback threshold in
+  `app/products/[slug]/page.tsx` was 60, which ignored the 25-char template suffix. Changed to
+  35, so long English model strings drop out. Every route is now ≤ 59 chars.
+- **Meta descriptions** on `/`, `/about`, `/contact`, `/products`, `/news` and two articles were
+  outside 70–160; all are now in range. `/projects` was lengthened.
+- **Image alts**: homepage article cards and the two mini-showcase tiles used the title or an
+  uppercase label; they now carry real descriptions. The remaining empty `alt=""` (category
+  tiles, Neramit badge, gallery thumbnails) are correct decorative alts — visible link text
+  already names them.
+
+### Findings left unfixed (deliberate)
+
+- `/projects/[slug]` descriptions are 32–39 chars. Those pages are `noindex, follow` by design,
+  so the descriptions were left alone.
+- **Smart Parking Lift** — resolved with the client on 2026-09-23: it is a **planned future
+  product line**, keep it, do not delete. Because it has no catalog entry, no specification and
+  no product page, `app/about/page.tsx` now states it as "ผลิตภัณฑ์ในแผนพัฒนาลำดับถัดไป" instead of
+  listing it inside the current range, and `/llms.txt` Notes says it is planned and not
+  currently offered. It stays out of the About meta description, `data/products.ts`, the
+  Organization `knowsAbout` list and the sitemap until it becomes a real product with data.
+- Product JSON-LD still has no `offers` (no public prices — AGENTS.md). Unchanged.
+- Article JSON-LD still has no `datePublished` / `dateModified`. Add real dates at launch;
+  do not invent them.
+
+### Still gated on the real domain (unchanged, by design)
+
+`NEXT_PUBLIC_SITE_URL` + `SITE_INDEXABLE=true` still gate canonical URLs, `og:image`,
+BreadcrumbList, the new `ItemList`, robots `allow` and the sitemap. Verified `og:image`
+target `public/images/hero-mock.webp` exists at the declared 1147×584.
+
+**Verification for this pass.** Production build + typecheck pass (46 static routes).
+`node scripts/qa-sweep.mjs` against a freshly started `npm.cmd run start`: **NO PROBLEMS FOUND**
+(10 routes × 1440/1024/768/390/320). Prerendered-HTML audit: every route now has one `<h1>`,
+clean h1→h2→h3 order, a `<title>` ≤ 59 chars and a description inside 70–160, except the
+`noindex` `/projects/[slug]` pages. Per-article check confirmed the rendered `/products/` links
+match each article's `related` list (2,3,3,3,3,3), `author` is present, and Article `headline`
+equals the visible H1 on all six. `/news`, both article templates, the homepage and a product
+page were screenshotted at 1440 and 390 and read.
+
+One wording precision carried over from the accuracy tightening: `data/products.ts` never states
+that the Traction home lift uses wire rope — only that the steel belt outlasts "traditional wire
+rope." The article now attributes that as the catalog's own comparison instead of asserting the
+Traction model's traction medium.
+
+## 2026-09-23 (later) — Homepage: two showcase sections replaced by the supplied Home Elevator card
+
+Client instruction: remove the `ยกระดับการใช้ชีวิต / อย่างมีสไตล์` editorial showcase **and** the
+escalator + `HALL DOOR DESIGN — ทุกรายละเอียดสะท้อนคุณภาพ` pair below it, because the presentation
+was weak and both duplicated the six-tile category bar higher up the page. Put the supplied
+`Homelift` card in their place, remove the old logo printed on that artwork and use the Neramit
+logo held in this repo instead.
+
+- `app/page.tsx`: `.editorial-showcase` and the `.dual-showcase` section are gone, replaced by
+  one `.homelift-section` — a `SectionHeading` (HOME ELEVATOR COLLECTION / ลิฟต์บ้าน Neramit,
+  linking to `/products?category=elevators`) above a single linked image card. Nothing is
+  overlaid on the artwork; it already carries its own headline, model codes and feature strip.
+  The heading keeps the crawlable Home Elevator text that the removed sections used to provide.
+- `scripts/prepare-homelift-card.mjs` (new, chained from `scripts/prepare-assets.mjs`) builds
+  `public/products/homelift-card.webp` from the client's `Product/homelift.jpg`. The supplied
+  artwork carries an **older** Neramit mark top-right (white disc + "เนรมิตร ลิฟต์" arc). The
+  script paints that rectangle out by rebuilding it from the wall behind it — the wall is a
+  smooth gradient, so each row is interpolated between a clean pixel left of the patch and one
+  right of it, with the left/right/bottom edges feathered — then composites
+  `public/brand/neramit-logo-light.png` where the disc was. Geometry (mark at x 1044–1210,
+  y 23–196; rows 197–212 clean) was measured by scanning the 1254×1254 original for bright
+  pixels; the constants are at the top of the script. `Product/homelift.jpg` is untouched.
+- `app/polish.css`: `.homelift-card` (rounded, bordered, hover lift, reduced-motion safe).
+- The `.editorial-showcase`, `.showcase-*`, `.partner-mark`, `.dual-showcase` and `.mini-showcase`
+  rules in `app/globals.css` / `app/polish.css` are now **unused**. They were left in place, like
+  the retired `luxury` theme block, rather than risking a large CSS deletion.
+
+Worth knowing: `.section-heading` reveals with `animation-timeline: view()`, so in a headless
+screenshot that never scrolls — including `fullPage` — it captures at opacity 0 and looks
+missing. Scroll it into view before screenshotting; it renders correctly in a real browser.
+
+Open point for the client: on a phone the fine print inside the card (model codes, material
+lines) is too small to read. It works as a visual and taps through to the Home Elevator
+category, but a phone-specific crop or a text summary beneath it would be better if they want
+that detail readable on mobile.
+
+Verified: build + typecheck pass; `node scripts/qa-sweep.mjs` **NO PROBLEMS FOUND**; the new
+section screenshotted and read at 1440 and 390.
+
+**Spacing follow-up (same day).** The client reported too much blank space above
+`HOME ELEVATOR COLLECTION / ลิฟต์บ้าน Neramit`. The cause was **not** the dead showcase CSS —
+unused selectors match nothing. `.homelift-section` is a `.section`, and `.section` sets
+`padding-block: 94px` (54px below 700px), so its top padding stacked with the 94px bottom
+padding of the products section above it: measured 200px desktop / 120px phone. The old
+`.editorial-showcase` was not a `.section`, which is why the page used to look tighter here.
+Fix in `app/polish.css`: `.homelift-section { padding-top: 0; padding-bottom: 24px }` (14px
+below 700px). Measured after: 106px above / 118px below on desktop, 66px / 68px on phone.
+
+This only re-spaces the one new section. Every other section boundary on the site still has the
+original ~188px desktop rhythm from two stacked `.section` paddings — if the client wants the
+whole page tightened, that is a change to the global `.section` padding and should be a
+deliberate, separately reviewed pass.

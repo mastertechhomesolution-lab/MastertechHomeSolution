@@ -20,9 +20,11 @@ import { articles } from '@/data/news';
 import { Cta, Eyebrow, SectionHeading, ProductCard, Process, GoldLayers, JsonLd } from '@/components/ui';
 import { ProjectGrid } from '@/components/catalog';
 import { pageMeta } from '@/lib/seo';
+// The root layout's title template does not apply to the root page segment, so the brand
+// is spelled out here; every other route inherits "%s | MasterTechhomesolution".
 export const metadata = pageMeta(
-  'ลิฟต์บ้าน ลิฟต์โดยสาร และบันไดเลื่อน',
-  'MasterTechhomesolution โดย MASTER SCIENCE AND TECHNOLOGY ลิฟต์บ้าน ลิฟต์โดยสาร ลิฟต์โรงพยาบาล ลิฟต์ขนส่งสินค้า บันไดเลื่อน ทางเลื่อน ประตูลิฟต์ และอุปกรณ์ตกแต่ง พร้อมให้คำปรึกษาและติดตั้ง',
+  'ลิฟต์บ้าน ลิฟต์โดยสาร บันไดเลื่อน | MasterTechhomesolution',
+  'นำเข้าและจำหน่ายลิฟต์บ้าน ลิฟต์โดยสาร ลิฟต์โรงพยาบาล ลิฟต์ขนส่งสินค้า บันไดเลื่อน ทางเลื่อน และประตูลิฟต์ แบรนด์ Neramit โดย MASTER SCIENCE AND TECHNOLOGY',
   '/',
 );
 const strip = [
@@ -168,74 +170,28 @@ export default function Home() {
           </div>
         </div>
       </section>
-      <section className="editorial-showcase">
-        <div className="showcase-image">
-          <Image
-            src="/products/home-v104.webp"
-            fill
-            sizes="(max-width:700px) 100vw, 50vw"
-            alt="ห้องโดยสารลิฟต์บ้านรุ่น NY-V104 โทนแชมเปญโกลด์"
+      {/* 2026-09-23: the client removed the editorial showcase and the escalator/hall-door
+          pair — they repeated the category bar above. This single supplied card replaces both.
+          The artwork is built by scripts/prepare-homelift-card.mjs, which paints out the old
+          Neramit mark on the photo and composites public/brand/neramit-logo-light.png instead. */}
+      <section className="section homelift-section">
+        <div className="container">
+          <SectionHeading
+            eyebrow="HOME ELEVATOR COLLECTION"
+            title="ลิฟต์บ้าน Neramit"
+            description="ห้องโดยสารซีรีส์ V100–V400 เลือกฝ้า ผนัง และพื้นได้ตามการตกแต่งของบ้าน"
+            href="/products?category=elevators"
+            label="ดูลิฟต์บ้านทั้งหมด"
           />
-          <span>THE ART OF EVERYDAY LIVING</span>
-        </div>
-        <div className="showcase-content">
-          <Eyebrow>HOME ELEVATOR COLLECTION</Eyebrow>
-          <h2>
-            ยกระดับการใช้ชีวิต
-            <br />
-            <span>อย่างมีสไตล์</span>
-          </h2>
-          <p>
-            ให้ทุกการเดินทางภายในบ้าน เป็นส่วนหนึ่งของประสบการณ์ที่พิเศษ
-            ด้วยลิฟต์ที่ผสานความสะดวกเข้ากับรายละเอียดทางสถาปัตยกรรมอย่างลงตัว
-          </p>
-          <div className="showcase-detail">
-            <span>01</span>
-            <div>
-              <h3>ออกแบบให้เป็นส่วนหนึ่งของบ้าน</h3>
-              <p>ลิฟต์บ้านระบบ Traction และสายพานเหล็ก ไม่ต้องมีห้องเครื่อง พร้อมห้องโดยสารซีรีส์ V100–V400 ให้เลือกวัสดุตามสไตล์บ้าน</p>
-            </div>
-          </div>
-          <Link href="/products?category=elevators" className="text-link">
-            ค้นพบลิฟต์สำหรับบ้านคุณ <ArrowUpRight size={19} />
+          <Link href="/products?category=elevators" className="homelift-card">
+            <Image
+              src="/products/homelift-card.webp"
+              width={1254}
+              height={1254}
+              sizes="(max-width: 900px) 92vw, 1000px"
+              alt="ห้องโดยสารลิฟต์บ้าน Neramit รุ่น NY-V204, NY-V206 และ NY-V205 พร้อมรายละเอียดวัสดุฝ้า ผนัง และพื้นของแต่ละรุ่น"
+            />
           </Link>
-          <div className="partner-mark">
-            <Image src="/brand/neramit-logo-light.png" width={360} height={360} alt="Neramit" unoptimized />
-            <span>
-              CRAFTED FOR
-              <br />
-              EXCEPTIONAL SPACES
-            </span>
-          </div>
-        </div>
-      </section>
-      <section className="section">
-        <div className="container dual-showcase">
-          {[
-            {
-              image: 'escalator',
-              label: 'ESCALATOR & MOVING WALK',
-              title: 'บันไดเลื่อนและทางเลื่อน\nสำหรับพื้นที่สาธารณะ',
-              href: '/products?category=escalators',
-            },
-            {
-              image: 'hall-door',
-              label: 'HALL DOOR DESIGN',
-              title: 'ทุกรายละเอียด\nสะท้อนคุณภาพ',
-              href: '/products?category=doors',
-            },
-          ].map((x) => (
-            <Link href={x.href} key={x.label} className="mini-showcase">
-              <Image src={'/products/' + x.image + '.webp'} alt={x.label} fill sizes="(max-width:700px) 90vw, 45vw" />
-              <div>
-                <p className="micro">{x.label}</p>
-                <h2>{x.title}</h2>
-                <span className="text-link">
-                  ค้นพบคอลเลกชัน <ArrowUpRight size={19} />
-                </span>
-              </div>
-            </Link>
-          ))}
         </div>
       </section>
       <section className="section solutions-section">
@@ -375,7 +331,7 @@ export default function Home() {
                 <div className="news-image">
                   <Image
                     src={'/products/' + a.image + '.webp'}
-                    alt={a.title}
+                    alt={a.alt}
                     fill
                     sizes="(max-width:600px) 90vw, 30vw"
                   />

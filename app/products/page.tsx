@@ -3,7 +3,7 @@ import { PageHero, Cta, JsonLd } from '@/components/ui';
 import { pageMeta, breadcrumbs } from '@/lib/seo';
 export const metadata = pageMeta(
   'สินค้าและโซลูชัน',
-  'สำรวจลิฟต์บ้าน ลิฟต์โดยสาร ลิฟต์แก้ว ลิฟต์โรงพยาบาล ลิฟต์ขนส่งสินค้า บันไดเลื่อน ทางเลื่อน ประตูลิฟต์ และอุปกรณ์ตกแต่ง จากแค็ตตาล็อก MASTER SCIENCE AND TECHNOLOGY',
+  'ลิฟต์บ้าน ลิฟต์โดยสาร ลิฟต์แก้ว ลิฟต์โรงพยาบาล ลิฟต์ขนส่งสินค้า บันไดเลื่อน ทางเลื่อน ประตูลิฟต์ และอุปกรณ์ตกแต่งห้องโดยสาร จากแค็ตตาล็อกแบรนด์ Neramit',
   '/products',
 );
 export default function Page() {

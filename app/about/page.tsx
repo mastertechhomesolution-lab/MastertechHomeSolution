@@ -8,7 +8,7 @@ import { pageMeta } from '@/lib/seo';
 // catalog (Product/ข้อมูลบริษัทสินค้า.pdf). Product-spec figures stay attributed to the catalog.
 export const metadata = pageMeta(
   'เกี่ยวกับเรา',
-  'รู้จัก MASTER SCIENCE AND TECHNOLOGY CO., LTD. ผู้นำเสนอโซลูชันวิทยาศาสตร์และเทคโนโลยี ลิฟต์บ้าน ลิฟต์โดยสาร ลิฟต์ขนส่งสินค้า บันไดเลื่อน และ Smart Parking Lift ภายใต้แบรนด์ Neramit สำหรับบ้าน อาคาร และธุรกิจ',
+  'รู้จัก MASTER SCIENCE AND TECHNOLOGY CO., LTD. ผู้นำเข้าและจำหน่ายลิฟต์บ้าน ลิฟต์โดยสาร ลิฟต์ขนส่งสินค้า และบันไดเลื่อน แบรนด์ Neramit สำหรับบ้านและอาคาร',
   '/about',
 );
 export default function Page() {
@@ -35,10 +35,14 @@ export default function Page() {
             {company.name} มุ่งมั่นนำโซลูชันด้านวิทยาศาสตร์และเทคโนโลยีที่เป็นนวัตกรรม
             มาสู่การอยู่อาศัยและสภาพแวดล้อมทางธุรกิจยุคใหม่
           </p>
+          {/* Smart Parking Lift is a planned product line, confirmed by the client 2026-09-23.
+              It has no catalog entry and no product page, so it is stated as upcoming rather
+              than as part of the range currently on /products. Do not delete it. */}
           <p>
             เรามุ่งเน้นโซลูชันขั้นสูงที่เพิ่มความสะดวก ประสิทธิภาพ ความปลอดภัย และการใช้พื้นที่อย่างคุ้มค่า
-            กลุ่มผลิตภัณฑ์ของเราประกอบด้วย Smart Parking Lift และ Home Lift ที่ออกแบบให้ตอบความต้องการของอาคารสมัยใหม่
-            ที่พักอาศัย และพื้นที่เชิงพาณิชย์ รวมถึงลิฟต์โดยสาร ลิฟต์โรงพยาบาล ลิฟต์ขนส่งสินค้า บันไดเลื่อน และทางเลื่อน
+            กลุ่มผลิตภัณฑ์ปัจจุบันประกอบด้วย Home Lift ลิฟต์โดยสาร ลิฟต์โรงพยาบาล ลิฟต์ขนส่งสินค้า บันไดเลื่อน
+            และทางเลื่อน ที่ออกแบบให้ตอบความต้องการของอาคารสมัยใหม่ ที่พักอาศัย และพื้นที่เชิงพาณิชย์
+            และมี Smart Parking Lift เป็นผลิตภัณฑ์ในแผนพัฒนาลำดับถัดไปของบริษัท
             โดยบริษัทนำเข้าผลิตภัณฑ์และจัดจำหน่ายภายใต้แบรนด์ของเราเอง Neramit
           </p>
           <p>Driving innovation. Creating smarter spaces. Shaping the future.</p>
