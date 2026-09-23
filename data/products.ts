@@ -25,6 +25,9 @@ export type Product = {
   applications?: string;
   /** Catalog renders carry "The picture is drawn by computer" */
   rendered?: boolean;
+  /** Planned product line, not on sale yet (client decision, 2026-09-23). Draws a "Coming Soon"
+   *  badge on every image of the product and keeps the page honest about availability. */
+  comingSoon?: boolean;
 };
 
 const homeLayout: Model[] = [
@@ -370,6 +373,7 @@ export const products: Product[] = [
       { code: '30° / 35° escalator', spec: ['600 — Center distance of handrail 838, outer width 1140, load-bearing beam ≥ 1200', '800 — Center distance of handrail 1038, outer width 1340, load-bearing beam ≥ 1400', '1000 — Center distance of handrail 1238, outer width 1540, load-bearing beam ≥ 1600'] },
     ],
     applications: 'ห้างสรรพสินค้า อาคารสำนักงาน สนามบิน และอาคารสาธารณะ',
+    comingSoon: true,
     pages: [35, 38, 39, 45, 46],
   },
   {
@@ -388,6 +392,7 @@ export const products: Product[] = [
       ['Center distance of handrail', '1110 / 1310 mm'],
     ],
     applications: 'สถานีรถไฟฟ้า สะพานลอย ทางเชื่อมสาธารณะ และพื้นที่กลางแจ้ง',
+    comingSoon: true,
     pages: [39, 47],
   },
   {
@@ -406,6 +411,7 @@ export const products: Product[] = [
       ['Rated speed', '0.5 m/s'],
     ],
     applications: 'สนามบิน ห้างสรรพสินค้า ไฮเปอร์มาร์เก็ต และอาคารสาธารณะ',
+    comingSoon: true,
     pages: [38, 48],
   },
   // ---------- Doors ----------

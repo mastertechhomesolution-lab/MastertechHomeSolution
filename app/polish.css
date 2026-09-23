@@ -1021,3 +1021,61 @@ footer:before {
     padding-bottom: 14px;
   }
 }
+
+/* --- 2026-09-23: "Coming Soon" for planned product lines (data/products.ts comingSoon).
+   The badge sits on the image itself so the status follows the product into every grid. --- */
+.coming-soon {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  display: grid;
+  place-items: center;
+  background: linear-gradient(180deg, #100c0733, #100c079e);
+  pointer-events: none;
+}
+.coming-soon > span {
+  padding: 9px 20px;
+  border: 1px solid #e0c39159;
+  border-radius: 999px;
+  background: #100c07b8;
+  backdrop-filter: blur(3px);
+  color: #f0ddb4;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  box-shadow: 0 6px 20px #0000004d;
+}
+.gallery-main .coming-soon > span {
+  padding: 13px 30px;
+  font-size: 15px;
+}
+.coming-soon-note {
+  margin-top: 8px;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--accent);
+}
+.coming-soon-note.detail {
+  margin: 16px 0 0;
+  padding: 14px 18px;
+  border-left: 3px solid var(--accent);
+  border-radius: 0 10px 10px 0;
+  background: var(--background-secondary);
+  font-size: 13px;
+  font-weight: 500;
+  line-height: 1.9;
+  color: var(--foreground);
+}
+@media (max-width: 700px) {
+  .coming-soon > span {
+    padding: 7px 15px;
+    font-size: 10px;
+    letter-spacing: 0.14em;
+  }
+  .gallery-main .coming-soon > span {
+    padding: 10px 22px;
+    font-size: 13px;
+  }
+}

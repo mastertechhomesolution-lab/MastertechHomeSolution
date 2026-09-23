@@ -444,3 +444,36 @@ anywhere. Build + typecheck pass; `node scripts/qa-sweep.mjs` NO PROBLEMS FOUND.
 
 If the brand logo or tagline is ever enlarged again, raise `--header-h` (and `--header-slack`
 if the header grows more than 6px past it) rather than touching the hero rules.
+
+## 2026-09-23 — "Coming Soon" on the escalator product line
+
+Client decision (asked and confirmed this session): **all three products in the บันไดเลื่อน /
+Escalator & Moving Walk category** — `escalator`, `public-traffic-escalator`, `moving-walk` —
+are a planned product line and are **not on sale yet**. They stay on the site with their
+catalog specifications, but every image of them carries a "Coming Soon" badge.
+
+- `data/products.ts`: new optional `comingSoon?: boolean` on `Product`, set on those three.
+  This is the single switch — remove the flag when the line goes on sale and every surface
+  below updates at once.
+- `components/ui.tsx`: exported `<ComingSoon />` overlay, drawn inside `.product-picture`, plus
+  a Thai status line in the card body (`เตรียมจำหน่าย — อยู่ในแผนผลิตภัณฑ์ลำดับถัดไป`). The badge
+  is `aria-hidden`; the Thai line is what a screen reader announces. The card's inquiry button
+  reads `สอบถามข้อมูล` instead of `สอบถามราคา` for these products.
+- `components/catalog.tsx`: `ProductGallery` takes `comingSoon` and draws the same overlay on
+  the main product photo (not on the catalog pages behind it).
+- `app/products/[slug]/page.tsx`: passes the flag to the gallery, shows a highlighted note under
+  the H1 stating the line is not yet on sale and that the specs are published for building
+  planning, and the primary CTA reads `สอบถามข้อมูล` rather than `ขอใบเสนอราคา`.
+- `app/polish.css`: `.coming-soon` (scrim + gold pill, `pointer-events: none` so the card stays
+  clickable) and `.coming-soon-note` / `.coming-soon-note.detail`.
+- `app/llms.txt/route.ts`: each affected product is tagged `[COMING SOON — planned, not yet on
+  sale]` and a Notes line explains the line is not on sale and that the specs are for planning.
+
+No `offers` or `availability` was added to the Product JSON-LD: emitting availability requires
+an `offers` node, and AGENTS.md forbids publishing price/offer data the company has not given.
+The status is carried in visible page text and in `/llms.txt` instead.
+
+Verified by counting rendered badges: `/products` 3, `/products?category=escalators` 3, `/`
+1 (the escalator card in the featured grid), `/products/escalator` 3 (gallery + two related
+cards), `/products/traction-home-elevator` 0. Build + typecheck pass; `node scripts/qa-sweep.mjs`
+NO PROBLEMS FOUND; grids and the detail page read at 1440 and 390.

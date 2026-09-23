@@ -29,7 +29,9 @@ export function GET() {
   for (const c of categories) {
     lines.push('', `## ${c.name} — ${c.en}`);
     for (const p of products.filter((p) => p.category === c.id))
-      lines.push(`- [${p.name} (${p.en})](/products/${p.slug}): ${p.description}`);
+      lines.push(
+        `- [${p.name} (${p.en})](/products/${p.slug})${p.comingSoon ? ' [COMING SOON — planned, not yet on sale]' : ''}: ${p.description}`,
+      );
   }
   // Guides carry the short direct answer so an answer engine can cite the page without
   // re-deriving it from the article body.
@@ -43,6 +45,7 @@ export function GET() {
     '## Notes',
     "- Technical specifications come from the company's elevator catalog and are for model selection; construction drawings follow the technical department's design.",
     '- Smart Parking Lift is a planned future product line, not currently offered; it has no catalog entry, specification or price.',
+    '- Escalators and moving walks are marked COMING SOON: they are a planned product line and are not on sale yet. Their catalog specifications are published for building planning only.',
     '- Project pages are design concepts, not delivered client projects.',
   );
   return new Response(lines.join('\n') + '\n', { headers: { 'Content-Type': 'text/plain; charset=utf-8' } });

@@ -5,7 +5,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { categories, products, catalogPage } from '@/data/products';
 import { projects } from '@/data/projects';
-import { ProductCard } from './ui';
+import { ProductCard, ComingSoon } from './ui';
 export function Catalog() {
   const [category, setCategory] = useState('all');
   const [query, setQuery] = useState('');
@@ -135,12 +135,23 @@ export function ProjectGrid({ preview = false }: { preview?: boolean }) {
     </>
   );
 }
-export function ProductGallery({ image, pages = [], name }: { image: string; pages?: number[]; name: string }) {
+export function ProductGallery({
+  image,
+  pages = [],
+  name,
+  comingSoon = false,
+}: {
+  image: string;
+  pages?: number[];
+  name: string;
+  comingSoon?: boolean;
+}) {
   const [active, setActive] = useState(0);
   const images = ['/products/' + image + '.webp', ...pages.map(catalogPage)];
   return (
     <div className="gallery">
       <div className={'gallery-main ' + (active > 0 ? 'catalog-image' : '')}>
+        {comingSoon && <ComingSoon />}
         <Image
           key={active}
           src={images[active]}

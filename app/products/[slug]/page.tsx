@@ -50,10 +50,16 @@ export default async function Page({ params }: { params: Promise<{ slug: string 
           <span>{p.name}</span>
         </div>
         <div className="product-detail">
-          <ProductGallery image={p.image} pages={p.pages} name={p.name} />
+          <ProductGallery image={p.image} pages={p.pages} name={p.name} comingSoon={p.comingSoon} />
           <div className="product-info">
             <Eyebrow>{category.en} · {p.en}</Eyebrow>
             <h1>{p.name}</h1>
+            {p.comingSoon && (
+              <p className="coming-soon-note detail">
+                Coming Soon — เตรียมจำหน่าย ผลิตภัณฑ์กลุ่มนี้อยู่ในแผนลำดับถัดไปของบริษัท ยังไม่เปิดจำหน่ายในขณะนี้
+                ข้อมูลด้านล่างเป็นสเปกจากแค็ตตาล็อกเพื่อใช้ประกอบการวางแผนอาคาร
+              </p>
+            )}
             <p className="lead">{p.description}</p>
             {p.rendered && (
               <p className="concept-note">
@@ -64,7 +70,8 @@ export default async function Page({ params }: { params: Promise<{ slug: string 
             <div className="detail-cta">
               <QuoteButton product={p.name} className="button button-gold">
                 <GoldLayers />
-                <span className="gold-label">ขอใบเสนอราคา</span> <ArrowUpRight size={18} />
+                <span className="gold-label">{p.comingSoon ? 'สอบถามข้อมูล' : 'ขอใบเสนอราคา'}</span>{' '}
+                <ArrowUpRight size={18} />
               </QuoteButton>
               <QuoteButton product={p.name} className="button button-outline">
                 ปรึกษาผู้เชี่ยวชาญ

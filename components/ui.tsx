@@ -98,6 +98,16 @@ export function PageHero({
     </section>
   );
 }
+/** Overlay for a planned product line. Sits on the image itself so the status travels with the
+ *  product wherever its picture is shown. Purely decorative — the Thai status line next to it
+ *  is what a screen reader announces, so this is hidden from the accessibility tree. */
+export function ComingSoon() {
+  return (
+    <span className="coming-soon" aria-hidden="true">
+      <span>Coming Soon</span>
+    </span>
+  );
+}
 export function ProductCard({ product: p }: { product: Product }) {
   return (
     <article className="product-card">
@@ -112,6 +122,7 @@ export function ProductCard({ product: p }: { product: Product }) {
           <Image src="/brand/neramit-logo.png" width={360} height={360} alt="" unoptimized />
           NERAMIT COLLECTION
         </span>
+        {p.comingSoon && <ComingSoon />}
         <span className="round-arrow">
           <ArrowUpRight size={20} />
         </span>
@@ -121,13 +132,14 @@ export function ProductCard({ product: p }: { product: Product }) {
         <h3>
           <Link href={`/products/${p.slug}`}>{p.name}</Link>
         </h3>
+        {p.comingSoon && <p className="coming-soon-note">เตรียมจำหน่าย — อยู่ในแผนผลิตภัณฑ์ลำดับถัดไป</p>}
         <p className="muted">{p.description}</p>
         <div className="card-actions">
           <Link href={`/products/${p.slug}`}>
             ดูรายละเอียด <ArrowRight size={15} />
           </Link>
           <QuoteButton product={p.name} className="small-inquiry">
-            สอบถามราคา
+            {p.comingSoon ? 'สอบถามข้อมูล' : 'สอบถามราคา'}
           </QuoteButton>
         </div>
       </div>
