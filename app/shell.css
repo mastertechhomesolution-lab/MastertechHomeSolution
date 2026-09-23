@@ -40,12 +40,23 @@
 .header.scrolled {
   box-shadow: 0 8px 30px #0000002a;
 }
+/* The header sits over the hero, and the hero pulls itself up by the header's height.
+   --header-h is the single source for both, redeclared at each breakpoint below, so the two
+   can never drift apart again. --header-slack is extra pull: the brand block (logo + tagline)
+   can render a pixel or two taller than min-height, and without the slack that difference
+   showed as a white strip of page background above the menu. The slack only moves the top of
+   the hero above the document origin, where it is clipped and never seen; hero content still
+   lands exactly at the bottom of the header. */
+:root {
+  --header-h: 128px;
+  --header-slack: 6px;
+}
 .nav-inner {
   display: flex;
   align-items: stretch;
   justify-content: space-between;
   gap: 24px;
-  min-height: 128px;
+  min-height: var(--header-h);
 }
 .brand {
   display: flex;
@@ -199,8 +210,8 @@
 /* Hero — full-bleed client mock (Mock/HeroBG.png, layout from Mock/HeroMock.png) */
 .hero {
   position: relative;
-  margin-top: -128px;
-  padding-top: 128px;
+  margin-top: calc(-1 * (var(--header-h) + var(--header-slack)));
+  padding-top: calc(var(--header-h) + var(--header-slack));
   background: #1b1712;
   color: var(--hero-text);
   overflow: hidden;
@@ -814,8 +825,10 @@
   }
 }
 @media (max-width: 1000px) {
+  :root {
+    --header-h: 108px;
+  }
   .nav-inner {
-    min-height: 108px;
     align-items: center;
   }
   .brand-logos img,
@@ -850,10 +863,6 @@
     height: 42px;
     border: 0;
     box-shadow: none;
-  }
-  .hero {
-    margin-top: -108px;
-    padding-top: 108px;
   }
   .hero-inner {
     display: block;
@@ -903,13 +912,11 @@
     min-height: 42px;
     padding: 0;
   }
-  .nav-inner {
-    min-height: 98px;
-    gap: 10px;
+  :root {
+    --header-h: 98px;
   }
-  .hero {
-    margin-top: -98px;
-    padding-top: 98px;
+  .nav-inner {
+    gap: 10px;
   }
   .brand-logos {
     gap: 8px;
@@ -1067,12 +1074,8 @@
       linear-gradient(103deg, #100c07a6 0%, #100c0766 46%, #100c0720 72%, transparent 92%),
       linear-gradient(180deg, #100c07c4 0%, #100c0790 22%, #100c0752 44%, #100c0759 78%, #1b1712 100%);
   }
-  .nav-inner {
-    min-height: 86px;
-  }
-  .hero {
-    margin-top: -86px;
-    padding-top: 86px;
+  :root {
+    --header-h: 86px;
   }
   .brand-logos {
     gap: 6px;

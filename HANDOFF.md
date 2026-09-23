@@ -405,3 +405,42 @@ This only re-spaces the one new section. Every other section boundary on the sit
 original ~188px desktop rhythm from two stacked `.section` paddings — if the client wants the
 whole page tightened, that is a change to the global `.section` padding and should be a
 deliberate, separately reviewed pass.
+
+## 2026-09-23 — White strip above the header (all hero pages)
+
+The client reported a white line at the very top of the homepage, above the menu. Measured
+cause: the header's height is driven by its content, but `.hero` / `.page-hero` pulled
+themselves up by a **hard-coded** negative margin that had to equal it.
+
+| width | `.nav-inner` min-height | actual header height | gap |
+| --- | --- | --- | --- |
+| 1440 | 128px | 130.0px | 2px |
+| 1024 | 128px | 128.0px | 0 |
+| 768 | 108px | 108.6px | 1px |
+| 390 | 98px | 99.7px | 2px |
+| 320 | 86px | 86.0px | 0 |
+
+The brand column (92px logo + tagline + 8px/8px padding) renders a pixel or two past
+`min-height` at some widths, so the hero started below the document top and `body`'s white
+background showed through. It affected inner pages too, not just the homepage.
+
+Fix (`app/shell.css`, `app/polish.css`): `--header-h` is now declared once on `:root` and
+redeclared inside the existing 1000 / 700 / 374 breakpoints. `.nav-inner` uses it for
+`min-height`, and both `.hero` and `.page-hero` derive their offset from it:
+
+```css
+margin-top: calc(-1 * (var(--header-h) + var(--header-slack)));
+padding-top: calc(var(--header-h) + var(--header-slack));
+```
+
+`--header-slack: 6px` absorbs the content-driven overshoot. It only moves the top of the hero
+above the document origin, where it is clipped and never visible, and hero content still lands
+exactly at the bottom of the header (verified: content offset within 1.5px everywhere). The six
+per-breakpoint `.hero` / `.page-hero` margin+padding overrides are deleted — the variable
+covers them, so the two values can no longer drift apart.
+
+Verified across 7 hero routes × 11 widths (1600 → 320): no white gap and no content shift
+anywhere. Build + typecheck pass; `node scripts/qa-sweep.mjs` NO PROBLEMS FOUND.
+
+If the brand logo or tagline is ever enlarged again, raise `--header-h` (and `--header-slack`
+if the header grows more than 6px past it) rather than touching the hero rules.

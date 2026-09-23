@@ -409,8 +409,8 @@ footer:before {
    (.header-home) sits on top, so the hero pulls up by the header height at each breakpoint. */
 .page-hero {
   position: relative;
-  margin-top: -128px;
-  padding-top: 128px;
+  margin-top: calc(-1 * (var(--header-h) + var(--header-slack)));
+  padding-top: calc(var(--header-h) + var(--header-slack));
   background: #1b1712;
   border-bottom: 0;
   color: var(--hero-text);
@@ -542,10 +542,6 @@ footer:before {
   }
 }
 @media (max-width: 1000px) {
-  .page-hero {
-    margin-top: -108px;
-    padding-top: 108px;
-  }
   .page-hero-content {
     min-height: 400px;
   }
@@ -555,10 +551,6 @@ footer:before {
   }
 }
 @media (max-width: 700px) {
-  .page-hero {
-    margin-top: -98px;
-    padding-top: 98px;
-  }
   .page-hero-visual img {
     object-position: 72% 50%;
   }
@@ -600,10 +592,6 @@ footer:before {
   }
 }
 @media (max-width: 374px) {
-  .page-hero {
-    margin-top: -86px;
-    padding-top: 86px;
-  }
   .page-hero .page-hero-copy h1 {
     font-size: 26px;
   }
