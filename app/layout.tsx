@@ -52,6 +52,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             knowsAbout: categories.map((c) => c.name + ' (' + c.en + ')'),
             description: company.description,
             telephone: company.COMPANY_PHONE,
+            ...(company.COMPANY_EMAIL ? { email: company.COMPANY_EMAIL } : {}),
             address: company.postalAddress,
             ...(siteUrl ? { url: siteUrl, logo: siteUrl + '/brand/mast-tech.png' } : {}),
           }}

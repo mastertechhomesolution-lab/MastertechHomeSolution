@@ -1079,3 +1079,41 @@ footer:before {
     font-size: 13px;
   }
 }
+/* Quote form: nudge towards LINE / phone for the fastest reply. */
+.fast-contact {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px 18px;
+  margin: -11px 0 23px;
+  padding: 12px 14px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--background-secondary);
+}
+.fast-contact p {
+  margin: 0;
+  flex: 1 1 220px;
+  font-size: 13px;
+  line-height: 1.6;
+  color: var(--muted);
+}
+.fast-contact strong {
+  color: var(--foreground);
+  font-weight: 600;
+}
+.fast-contact p a {
+  color: var(--primary);
+  font-weight: 600;
+  white-space: nowrap;
+}
+.fast-contact-actions {
+  display: flex;
+  gap: 8px;
+}
+.fast-contact .button-small {
+  min-height: 38px;
+  padding: 7px 14px;
+  gap: 8px;
+}

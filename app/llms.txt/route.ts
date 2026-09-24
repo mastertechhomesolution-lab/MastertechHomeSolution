@@ -18,6 +18,7 @@ export function GET() {
     `- Brand: ${company.brand}`,
     `- Address: ${company.COMPANY_ADDRESS_EN} (${company.COMPANY_ADDRESS})`,
     `- Phone: ${company.COMPANY_PHONE}`,
+    ...(company.COMPANY_EMAIL ? [`- Email: ${company.COMPANY_EMAIL}`] : []),
     ...(siteUrl ? [`- Website: ${siteUrl}`] : []),
     '- Quotation requests: web form at /contact or on any product page, phone, or LINE',
     '- Hours: Monday–Saturday 08:00–17:00',

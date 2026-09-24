@@ -17,6 +17,7 @@ export default function Page() {
           name: company.siteName,
           legalName: company.name,
           telephone: company.COMPANY_PHONE,
+          ...(company.COMPANY_EMAIL ? { email: company.COMPANY_EMAIL } : {}),
           address: company.postalAddress,
           openingHoursSpecification: company.openingHoursSpecification,
           ...(siteUrl ? { url: siteUrl, image: siteUrl + '/brand/mast-tech.png' } : {}),

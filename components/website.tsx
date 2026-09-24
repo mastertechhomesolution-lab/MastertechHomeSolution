@@ -142,6 +142,20 @@ export function InquiryForm({ product = '', contact = false }: { product?: strin
   return (
     <form className="inquiry-form" onSubmit={submit}>
       <p className="form-note">กรอกข้อมูลแล้วทีมงานจะติดต่อกลับในวันและเวลาทำการ</p>
+      {!contact && (
+        <div className="fast-contact">
+          <p>
+            <strong>ต้องการคำตอบเร็วขึ้น?</strong> แนะนำให้แอด LINE (สแกน QR) หรือโทร{' '}
+            <a href={'tel:' + company.COMPANY_PHONE}>{company.COMPANY_PHONE}</a>
+          </p>
+          <div className="fast-contact-actions">
+            <LineButton className="button button-outline button-small" />
+            <a className="button button-outline button-small" href={'tel:' + company.COMPANY_PHONE}>
+              <Phone size={16} /> โทร
+            </a>
+          </div>
+        </div>
+      )}
       <input type="hidden" name="kind" value={contact ? 'contact' : 'quote'} />
       <label className="sr-only" aria-hidden="true">
         Website

@@ -9,7 +9,7 @@ export const company = {
   name: 'MASTER SCIENCE AND TECHNOLOGY CO., LTD.',
   shortName: 'MASTER SCIENCE & TECHNOLOGY',
   COMPANY_PHONE: '02-956-9876',
-  COMPANY_EMAIL: '',
+  COMPANY_EMAIL: 'materscitech.dp2024@gmail.com', // approved for public display by the user 2026-09-24
   COMPANY_ADDRESS: '36/33 หมู่ 1 ซอยเลียบวารี 61 ถนนเลียบวารี แขวงโคกแฝด เขตหนองจอก กรุงเทพมหานคร 10530',
   COMPANY_ADDRESS_EN: '36/33 Moo 1 Soi Liabvaree 61, Liabvaree Rd., Kokfad, Nongjok, Bangkok 10530, Thailand',
   postalAddress: {

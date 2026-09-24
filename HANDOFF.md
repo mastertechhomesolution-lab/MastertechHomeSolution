@@ -499,4 +499,5 @@ OpenGraph image) and `heroes/`.
   is pending), `RESEND_FROM` (default `onboarding@resend.dev`, which only delivers to the Resend
   account owner's address until the domain is verified in Resend). Without a key the route returns
   503 and the form shows an honest error with phone/LINE. Honeypot field `website`.
-- `COMPANY_EMAIL` stays blank on purpose: the user is waiting for a new company email to publish.
+- `COMPANY_EMAIL` = `materscitech.dp2024@gmail.com`, approved by the user for public display (contact page, footer, Organization/LocalBusiness JSON-LD, llms.txt).
+- The quote form (not the contact-page form) shows a `.fast-contact` box recommending LINE QR or phone for a faster reply.
