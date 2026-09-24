@@ -484,3 +484,19 @@ untracked leftovers from an earlier session with no reference anywhere in `app/`
 `scripts/`, `data/` or the CSS, and neither is produced by `scripts/prepare-assets.mjs`.
 `public/images/` now holds only `hero-bg.webp`, `hero-bg-mobile.webp`, `hero-mock.webp` (the
 OpenGraph image) and `heroes/`.
+
+## 2026-09-24 — Live on neramit-lifting.com: indexing on, quote form sends email
+
+- Production domain `https://neramit-lifting.com` (Vercel) is `company.url` in `data/company.ts`.
+  `lib/seo.ts` uses it automatically when `VERCEL_ENV=production`, and production is indexable
+  unless `SITE_INDEXABLE=false`. Preview deployments and local dev stay noindex.
+- `app/robots.ts` allows `*` plus an explicit group of search/AI crawlers (GPTBot, OAI-SearchBot,
+  ClaudeBot, PerplexityBot, Google-Extended, …); `/api/` disallowed; sitemap + host emitted.
+  `/projects/[slug]` concept pages stay `noindex, follow`. `/llms.txt` now uses absolute URLs.
+- Quote/contact form posts to `app/api/inquiry/route.ts`, which emails through Resend REST (no SDK).
+  Env on Vercel: `RESEND_API_KEY` (required), `INQUIRY_TO_EMAIL` (default
+  `materscitech.dp2024@gmail.com`, supplied by the user as the temporary inbox — a new company email
+  is pending), `RESEND_FROM` (default `onboarding@resend.dev`, which only delivers to the Resend
+  account owner's address until the domain is verified in Resend). Without a key the route returns
+  503 and the form shows an honest error with phone/LINE. Honeypot field `website`.
+- `COMPANY_EMAIL` stays blank on purpose: the user is waiting for a new company email to publish.

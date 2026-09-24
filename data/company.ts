@@ -4,6 +4,8 @@
 // Phone and opening hours come from the legacy site, approved by the user for reuse.
 export const company = {
   siteName: 'MasterTechhomesolution',
+  // Production domain registered on Vercel (confirmed by the user 2026-09-24).
+  url: 'https://neramit-lifting.com',
   name: 'MASTER SCIENCE AND TECHNOLOGY CO., LTD.',
   shortName: 'MASTER SCIENCE & TECHNOLOGY',
   COMPANY_PHONE: '02-956-9876',

@@ -115,12 +115,14 @@ export function InquiryForm({ product = '', contact = false }: { product?: strin
     e.preventDefault();
     setStatus('sending');
     try {
-      const result = await submitInquiry(new FormData(e.currentTarget));
+      const data = new FormData(e.currentTarget);
+      data.set('page', window.location.pathname);
+      const result = await submitInquiry(data);
       setMessage(result.message);
       setStatus('success');
-    } catch {
+    } catch (err) {
       setStatus('error');
-      setMessage('ยังไม่สามารถดำเนินการได้ กรุณาลองอีกครั้ง');
+      setMessage(err instanceof Error ? err.message : 'ส่งข้อมูลไม่สำเร็จ กรุณาลองอีกครั้ง');
     }
   }
   if (status === 'success')
@@ -139,7 +141,12 @@ export function InquiryForm({ product = '', contact = false }: { product?: strin
     );
   return (
     <form className="inquiry-form" onSubmit={submit}>
-      <p className="form-note">แบบฟอร์มสาธิตสำหรับนำเสนอ ข้อมูลจะไม่ถูกบันทึกหรือส่งออก</p>
+      <p className="form-note">กรอกข้อมูลแล้วทีมงานจะติดต่อกลับในวันและเวลาทำการ</p>
+      <input type="hidden" name="kind" value={contact ? 'contact' : 'quote'} />
+      <label className="sr-only" aria-hidden="true">
+        Website
+        <input name="website" tabIndex={-1} autoComplete="off" />
+      </label>
       <div className="form-grid">
         <label>
           ชื่อผู้ติดต่อ <span>*</span>
@@ -226,7 +233,7 @@ export function InquiryForm({ product = '', contact = false }: { product?: strin
         {status === 'sending' ? 'กำลังดำเนินการ…' : contact ? 'ส่งข้อมูล' : 'ขอใบเสนอราคา'}
         <ArrowUpRight size={18} />
       </button>
-      <p className="privacy-note">ยังไม่มีการเก็บข้อมูลส่วนบุคคลในเวอร์ชันนำเสนอนี้</p>
+      <p className="privacy-note">ข้อมูลที่กรอกจะถูกส่งถึงทีมงานทางอีเมล และใช้เพื่อติดต่อกลับเรื่องที่สอบถามเท่านั้น</p>
     </form>
   );
 }
