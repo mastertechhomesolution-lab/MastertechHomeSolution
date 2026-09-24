@@ -4,7 +4,7 @@
 // the visitor to call or use LINE instead, so nothing is ever reported as sent when it wasn't.
 import { company } from '@/data/company';
 
-const DEFAULT_TO = 'materscitech.dp2024@gmail.com';
+const DEFAULT_TO = 'materscitech.dp2024@gmail.com, mastertechhomesolution@gmail.com';
 const DEFAULT_FROM = `${company.siteName} <onboarding@resend.dev>`;
 const FIELDS: [key: string, label: string, max: number][] = [
   ['name', 'ชื่อผู้ติดต่อ', 120],

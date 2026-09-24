@@ -495,7 +495,7 @@ OpenGraph image) and `heroes/`.
   `/projects/[slug]` concept pages stay `noindex, follow`. `/llms.txt` now uses absolute URLs.
 - Quote/contact form posts to `app/api/inquiry/route.ts`, which emails through Resend REST (no SDK).
   Env on Vercel: `RESEND_API_KEY` (required), `INQUIRY_TO_EMAIL` (default
-  `materscitech.dp2024@gmail.com`, supplied by the user as the temporary inbox — a new company email
+  `materscitech.dp2024@gmail.com, mastertechhomesolution@gmail.com`, both supplied by the user — a new company email
   is pending), `RESEND_FROM` (default `onboarding@resend.dev`, which only delivers to the Resend
   account owner's address until the domain is verified in Resend). Without a key the route returns
   503 and the form shows an honest error with phone/LINE. Honeypot field `website`.
