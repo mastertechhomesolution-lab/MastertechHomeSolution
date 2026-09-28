@@ -3,11 +3,12 @@ import Link from 'next/link';
 import {
   ArrowUpRight,
   ShieldCheck,
-  Gem,
+  Lightbulb,
   ChevronRight,
   Headset,
   Building2,
-  Globe2,
+  Gauge,
+  Cpu,
   MoveUpRight,
   House,
   Hotel,
@@ -28,10 +29,30 @@ export const metadata = pageMeta(
   '/',
 );
 const strip = [
-  { icon: Gem, title: 'วัสดุคุณภาพระดับพรีเมียม' },
-  { icon: ShieldCheck, title: 'ดีไซน์หรู ทันสมัย' },
-  { icon: Headset, title: 'บริการมืออาชีพ' },
-  { icon: Globe2, title: 'ลิฟต์ครบทุกประเภทอาคาร' },
+  {
+    icon: Lightbulb,
+    en: 'INNOVATION',
+    title: 'นวัตกรรมเพื่อการใช้งานจริง',
+    text: 'นำเทคโนโลยีมาประยุกต์ให้เหมาะกับความต้องการและพื้นที่',
+  },
+  {
+    icon: Gauge,
+    en: 'EFFICIENCY',
+    title: 'ใช้พื้นที่ได้อย่างมีประสิทธิภาพ',
+    text: 'พัฒนาโซลูชันที่ช่วยให้พื้นที่สร้างประโยชน์ได้มากขึ้น',
+  },
+  {
+    icon: ShieldCheck,
+    en: 'SAFETY',
+    title: 'ความปลอดภัยที่เราให้ความสำคัญ',
+    text: 'คำนึงถึงความปลอดภัยควบคู่กับประสิทธิภาพในการใช้งาน',
+  },
+  {
+    icon: Cpu,
+    en: 'SMARTER SPACES',
+    title: 'สร้างพื้นที่ให้ชาญฉลาดยิ่งขึ้น',
+    text: 'เชื่อมเทคโนโลยีกับการใช้ชีวิตและสภาพแวดล้อมทางธุรกิจสมัยใหม่',
+  },
 ];
 const faqs = [
   [
@@ -135,12 +156,16 @@ export default function Home() {
         <div className="container">
           <div className="trust-inner">
             {strip.map((t) => (
-              <div key={t.title}>
-                <t.icon size={34} strokeWidth={1.4} />
-                <p>{t.title}</p>
+              <div key={t.en}>
+                <t.icon size={34} strokeWidth={1.4} aria-hidden="true" />
+                <div>
+                  <p className="trust-en">{t.en}</p>
+                  <p className="trust-title">{t.title}</p>
+                  <p className="trust-text">{t.text}</p>
+                </div>
               </div>
             ))}
-            <p className="trust-quote">&ldquo;ด้วยเทคโนโลยี เพื่อชีวิตที่ดีกว่า&rdquo;</p>
+            <p className="trust-quote" lang="en">&ldquo;Smarter Technology. Smarter Spaces.&rdquo;</p>
           </div>
         </div>
       </section>

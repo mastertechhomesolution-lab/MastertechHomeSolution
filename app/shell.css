@@ -709,36 +709,60 @@
   background: var(--strip-bg);
   color: #fff;
 }
+/* Four value pillars (icon + English label + Thai title + one line), slogan centred below. */
 .trust-inner {
   display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr)) auto;
-  align-items: center;
-  gap: 18px;
-  padding: 26px 0;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 26px 0;
+  padding: 34px 0 26px;
 }
 .trust-inner > div {
   display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 16px;
-  padding-right: 18px;
+  align-items: flex-start;
+  gap: 14px;
+  padding: 2px 22px;
   border-right: 1px solid #ffffff2e;
+}
+.trust-inner > div:first-child {
+  padding-left: 0;
+}
+.trust-inner > div:nth-child(4) {
+  padding-right: 0;
+  border-right: 0;
 }
 .trust-inner svg {
   flex-shrink: 0;
+  margin-top: 2px;
   color: #d9b978;
 }
-.trust-inner p {
-  font-size: 15px;
-  line-height: 1.5;
+.trust-en {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.26em;
+  color: #d9b978;
+}
+.trust-title {
+  margin-top: 5px;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 1.45;
+  color: #fff;
+}
+.trust-text {
+  margin-top: 6px;
+  font-size: 13px;
+  line-height: 1.6;
+  color: #ffffffb3;
 }
 .trust-quote {
-  padding-left: 8px;
+  grid-column: 1 / -1;
+  padding-top: 22px;
+  border-top: 1px solid #ffffff1f;
   font-family: var(--font-serif), serif;
   font-style: italic;
-  font-size: 19px;
+  font-size: 21px;
+  text-align: center;
   color: #f1e6d2;
-  white-space: nowrap;
 }
 
 @media (min-width: 1600px) {
@@ -788,9 +812,20 @@
   .hero-scrim {
     bottom: 176px;
   }
+  .trust-inner > div {
+    padding-inline: 16px;
+  }
+  .trust-inner > div:first-child {
+    padding-left: 0;
+  }
+  .trust-inner > div:nth-child(4) {
+    padding-right: 0;
+  }
+  .trust-title {
+    font-size: 15px;
+  }
   .trust-quote {
-    font-size: 17px;
-    white-space: normal;
+    font-size: 19px;
   }
 }
 @media (max-width: 1180px) {
@@ -823,12 +858,12 @@
   .trust-inner {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
-  .trust-inner > div:nth-child(2n) {
-    border-right: 0;
+  .trust-inner > div:nth-child(odd) {
+    padding: 2px 24px 2px 0;
   }
-  .trust-quote {
-    grid-column: 1 / -1;
-    text-align: center;
+  .trust-inner > div:nth-child(even) {
+    padding: 2px 0 2px 24px;
+    border-right: 0;
   }
 }
 @media (max-width: 1000px) {
@@ -1035,25 +1070,39 @@
     height: 24px;
     margin-top: 6px;
   }
+  /* Two columns on phones: icon stacks above the text so the lines keep a usable width. */
   .trust-inner {
-    gap: 14px 10px;
-    padding: 22px 0;
+    gap: 22px 14px;
+    padding: 26px 0 22px;
   }
-  .trust-inner > div {
-    justify-content: flex-start;
-    gap: 10px;
-    padding-right: 6px;
+  .trust-inner > div,
+  .trust-inner > div:nth-child(odd),
+  .trust-inner > div:nth-child(even) {
+    flex-direction: column;
+    gap: 8px;
+    padding: 0;
     border-right: 0;
   }
   .trust-inner svg {
     width: 28px;
     height: 28px;
   }
-  .trust-inner p {
-    font-size: 12.5px;
+  .trust-en {
+    font-size: 9.5px;
+    letter-spacing: 0.2em;
+  }
+  .trust-title {
+    margin-top: 3px;
+    font-size: 13.5px;
+  }
+  .trust-text {
+    margin-top: 4px;
+    font-size: 11.5px;
+    line-height: 1.55;
   }
   .trust-quote {
-    font-size: 15px;
+    padding-top: 18px;
+    font-size: 16px;
   }
 }
 @media (max-width: 374px) {
@@ -1124,5 +1173,11 @@
   }
   .trust-inner {
     grid-template-columns: 1fr;
+  }
+  .trust-inner > div,
+  .trust-inner > div:nth-child(odd),
+  .trust-inner > div:nth-child(even) {
+    flex-direction: row;
+    gap: 12px;
   }
 }
