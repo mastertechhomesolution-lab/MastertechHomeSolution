@@ -529,3 +529,7 @@ OpenGraph image) and `heroes/`.
   (ลิฟต์แก้ว · ลิฟต์โดยสาร → passenger). The client then confirmed removing escalators site-wide:
   the news guide `escalator-arrangement` is deleted (404), and company description, default title,
   homepage title/description/FAQ, about, services and news metadata no longer mention them.
+- Product-card badges are per collection instead of a generic "NERAMIT COLLECTION":
+  `collection` on each category (HOME / PASSENGER / FREIGHT / DOOR / INTERIOR) with a per-product
+  override (`operation-panel`, `touch-screen-panel` → NERAMIT SMART), read via
+  `productCollection(p)` in data/products.ts. Labels match the homepage collection cards.

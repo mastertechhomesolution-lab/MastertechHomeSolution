@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { ArrowUpRight, ArrowRight, Check } from 'lucide-react';
-import { Product, productImage, categories } from '@/data/products';
+import { Product, productImage, productCollection, categories } from '@/data/products';
 import { QuoteButton } from './website';
 export { GoldLayers } from './website';
 
@@ -122,7 +122,7 @@ export function ProductCard({ product: p }: { product: Product }) {
         />
         <span className="image-index">
           <Image src="/brand/neramit-logo.png" width={360} height={360} alt="" unoptimized />
-          NERAMIT COLLECTION
+          {productCollection(p)}
         </span>
         {p.comingSoon && <ComingSoon />}
         <span className="round-arrow">

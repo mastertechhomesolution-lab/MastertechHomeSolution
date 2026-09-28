@@ -7,12 +7,12 @@
 // `removed`; every page reads only the filtered `categories` and `products`.
 const removed = ['escalators'];
 const allCategories = [
-  { id: 'elevators', name: 'ลิฟต์บ้าน', en: 'Home Elevator', image: 'home-v201' },
-  { id: 'passenger', name: 'ลิฟต์โดยสาร', en: 'Passenger Elevator', image: 'passenger-k007' },
-  { id: 'freight', name: 'ลิฟต์ขนส่งสินค้า', en: 'Freight Elevator', image: 'machine-roomless-freight' },
-  { id: 'escalators', name: 'บันไดเลื่อน', en: 'Escalator & Moving Walk', image: 'escalator' },
-  { id: 'doors', name: 'ประตูลิฟต์', en: 'Elevator Door', image: 'hall-door' },
-  { id: 'accessories', name: 'ตกแต่งและแผงควบคุม', en: 'Interior & Control', image: 'operation-panel' },
+  { id: 'elevators', name: 'ลิฟต์บ้าน', en: 'Home Elevator', image: 'home-v201', collection: 'NERAMIT HOME' },
+  { id: 'passenger', name: 'ลิฟต์โดยสาร', en: 'Passenger Elevator', image: 'passenger-k007', collection: 'NERAMIT PASSENGER' },
+  { id: 'freight', name: 'ลิฟต์ขนส่งสินค้า', en: 'Freight Elevator', image: 'machine-roomless-freight', collection: 'NERAMIT FREIGHT' },
+  { id: 'escalators', name: 'บันไดเลื่อน', en: 'Escalator & Moving Walk', image: 'escalator', collection: 'NERAMIT ESCALATOR' },
+  { id: 'doors', name: 'ประตูลิฟต์', en: 'Elevator Door', image: 'hall-door', collection: 'NERAMIT DOOR' },
+  { id: 'accessories', name: 'ตกแต่งและแผงควบคุม', en: 'Interior & Control', image: 'operation-panel', collection: 'NERAMIT INTERIOR' },
 ];
 export const categories = allCategories.filter((c) => !removed.includes(c.id));
 export type Model = { code: string; tag?: string; spec: string[] };
@@ -33,6 +33,8 @@ export type Product = {
   /** Planned product line, not on sale yet (client decision, 2026-09-23). Draws a "Coming Soon"
    *  badge on every image of the product and keeps the page honest about availability. */
   comingSoon?: boolean;
+  /** Card badge when it differs from the category's collection label. */
+  collection?: string;
 };
 
 const homeLayout: Model[] = [
@@ -458,6 +460,7 @@ const allProducts: Product[] = [
   // ---------- Interior & control ----------
   {
     slug: 'operation-panel',
+    collection: 'NERAMIT SMART',
     name: 'แผงควบคุมและจอแสดงผล (COP / LOP)',
     en: 'Operation Panel, Display & Buttons',
     category: 'accessories',
@@ -475,6 +478,7 @@ const allProducts: Product[] = [
   },
   {
     slug: 'touch-screen-panel',
+    collection: 'NERAMIT SMART',
     name: 'แผงควบคุมระบบสัมผัส',
     en: 'COP & LOP — Touch Screen Series',
     category: 'accessories',
@@ -520,5 +524,8 @@ const allProducts: Product[] = [
   },
 ];
 export const products = allProducts.filter((p) => !removed.includes(p.category));
+/** Collection badge on product cards, matching the homepage NERAMIT COLLECTION labels. */
+export const productCollection = (p: Product) =>
+  p.collection ?? allCategories.find((c) => c.id === p.category)?.collection ?? 'NERAMIT';
 export const productImage = (p: { image: string }) => `/products/${p.image}.webp`;
 export const catalogPage = (n: number) => `/catalog/page-${String(n).padStart(2, '0')}.webp`;
