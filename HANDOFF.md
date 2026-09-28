@@ -533,3 +533,11 @@ OpenGraph image) and `heroes/`.
   `collection` on each category (HOME / PASSENGER / FREIGHT / DOOR / INTERIOR) with a per-product
   override (`operation-panel`, `touch-screen-panel` → NERAMIT SMART), read via
   `productCollection(p)` in data/products.ts. Labels match the homepage collection cards.
+- "SOLUTIONS FOR EVERY SPACE" (homepage): new heading copy; the six cards keep their real names
+  (last card back to ห้าง / ระบบขนส่ง · COMMERCIAL & TRANSIT with only "ลิฟต์แก้ว" → panoramic
+  elevator; the client said not to substitute other products). Cards are now photo-led
+  `.space-card`s (polish.css). Photos: client chose AI-generated ambient scenes; save them as
+  `Mock/generated/space-{residential,condominium,workplace,healthcare,industrial,commercial}.png`
+  and run `node scripts/prepare-space-images.mjs` → `public/images/spaces/<id>.webp`. A card
+  without its photo renders a gradient + icon fallback (checked with existsSync at build time),
+  so rebuild after adding photos. Old `.solution-card` CSS is now unused.

@@ -21,6 +21,8 @@ import { articles } from '@/data/news';
 import { Cta, Eyebrow, SectionHeading, Process, GoldLayers, JsonLd } from '@/components/ui';
 import { ProjectGrid } from '@/components/catalog';
 import { pageMeta } from '@/lib/seo';
+import { existsSync } from 'node:fs';
+import path from 'node:path';
 // The root layout's title template does not apply to the root page segment, so the brand
 // is spelled out here; every other route inherits "%s | MasterTechhomesolution".
 export const metadata = pageMeta(
@@ -56,6 +58,68 @@ const collections = [
     href: '/products/touch-screen-panel',
   },
 ];
+// SOLUTIONS FOR EVERY SPACE: application cards led by a photo of the space itself.
+// Photos are AI-generated ambient scenes (client decision 2026-09-29), built from
+// Mock/generated/space-<id>.png by scripts/prepare-space-images.mjs. Until a photo exists the card
+// falls back to a gradient with its icon, so the section never shows a broken image.
+const spacePhoto = (id: string) =>
+  existsSync(path.join(process.cwd(), 'public/images/spaces', id + '.webp')) ? '/images/spaces/' + id + '.webp' : null;
+const spaces = [
+  {
+    id: 'residential',
+    icon: House,
+    title: 'บ้านพักอาศัย',
+    en: 'LUXURY HOME',
+    text: 'ลิฟต์บ้าน · ห้องโดยสารซีรีส์ V',
+    href: '/products?category=elevators',
+    alt: 'บ้านพักอาศัยสมัยใหม่',
+  },
+  {
+    id: 'condominium',
+    icon: Layers3,
+    title: 'คอนโดมิเนียม',
+    en: 'CONDOMINIUM',
+    text: 'ลิฟต์โดยสาร · ประตูลิฟต์',
+    href: '/products?category=passenger',
+    alt: 'อาคารคอนโดมิเนียมพักอาศัย',
+  },
+  {
+    id: 'workplace',
+    icon: BriefcaseBusiness,
+    title: 'อาคารสำนักงาน',
+    en: 'WORKPLACE',
+    text: 'ลิฟต์โดยสาร · ลิฟต์ MRL',
+    href: '/products?category=passenger',
+    alt: 'โถงอาคารสำนักงานสมัยใหม่',
+  },
+  {
+    id: 'healthcare',
+    icon: Hotel,
+    title: 'โรงพยาบาล',
+    en: 'HEALTHCARE',
+    text: 'ลิฟต์โรงพยาบาล · ลิฟต์เตียง',
+    href: '/products/hospital-elevator',
+    alt: 'ทางเดินภายในโรงพยาบาล',
+  },
+  {
+    id: 'industrial',
+    icon: Building2,
+    title: 'โรงงาน / คลังสินค้า',
+    en: 'INDUSTRIAL',
+    text: 'ลิฟต์ขนส่งสินค้า · ลิฟต์รถยนต์',
+    href: '/products?category=freight',
+    alt: 'ภายในคลังสินค้าและโรงงาน',
+  },
+  {
+    id: 'commercial',
+    icon: Store,
+    title: 'ห้าง / ระบบขนส่ง',
+    en: 'COMMERCIAL & TRANSIT',
+    text: 'ลิฟต์แก้ว',
+    href: '/products/panoramic-elevator',
+    alt: 'โถงศูนย์การค้าและพื้นที่สาธารณะ',
+  },
+].map((s) => ({ ...s, photo: spacePhoto(s.id) }));
 const strip = [
   {
     icon: Lightbulb,
@@ -278,57 +342,47 @@ export default function Home() {
         <div className="container">
           <SectionHeading
             eyebrow="SOLUTIONS FOR EVERY SPACE"
-            title="โซลูชันสำหรับทุกพื้นที่"
-            description="เข้าใจความแตกต่างของทุกพื้นที่ เพื่อเลือกเทคโนโลยีที่เหมาะสม"
+            title={
+              <>
+                ทุกพื้นที่ต่างกัน
+                <br />
+                โซลูชันจึงต้องคิดต่าง
+              </>
+            }
+            description={
+              <>
+                เราเลือกเทคโนโลยีโดยพิจารณาจากพื้นที่{' '}
+                <br />
+                รูปแบบการใช้งาน และความต้องการที่แตกต่างกัน
+              </>
+            }
           />
-          <div className="solutions-grid">
-            {[
-              {
-                icon: House,
-                title: 'บ้านพักอาศัย',
-                en: 'LUXURY HOME',
-                text: 'ลิฟต์บ้าน · ห้องโดยสารซีรีส์ V',
-                category: 'elevators',
-              },
-              {
-                icon: Layers3,
-                title: 'คอนโดมิเนียม',
-                en: 'CONDOMINIUM',
-                text: 'ลิฟต์โดยสาร · ประตูลิฟต์',
-                category: 'passenger',
-              },
-              {
-                icon: BriefcaseBusiness,
-                title: 'อาคารสำนักงาน',
-                en: 'WORKPLACE',
-                text: 'ลิฟต์โดยสาร · ลิฟต์ MRL',
-                category: 'passenger',
-              },
-              { icon: Hotel, title: 'โรงพยาบาล', en: 'HEALTHCARE', text: 'ลิฟต์โรงพยาบาล · ลิฟต์เตียง', category: 'passenger' },
-              {
-                icon: Building2,
-                title: 'โรงงาน / คลังสินค้า',
-                en: 'INDUSTRIAL',
-                text: 'ลิฟต์ขนส่งสินค้า · ลิฟต์รถยนต์',
-                category: 'freight',
-              },
-              {
-                icon: Store,
-                title: 'ห้างสรรพสินค้า / อาคารพาณิชย์',
-                en: 'RETAIL & COMMERCIAL',
-                text: 'ลิฟต์แก้ว · ลิฟต์โดยสาร',
-                category: 'passenger',
-              },
-            ].map((s) => (
-              <Link href={'/products?category=' + s.category} className="solution-card" key={s.en}>
-                <s.icon size={30} />
-                <p className="micro">{s.en}</p>
-                <h3>{s.title}</h3>
-                <p>{s.text}</p>
-                <ArrowUpRight size={18} />
-              </Link>
+          <ul className="space-grid">
+            {spaces.map((s) => (
+              <li key={s.en}>
+                <Link href={s.href} className="space-card">
+                  {s.photo ? (
+                    <Image
+                      src={s.photo}
+                      alt={s.alt}
+                      fill
+                      sizes="(max-width: 700px) 80vw, (max-width: 1000px) 45vw, 30vw"
+                    />
+                  ) : (
+                    <s.icon className="space-placeholder" size={96} strokeWidth={1} aria-hidden="true" />
+                  )}
+                  <span className="space-body">
+                    <span className="space-en">{s.en}</span>
+                    <span className="space-title">{s.title}</span>
+                    <span className="space-text">{s.text}</span>
+                  </span>
+                  <span className="round-arrow" aria-hidden="true">
+                    <ArrowUpRight size={20} />
+                  </span>
+                </Link>
+              </li>
             ))}
-          </div>
+          </ul>
         </div>
       </section>
       <section className="section why-section">
