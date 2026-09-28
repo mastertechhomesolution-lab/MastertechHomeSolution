@@ -512,3 +512,12 @@ OpenGraph image) and `heroes/`.
 - Client removed escalators from the homepage only: the hero category bar filters out
   `escalators` (bar is now 5 columns) and the featured grid shows 3 cards (3 columns down to
   701px). Escalators stay in data, /products, nav, and the solutions card.
+- Trust strip (under the hero) is now four value pillars (INNOVATION / EFFICIENCY / SAFETY /
+  SMARTER SPACES, icon + EN label + Thai title + line) with the slogan
+  "Smarter Technology. Smarter Spaces." centred below.
+- "ผลิตภัณฑ์แนะนำ" became the NERAMIT COLLECTION section: three `collections` cards in
+  app/page.tsx (NERAMIT HOME / PASSENGER / SMART), each with its own label and description.
+  Client rule: these images must not appear anywhere else on the site — `home-v303` was cropped
+  for it (catalog p.23, entry added to scripts/prepare-catalog-images.mjs); `passenger-k010` and
+  `man-machine-interface` were previously unused. Keep them out of product data/other sections.
+  `SectionHeading` now accepts ReactNode title/description and `arrow="right"`.

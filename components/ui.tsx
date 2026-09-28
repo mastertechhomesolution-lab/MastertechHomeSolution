@@ -27,12 +27,14 @@ export function SectionHeading({
   description,
   href,
   label = 'ดูทั้งหมด',
+  arrow = 'up-right',
 }: {
   eyebrow: string;
-  title: string;
-  description?: string;
+  title: React.ReactNode;
+  description?: React.ReactNode;
   href?: string;
   label?: string;
+  arrow?: 'up-right' | 'right';
 }) {
   return (
     <div className="section-heading">
@@ -44,7 +46,7 @@ export function SectionHeading({
       {href && (
         <Link className="text-link" href={href}>
           {label}
-          <ArrowUpRight size={18} />
+          {arrow === 'right' ? <ArrowRight size={18} /> : <ArrowUpRight size={18} />}
         </Link>
       )}
     </div>

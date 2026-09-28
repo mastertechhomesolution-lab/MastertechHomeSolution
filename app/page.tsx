@@ -16,9 +16,9 @@ import {
   Store,
   Layers3,
 } from 'lucide-react';
-import { categories, products } from '@/data/products';
+import { categories } from '@/data/products';
 import { articles } from '@/data/news';
-import { Cta, Eyebrow, SectionHeading, ProductCard, Process, GoldLayers, JsonLd } from '@/components/ui';
+import { Cta, Eyebrow, SectionHeading, Process, GoldLayers, JsonLd } from '@/components/ui';
 import { ProjectGrid } from '@/components/catalog';
 import { pageMeta } from '@/lib/seo';
 // The root layout's title template does not apply to the root page segment, so the brand
@@ -28,6 +28,34 @@ export const metadata = pageMeta(
   'นำเข้าและจำหน่ายลิฟต์บ้าน ลิฟต์โดยสาร ลิฟต์โรงพยาบาล ลิฟต์ขนส่งสินค้า บันไดเลื่อน ทางเลื่อน และประตูลิฟต์ แบรนด์ Neramit โดย MASTER SCIENCE AND TECHNOLOGY',
   '/',
 );
+// NERAMIT COLLECTION cards. 2026-09-29: the client asked for images not shown anywhere else on the
+// site (home-v303 was cropped for this from catalog page 23) and a product-specific label per card.
+const collections = [
+  {
+    label: 'NERAMIT HOME',
+    title: 'Home Lift Collection',
+    text: 'ลิฟต์บ้านระบบ Traction และสายพานเหล็ก พร้อมห้องโดยสารซีรีส์ V100–V400 เลือกวัสดุและโทนสีให้เข้ากับบ้าน',
+    image: '/products/home-v303.webp',
+    alt: 'ห้องโดยสารลิฟต์บ้าน Neramit รุ่น NY-V303 ผนังสเตนเลสโรสโกลด์และพื้นหินอ่อน',
+    href: '/products?category=elevators',
+  },
+  {
+    label: 'NERAMIT PASSENGER',
+    title: 'Passenger Lift Collection',
+    text: 'ลิฟต์โดยสารสำหรับคอนโด อาคารสำนักงาน และโรงพยาบาล ทั้งแบบห้องเครื่องเล็ก ไม่มีห้องเครื่อง และลิฟต์แก้ว',
+    image: '/products/passenger-k010.webp',
+    alt: 'ห้องโดยสารลิฟต์โดยสาร Neramit รุ่นมาตรฐาน NY-K010 ผนังสเตนเลสแฮร์ไลน์',
+    href: '/products?category=passenger',
+  },
+  {
+    label: 'NERAMIT SMART',
+    title: 'Smart Control Collection',
+    text: 'แผงควบคุมในห้องโดยสารและปุ่มเรียกหน้าชั้นซีรีส์หน้าจอสัมผัส ดีไซน์ร่วมสมัย',
+    image: '/products/man-machine-interface.webp',
+    alt: 'แผงควบคุมหน้าจอสัมผัสติดผนังห้องโดยสารลิฟต์ Neramit',
+    href: '/products/touch-screen-panel',
+  },
+];
 const strip = [
   {
     icon: Lightbulb,
@@ -172,17 +200,53 @@ export default function Home() {
       <section className="section featured-section">
         <div className="container">
           <SectionHeading
-            eyebrow="CURATED FOR YOUR SPACE"
-            title="ผลิตภัณฑ์แนะนำ"
-            description="เลือกโซลูชันที่เหมาะกับพื้นที่และการใช้งานของคุณ"
+            eyebrow="NERAMIT COLLECTION"
+            title={
+              <>
+                เทคโนโลยีที่กลมกลืน
+                <br />
+                ไปกับทุกพื้นที่ชีวิต
+              </>
+            }
+            description={
+              <>
+                NERAMIT ถ่ายทอดแนวคิดของ Master Science and Technology{' '}
+                <br />
+                สู่ผลิตภัณฑ์ที่ผสานเทคโนโลยี การใช้งาน{' '}
+                <br />
+                และการออกแบบเข้าด้วยกันอย่างลงตัว
+              </>
+            }
             href="/products"
-            label="สำรวจคอลเลกชัน"
+            label="สำรวจ NERAMIT"
+            arrow="right"
           />
           <div className="product-grid featured-grid">
-            {['sightseeing-home-elevator', 'passenger-elevator', 'panoramic-elevator']
-              .map((slug) => products.find((p) => p.slug === slug)!)
-              .map((p) => (
-              <ProductCard key={p.slug} product={p} />
+            {collections.map((c) => (
+              <article className="product-card collection-card" key={c.label}>
+                <Link href={c.href} className="product-picture">
+                  <Image src={c.image} alt={c.alt} fill sizes="(max-width: 700px) 85vw, 30vw" />
+                  <span className="image-index">
+                    <Image src="/brand/neramit-logo.png" width={360} height={360} alt="" unoptimized />
+                    {c.label}
+                  </span>
+                  <span className="round-arrow">
+                    <ArrowUpRight size={20} />
+                  </span>
+                </Link>
+                <div className="product-card-body">
+                  <p className="micro">{c.label}</p>
+                  <h3>
+                    <Link href={c.href}>{c.title}</Link>
+                  </h3>
+                  <p className="muted">{c.text}</p>
+                  <div className="card-actions">
+                    <Link href={c.href}>
+                      ดูคอลเลกชัน <ChevronRight size={15} />
+                    </Link>
+                  </div>
+                </div>
+              </article>
             ))}
           </div>
         </div>

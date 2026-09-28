@@ -1117,3 +1117,47 @@ footer:before {
   padding: 7px 14px;
   gap: 8px;
 }
+
+/* NERAMIT COLLECTION cards (homepage). Three cards, so the picture can be taller; the body is
+   a column so every "ดูคอลเลกชัน" link sits on the same line. */
+.collection-card {
+  display: flex;
+  flex-direction: column;
+}
+.featured-grid .collection-card .product-picture {
+  height: 360px;
+}
+.collection-card .product-picture img {
+  object-position: 50% 30%;
+}
+.collection-card .product-card-body {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+}
+.collection-card .card-actions {
+  margin-top: auto;
+}
+.collection-card .muted {
+  margin-bottom: 21px;
+}
+@media (max-width: 1000px) {
+  .featured-grid .collection-card .product-picture {
+    height: 300px;
+  }
+}
+@media (max-width: 700px) {
+  .featured-grid .collection-card .product-picture {
+    height: 320px;
+  }
+  .featured-section .section-heading {
+    flex-direction: column;
+    gap: 0;
+  }
+  .featured-section .section-heading > .text-link {
+    margin-top: 16px;
+  }
+  .featured-section .section-heading .muted br {
+    display: none;
+  }
+}
