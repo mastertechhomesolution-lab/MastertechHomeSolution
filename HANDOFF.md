@@ -556,3 +556,6 @@ OpenGraph image) and `heroes/`.
   SHAPING THE FUTURE. beside the CTA. "MASTERTECHHOMESOLUTION" + "SMARTER SPACES. SAFER LIVING."
   were removed. Visual is CSS/SVG only (`.footer-top:before` grid + glow, inline `.footer-tech`
   circuit lines at low opacity) — client rule: no product/lift imagery here.
+- Footer bottom: Presentation Mode removed entirely (toggle, `?presentation=` state, CSS); the
+  robots.ts disallow for `?presentation=` is kept as harmless cleanup for old URLs. Copyright reads
+  "© <year> Master Science and Technology Co., Ltd. All Rights Reserved."

@@ -15,7 +15,6 @@ import {
   Mail,
   MapPin,
   Clock,
-  Monitor,
   FileText,
 } from 'lucide-react';
 import { company } from '@/data/company';
@@ -319,9 +318,7 @@ export function Website({ children }: { children: ReactNode }) {
   const [quote, setQuote] = useState<string | null>(null);
   const [line, setLine] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-  const [presentation, setPresentation] = useState(false);
   useEffect(() => {
-    setPresentation(new URLSearchParams(window.location.search).get('presentation') === 'true');
     const onScroll = () => setScrolled(window.scrollY > 30);
     onScroll();
     window.addEventListener('scroll', onScroll, { passive: true });
@@ -331,14 +328,6 @@ export function Website({ children }: { children: ReactNode }) {
     setMenu(false);
     setSearch(false);
   }, [pathname]);
-  function togglePresentation() {
-    const next = !presentation;
-    setPresentation(next);
-    const u = new URL(window.location.href);
-    if (next) u.searchParams.set('presentation', 'true');
-    else u.searchParams.delete('presentation');
-    window.history.replaceState(null, '', u);
-  }
   const results = products.filter((p) =>
     (p.name + ' ' + p.en + ' ' + p.description + ' ' + categories.find((c) => c.id === p.category)?.name)
       .toLowerCase()
@@ -346,7 +335,7 @@ export function Website({ children }: { children: ReactNode }) {
   );
   return (
     <SiteContext.Provider value={{ openQuote: (p = '') => setQuote(p), openLine: () => setLine(true) }}>
-      <div className={presentation ? 'site presentation' : 'site'}>
+      <div className="site">
         <a className="skip-link" href="#main">
           ข้ามไปยังเนื้อหา
         </a>
@@ -506,12 +495,8 @@ export function Website({ children }: { children: ReactNode }) {
             </div>
             <div className="footer-bottom">
               <span>
-                © {new Date().getFullYear()} {company.siteName}.
+                © {new Date().getFullYear()} Master Science and Technology Co., Ltd. All Rights Reserved.
               </span>
-              <button onClick={togglePresentation}>
-                <Monitor size={13} />
-                {presentation ? 'ออกจาก Presentation Mode' : 'Presentation Mode'}
-              </button>
               <span>DESIGNED FOR A BETTER EVERYDAY.</span>
             </div>
           </div>

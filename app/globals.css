@@ -1651,9 +1651,6 @@ footer {
   padding: 16px 0;
   border-bottom: 1px solid var(--border);
 }
-.presentation .footer-bottom > span:last-child {
-  display: none;
-}
 @keyframes enter {
   from {
     opacity: 0;
