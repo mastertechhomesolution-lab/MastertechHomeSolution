@@ -1276,3 +1276,93 @@ footer:before {
     display: none;
   }
 }
+
+/* THE MASTER DIFFERENCE — engineering visual under the heading: one wide mechanism photo and
+   three catalog details (hoistway cutaway, control cabinet, door operator) on a warm ground. */
+.engineering-visual {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+  margin-top: 34px;
+}
+.engineering-visual figure {
+  margin: 0;
+}
+.engineering-visual .is-wide {
+  grid-column: 1 / -1;
+}
+.engineering-frame {
+  position: relative;
+  display: block;
+  height: 190px;
+  overflow: hidden;
+  border: 1px solid var(--card-border);
+  border-radius: 14px;
+  background: #f3eee6;
+}
+.engineering-frame img {
+  object-fit: contain;
+  padding: 12px;
+}
+.is-wide .engineering-frame {
+  height: 230px;
+  border: 0;
+  background: #0f1a2e;
+}
+.is-wide .engineering-frame img {
+  object-fit: cover;
+  padding: 0;
+}
+.engineering-visual figcaption {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  margin-top: 9px;
+  font-size: 12.5px;
+  line-height: 1.45;
+  color: var(--muted);
+}
+.engineering-visual figcaption span {
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  color: var(--primary);
+}
+@media (max-width: 700px) {
+  .engineering-visual {
+    gap: 10px;
+    margin-top: 26px;
+  }
+  .engineering-frame {
+    height: 150px;
+  }
+  .is-wide .engineering-frame {
+    height: 180px;
+  }
+  .engineering-visual figcaption {
+    font-size: 11px;
+  }
+  .engineering-visual figcaption span {
+    font-size: 9px;
+    letter-spacing: 0.14em;
+  }
+  .why-inner > div > p br {
+    display: none;
+  }
+}
+/* Catalog renders sit on white: multiply drops the white box onto the warm tile. */
+.engineering-frame img {
+  mix-blend-mode: multiply;
+}
+.is-wide .engineering-frame img {
+  mix-blend-mode: normal;
+}
+.why-inner > div > p:not(.eyebrow) {
+  font-size: 15px;
+  line-height: 1.75;
+}
+@media (max-width: 700px) {
+  .why-inner > div > p:not(.eyebrow) {
+    font-size: 13.5px;
+  }
+}

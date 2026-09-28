@@ -2,6 +2,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import {
   ArrowUpRight,
+  ArrowRight,
   ShieldCheck,
   Lightbulb,
   ChevronRight,
@@ -120,6 +121,33 @@ const spaces = [
     alt: 'โถงศูนย์การค้าและพื้นที่สาธารณะ',
   },
 ].map((s) => ({ ...s, photo: spacePhoto(s.id) }));
+const engineering = [
+  {
+    image: 'core-component',
+    en: 'MECHANISM',
+    th: 'เครื่องลากแบบ Permanent Magnet Synchronous Gearless',
+    alt: 'ภาพแยกชิ้นส่วนเครื่องลากลิฟต์แบบแม่เหล็กถาวรไร้เกียร์ จากแค็ตตาล็อกบริษัท',
+    wide: true,
+  },
+  {
+    image: 'hoistway-cutaway',
+    en: 'HOISTWAY',
+    th: 'โครงสร้างปล่องและระบบขับเคลื่อน',
+    alt: 'ภาพตัดปล่องลิฟต์แสดงเครื่องลาก รางนำ และห้องโดยสาร',
+  },
+  {
+    image: 'control-cabinet',
+    en: 'CONTROL',
+    th: 'ตู้ควบคุม 32-bit DSP',
+    alt: 'ตู้ควบคุมลิฟต์เปิดฝาแสดงแผงวงจรภายใน',
+  },
+  {
+    image: 'door-operator',
+    en: 'DOOR OPERATOR',
+    th: 'ชุดขับประตูแม่เหล็กถาวรแบบดิจิทัล',
+    alt: 'ชุดขับเคลื่อนประตูลิฟต์แบบแม่เหล็กถาวรดิจิทัล',
+  },
+];
 const strip = [
   {
     icon: Lightbulb,
@@ -390,14 +418,38 @@ export default function Home() {
           <div>
             <Eyebrow>THE MASTER DIFFERENCE</Eyebrow>
             <h2>
-              เพราะรายละเอียด
+              ความแตกต่าง
               <br />
-              <span>สร้างความแตกต่าง</span>
+              <span>อยู่ในวิธีที่เราคิด</span>
             </h2>
-            <p>ทำไมต้อง MASTER SCIENCE & TECHNOLOGY</p>
+            <p>
+              เราไม่ได้เริ่มจากการเลือกผลิตภัณฑ์{' '}
+              <br />
+              แต่เริ่มจากการเข้าใจพื้นที่และการใช้งาน
+            </p>
             <Link href="/about" className="text-link">
-              รู้จักเรามากขึ้น <ArrowUpRight size={18} />
+              รู้จักเรามากขึ้น <ArrowRight size={18} />
             </Link>
+            {/* Engineering detail from the company catalog (pp. 5 and 9), deliberately not cabin
+                renders: those already appear in the product sections above. */}
+            <div className="engineering-visual">
+              {engineering.map((e) => (
+                <figure key={e.image} className={e.wide ? 'is-wide' : undefined}>
+                  <span className="engineering-frame">
+                    <Image
+                      src={'/products/' + e.image + '.webp'}
+                      alt={e.alt}
+                      fill
+                      sizes={e.wide ? '(max-width: 1000px) 92vw, 520px' : '(max-width: 1000px) 30vw, 170px'}
+                    />
+                  </span>
+                  <figcaption>
+                    <span>{e.en}</span>
+                    {e.th}
+                  </figcaption>
+                </figure>
+              ))}
+            </div>
           </div>
           <div className="why-list">
             {[
