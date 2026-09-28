@@ -532,7 +532,7 @@ export function Website({ children }: { children: ReactNode }) {
               <Search size={20} />
               <input
                 aria-label="ค้นหาชื่อหรือประเภทสินค้า"
-                placeholder="ค้นหาลิฟต์ บันไดเลื่อน ประตูลิฟต์…"
+                placeholder="ค้นหาลิฟต์บ้าน ลิฟต์โดยสาร ประตูลิฟต์…"
                 value={query}
                 onChange={(e) => setQuery(e.target.value)}
               />

@@ -11,7 +11,7 @@ export function GET() {
     `# ${company.siteName} — ${company.name}`,
     '',
     `> ${company.description}`,
-    `> Importer and distributor of home lifts, passenger, hospital and freight elevators, escalators, moving walks, elevator doors and car interiors under the ${company.brand} brand.`,
+    `> Importer and distributor of home lifts, passenger, hospital and freight elevators, elevator doors and car interiors under the ${company.brand} brand.`,
     '',
     '## Company',
     `- Legal name: ${company.name}`,
@@ -50,7 +50,6 @@ export function GET() {
     '## Notes',
     "- Technical specifications come from the company's elevator catalog and are for model selection; construction drawings follow the technical department's design.",
     '- Smart Parking Lift is a planned future product line, not currently offered; it has no catalog entry, specification or price.',
-    '- Escalators and moving walks are marked COMING SOON: they are a planned product line and are not on sale yet. Their catalog specifications are published for building planning only.',
     '- Project pages are design concepts, not delivered client projects.',
   );
   return new Response(lines.join('\n') + '\n', { headers: { 'Content-Type': 'text/plain; charset=utf-8' } });

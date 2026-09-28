@@ -521,3 +521,11 @@ OpenGraph image) and `heroes/`.
   for it (catalog p.23, entry added to scripts/prepare-catalog-images.mjs); `passenger-k010` and
   `man-machine-interface` were previously unused. Keep them out of product data/other sections.
   `SectionHeading` now accepts ReactNode title/description and `arrow="right"`.
+- 2026-09-29: the client removed the escalator & moving walk line from the product catalog.
+  `data/products.ts` keeps the entries in `allCategories` / `allProducts` and exports filtered
+  `categories` / `products` (`removed = ['escalators']`), so /products, the filters, search,
+  sitemap, llms.txt and JSON-LD `knowsAbout` drop them and /products/escalator etc. are 404.
+  The homepage "ห้าง / ระบบขนส่ง" solution card became "ห้างสรรพสินค้า / อาคารพาณิชย์"
+  (ลิฟต์แก้ว · ลิฟต์โดยสาร → passenger). Still mentioning escalators, pending a client answer:
+  the news guide `escalator-arrangement`, and descriptive copy in data/company.ts, app/layout.tsx
+  (default title), app/page.tsx (title/description/FAQ), about, services and news metadata.

@@ -160,8 +160,7 @@ export default function Home() {
         <div className="container hero-categories" id="collections">
           <h2 className="sr-only">หมวดหมู่สินค้าและบริการ</h2>
           <ul className="category-bar">
-            {/* 2026-09-29: the client removed escalators from the homepage bar and featured cards. */}
-            {categories.filter((c) => c.id !== 'escalators').map((c) => (
+            {categories.map((c) => (
               <li key={c.id}>
                 <Link href={'/products?category=' + c.id} className="category-item">
                   <span className="category-thumb">
@@ -315,10 +314,10 @@ export default function Home() {
               },
               {
                 icon: Store,
-                title: 'ห้าง / ระบบขนส่ง',
-                en: 'COMMERCIAL & TRANSIT',
-                text: 'บันไดเลื่อน · ทางเลื่อน · ลิฟต์แก้ว',
-                category: 'escalators',
+                title: 'ห้างสรรพสินค้า / อาคารพาณิชย์',
+                en: 'RETAIL & COMMERCIAL',
+                text: 'ลิฟต์แก้ว · ลิฟต์โดยสาร',
+                category: 'passenger',
               },
             ].map((s) => (
               <Link href={'/products?category=' + s.category} className="solution-card" key={s.en}>

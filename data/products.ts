@@ -2,7 +2,11 @@
 // supplied as Product/ข้อมูลบริษัทสินค้า.pdf. Model codes, finishes and technical specs are
 // kept in the catalog's original English; only general copy is written in Thai.
 // Images are built by scripts/prepare-catalog-images.mjs; `pages` point to public/catalog/page-XX.webp.
-export const categories = [
+// 2026-09-29: the client removed the escalator & moving walk line from the whole product catalog.
+// Its entries stay below (allCategories / allProducts) so it can be switched back on by editing
+// `removed`; every page reads only the filtered `categories` and `products`.
+const removed = ['escalators'];
+const allCategories = [
   { id: 'elevators', name: 'ลิฟต์บ้าน', en: 'Home Elevator', image: 'home-v201' },
   { id: 'passenger', name: 'ลิฟต์โดยสาร', en: 'Passenger Elevator', image: 'passenger-k007' },
   { id: 'freight', name: 'ลิฟต์ขนส่งสินค้า', en: 'Freight Elevator', image: 'machine-roomless-freight' },
@@ -10,6 +14,7 @@ export const categories = [
   { id: 'doors', name: 'ประตูลิฟต์', en: 'Elevator Door', image: 'hall-door' },
   { id: 'accessories', name: 'ตกแต่งและแผงควบคุม', en: 'Interior & Control', image: 'operation-panel' },
 ];
+export const categories = allCategories.filter((c) => !removed.includes(c.id));
 export type Model = { code: string; tag?: string; spec: string[] };
 export type Product = {
   slug: string;
@@ -44,7 +49,7 @@ const homeSpecs: [string, string][] = [
 ];
 const homeCar = 'ห้องโดยสารลิฟต์บ้านจากแค็ตตาล็อก เลือกวัสดุผนัง ฝ้า และพื้นได้ตามรุ่น เพื่อให้เข้ากับการตกแต่งภายในบ้าน';
 
-export const products: Product[] = [
+const allProducts: Product[] = [
   // ---------- Home elevator ----------
   {
     slug: 'traction-home-elevator',
@@ -514,5 +519,6 @@ export const products: Product[] = [
     pages: [18, 28],
   },
 ];
+export const products = allProducts.filter((p) => !removed.includes(p.category));
 export const productImage = (p: { image: string }) => `/products/${p.image}.webp`;
 export const catalogPage = (n: number) => `/catalog/page-${String(n).padStart(2, '0')}.webp`;
