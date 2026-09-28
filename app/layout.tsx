@@ -23,7 +23,7 @@ const serif = Noto_Serif_Thai({
 export const metadata: Metadata = {
   metadataBase: siteUrl ? new URL(siteUrl) : undefined,
   title: {
-    default: 'MasterTechhomesolution | MASTER SCIENCE AND TECHNOLOGY — Home Lift, Elevator & Escalator Solutions',
+    default: 'MasterTechhomesolution | MASTER SCIENCE AND TECHNOLOGY — Home Lift & Elevator Solutions',
     template: '%s | MasterTechhomesolution',
   },
   description: company.description,

@@ -526,6 +526,6 @@ OpenGraph image) and `heroes/`.
   `categories` / `products` (`removed = ['escalators']`), so /products, the filters, search,
   sitemap, llms.txt and JSON-LD `knowsAbout` drop them and /products/escalator etc. are 404.
   The homepage "ห้าง / ระบบขนส่ง" solution card became "ห้างสรรพสินค้า / อาคารพาณิชย์"
-  (ลิฟต์แก้ว · ลิฟต์โดยสาร → passenger). Still mentioning escalators, pending a client answer:
-  the news guide `escalator-arrangement`, and descriptive copy in data/company.ts, app/layout.tsx
-  (default title), app/page.tsx (title/description/FAQ), about, services and news metadata.
+  (ลิฟต์แก้ว · ลิฟต์โดยสาร → passenger). The client then confirmed removing escalators site-wide:
+  the news guide `escalator-arrangement` is deleted (404), and company description, default title,
+  homepage title/description/FAQ, about, services and news metadata no longer mention them.
