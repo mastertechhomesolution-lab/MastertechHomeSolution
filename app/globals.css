@@ -272,7 +272,7 @@ button {
   gap: 27px;
 }
 .featured-grid {
-  grid-template-columns: repeat(4, minmax(0, 1fr));
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 23px;
 }
 .product-card {
@@ -1749,11 +1749,11 @@ footer {
 }
 @media (max-width: 1000px) {
   .featured-grid {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 25px;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
   }
   .featured-grid .product-picture {
-    height: 350px;
+    height: 260px;
   }
   .product-card h3 {
     font-size: 17px;

@@ -501,3 +501,14 @@ OpenGraph image) and `heroes/`.
   503 and the form shows an honest error with phone/LINE. Honeypot field `website`.
 - `COMPANY_EMAIL` = `materscitech.dp2024@gmail.com`, approved by the user for public display (contact page, footer, Organization/LocalBusiness JSON-LD, llms.txt).
 - The quote form (not the contact-page form) shows a `.fast-contact` box recommending LINE QR or phone for a faster reply.
+
+## 2026-09-29 — New homepage hero copy; escalators off the homepage
+
+- Hero copy replaced as a set, per the client: eyebrow `SCIENCE • TECHNOLOGY • INNOVATION`,
+  h1 `เทคโนโลยีที่คิดไกลกว่า / เพื่อพื้นที่ที่ไปได้ไกลกว่า` (second line gold), three-line description,
+  kicker `DRIVING THE FUTURE THROUGH SCIENCE AND TECHNOLOGY`, CTAs `สำรวจโซลูชัน` (gold → /products)
+  and `รู้จัก MASTER` (ghost → /about). The right-hand "ELEVATE YOUR LIFESTYLE" mark was removed
+  with the old set (its `.hero-lifestyle` CSS in shell.css is now unused).
+- Client removed escalators from the homepage only: the hero category bar filters out
+  `escalators` (bar is now 5 columns) and the featured grid shows 3 cards (3 columns down to
+  701px). Escalators stay in data, /products, nav, and the solutions card.

@@ -82,45 +82,37 @@ export default function Home() {
         <div className="hero-scrim" aria-hidden="true" />
         <div className="container hero-inner">
           <div className="hero-copy">
-            <p className="hero-eyebrow">MAST TECH &times; NERAMIT</p>
+            <p className="hero-eyebrow">SCIENCE &bull; TECHNOLOGY &bull; INNOVATION</p>
             <h1>
-              มากกว่าเพียงสินค้า
+              เทคโนโลยีที่คิดไกลกว่า
               <br />
-              <span>คือความมั่นใจ</span>
-              <br />
-              ในทุกการใช้งาน
+              <span>เพื่อพื้นที่ที่ไปได้ไกลกว่า</span>
             </h1>
             <p className="hero-description">
-              ลิฟต์บ้าน ลิฟต์โดยสาร บันไดเลื่อน และอุปกรณ์ตกแต่ง
+              เรานำนวัตกรรมและเทคโนโลยีมาสร้างโซลูชัน
               <br />
-              ตอบโจทย์ทุกพื้นที่ของคุณ
-            </p>
-            <p className="hero-kicker">
-              SMART SOLUTIONS
+              ที่เพิ่มความสะดวก ประสิทธิภาพ ความปลอดภัย
               <br />
-              FOR EVERY SPACE
+              และเปลี่ยนทุกพื้นที่ให้ใช้งานได้อย่างชาญฉลาดยิ่งขึ้น
             </p>
+            <p className="hero-kicker">DRIVING THE FUTURE THROUGH SCIENCE AND TECHNOLOGY</p>
             <div className="hero-actions">
               <Link className="button button-gold" href="/products">
                 <GoldLayers />
-                <span className="gold-label">เลือกชมสินค้า</span>
+                <span className="gold-label">สำรวจโซลูชัน</span>
                 <ChevronRight size={20} aria-hidden="true" />
               </Link>
-              <Link className="button button-ghost" href="/contact">
-                ติดต่อทีมงาน <ChevronRight size={20} />
+              <Link className="button button-ghost" href="/about">
+                รู้จัก MASTER <ChevronRight size={20} />
               </Link>
             </div>
           </div>
-          <p className="hero-lifestyle" aria-hidden="true">
-            <span>ELEVATE</span>
-            <span>YOUR</span>
-            <span>LIFESTYLE</span>
-          </p>
         </div>
         <div className="container hero-categories" id="collections">
           <h2 className="sr-only">หมวดหมู่สินค้าและบริการ</h2>
           <ul className="category-bar">
-            {categories.map((c) => (
+            {/* 2026-09-29: the client removed escalators from the homepage bar and featured cards. */}
+            {categories.filter((c) => c.id !== 'escalators').map((c) => (
               <li key={c.id}>
                 <Link href={'/products?category=' + c.id} className="category-item">
                   <span className="category-thumb">
@@ -162,7 +154,7 @@ export default function Home() {
             label="สำรวจคอลเลกชัน"
           />
           <div className="product-grid featured-grid">
-            {['sightseeing-home-elevator', 'passenger-elevator', 'panoramic-elevator', 'escalator']
+            {['sightseeing-home-elevator', 'passenger-elevator', 'panoramic-elevator']
               .map((slug) => products.find((p) => p.slug === slug)!)
               .map((p) => (
               <ProductCard key={p.slug} product={p} />
