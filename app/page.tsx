@@ -10,7 +10,6 @@ import {
   Building2,
   Gauge,
   Cpu,
-  MoveUpRight,
   House,
   Hotel,
   BriefcaseBusiness,
@@ -121,31 +120,44 @@ const spaces = [
     alt: 'โถงศูนย์การค้าและพื้นที่สาธารณะ',
   },
 ].map((s) => ({ ...s, photo: spacePhoto(s.id) }));
-const engineering = [
+// THE MASTER DIFFERENCE cards: the client's real copy for 01–05, each with an engineering visual
+// (system, control, material, technical drawing, mechanism) cropped from the company catalog.
+const difference = [
   {
-    image: 'core-component',
-    en: 'MECHANISM',
-    th: 'เครื่องลากแบบ Permanent Magnet Synchronous Gearless',
-    alt: 'ภาพแยกชิ้นส่วนเครื่องลากลิฟต์แบบแม่เหล็กถาวรไร้เกียร์ จากแค็ตตาล็อกบริษัท',
-    wide: true,
-  },
-  {
+    title: 'โซลูชันครบวงจร',
+    text: 'ตั้งแต่การให้คำปรึกษา เลือกผลิตภัณฑ์ ออกแบบ ติดตั้ง และดูแลหลังการขาย',
     image: 'hoistway-cutaway',
-    en: 'HOISTWAY',
-    th: 'โครงสร้างปล่องและระบบขับเคลื่อน',
-    alt: 'ภาพตัดปล่องลิฟต์แสดงเครื่องลาก รางนำ และห้องโดยสาร',
+    tag: 'SYSTEM',
+    alt: 'ภาพตัดปล่องลิฟต์แสดงเครื่องลาก รางนำ และห้องโดยสาร จากแค็ตตาล็อกบริษัท',
   },
   {
+    title: 'ใส่ใจมาตรฐานความปลอดภัย',
+    text: 'ระบบป้องกัน UCMP ม่านแสง 3D light curtain อุปกรณ์กันความเร็วเกิน safety gear และ buffer ตามแค็ตตาล็อกสินค้า',
     image: 'control-cabinet',
-    en: 'CONTROL',
-    th: 'ตู้ควบคุม 32-bit DSP',
+    tag: 'SAFETY CONTROL',
     alt: 'ตู้ควบคุมลิฟต์เปิดฝาแสดงแผงวงจรภายใน',
   },
   {
-    image: 'door-operator',
-    en: 'DOOR OPERATOR',
-    th: 'ชุดขับประตูแม่เหล็กถาวรแบบดิจิทัล',
-    alt: 'ชุดขับเคลื่อนประตูลิฟต์แบบแม่เหล็กถาวรดิจิทัล',
+    title: 'ดีไซน์ที่เข้ากับสถาปัตยกรรม',
+    text: 'เลือกวัสดุ สี และรูปแบบให้เข้ากับบ้าน อาคาร หรือโครงการ',
+    image: 'ceiling-handrail-floor',
+    tag: 'MATERIAL',
+    alt: 'ตัวอย่างวัสดุฝ้าเพดานห้องโดยสาร สเตนเลสแฮร์ไลน์ สเตนเลสกระจก และไฟ LED',
+  },
+  {
+    title: 'ดูแลโครงการอย่างเป็นระบบ',
+    text: 'ให้คำแนะนำและประสานงานในทุกขั้นตอนของโครงการ',
+    image: 'machine-room-diagram',
+    tag: 'TECHNICAL DRAWING',
+    alt: 'แผนภาพเปรียบเทียบห้องเครื่องลิฟต์ทั่วไปกับห้องเครื่องขนาดเล็ก',
+  },
+  {
+    title: 'บริการหลังการขาย',
+    text: 'วางแผนตรวจสอบ บำรุงรักษา และดูแลผลิตภัณฑ์หลังติดตั้ง',
+    image: 'core-component',
+    tag: 'MECHANISM',
+    alt: 'ภาพแยกชิ้นส่วนเครื่องลากลิฟต์แบบแม่เหล็กถาวรไร้เกียร์',
+    dark: true,
   },
 ];
 const strip = [
@@ -414,61 +426,50 @@ export default function Home() {
         </div>
       </section>
       <section className="section why-section">
-        <div className="container why-inner">
-          <div>
-            <Eyebrow>THE MASTER DIFFERENCE</Eyebrow>
-            <h2>
-              ความแตกต่าง
-              <br />
-              <span>อยู่ในวิธีที่เราคิด</span>
-            </h2>
-            <p>
-              เราไม่ได้เริ่มจากการเลือกผลิตภัณฑ์{' '}
-              <br />
-              แต่เริ่มจากการเข้าใจพื้นที่และการใช้งาน
-            </p>
-            <Link href="/about" className="text-link">
-              รู้จักเรามากขึ้น <ArrowRight size={18} />
-            </Link>
-            {/* Engineering detail from the company catalog (pp. 5 and 9), deliberately not cabin
-                renders: those already appear in the product sections above. */}
-            <div className="engineering-visual">
-              {engineering.map((e) => (
-                <figure key={e.image} className={e.wide ? 'is-wide' : undefined}>
-                  <span className="engineering-frame">
-                    <Image
-                      src={'/products/' + e.image + '.webp'}
-                      alt={e.alt}
-                      fill
-                      sizes={e.wide ? '(max-width: 1000px) 92vw, 520px' : '(max-width: 1000px) 30vw, 170px'}
-                    />
-                  </span>
-                  <figcaption>
-                    <span>{e.en}</span>
-                    {e.th}
-                  </figcaption>
-                </figure>
-              ))}
+        <div className="container">
+          <div className="why-inner why-head">
+            <div>
+              <Eyebrow>THE MASTER DIFFERENCE</Eyebrow>
+              <h2>
+                ความแตกต่าง
+                <br />
+                <span>อยู่ในวิธีที่เราคิด</span>
+              </h2>
+            </div>
+            <div>
+              <p>
+                เราไม่ได้เริ่มจากการเลือกผลิตภัณฑ์{' '}
+                <br />
+                แต่เริ่มจากการเข้าใจพื้นที่และการใช้งาน
+              </p>
+              <Link href="/about" className="text-link">
+                รู้จักเรามากขึ้น <ArrowRight size={18} />
+              </Link>
             </div>
           </div>
-          <div className="why-list">
-            {[
-              ['โซลูชันครบวงจร', 'ตั้งแต่การให้คำปรึกษา เลือกผลิตภัณฑ์ ออกแบบ ติดตั้ง และดูแลหลังการขาย'],
-              ['ใส่ใจมาตรฐานความปลอดภัย', 'ระบบป้องกัน UCMP ม่านแสง 3D light curtain อุปกรณ์กันความเร็วเกิน safety gear และ buffer ตามแค็ตตาล็อกสินค้า'],
-              ['ดีไซน์ที่เข้ากับสถาปัตยกรรม', 'เลือกวัสดุ สี และรูปแบบให้เข้ากับบ้าน อาคาร หรือโครงการ'],
-              ['ดูแลโครงการอย่างเป็นระบบ', 'ให้คำแนะนำและประสานงานในทุกขั้นตอนของโครงการ'],
-              ['บริการหลังการขาย', 'วางแผนตรวจสอบ บำรุงรักษา และดูแลผลิตภัณฑ์หลังติดตั้ง'],
-            ].map(([t, d], i) => (
-              <div key={t}>
-                <span>0{i + 1}</span>
-                <div>
-                  <h3>{t}</h3>
-                  <p>{d}</p>
-                </div>
-                <MoveUpRight size={18} />
-              </div>
+          {/* Each card carries an engineering visual from the company catalog (pp. 5, 9, 28) —
+              deliberately not cabin renders, which already appear in the product sections. */}
+          <ol className="difference-grid">
+            {difference.map((d, i) => (
+              <li className="difference-card" key={d.title}>
+                <span className="difference-visual">
+                  <Image
+                    src={'/products/' + d.image + '.webp'}
+                    alt={d.alt}
+                    fill
+                    sizes="(max-width: 700px) 78vw, (max-width: 1180px) 40vw, 250px"
+                    className={d.dark ? 'is-dark' : undefined}
+                  />
+                  <span className="difference-tag">{d.tag}</span>
+                </span>
+                <span className="difference-body">
+                  <span className="difference-index">0{i + 1}</span>
+                  <h3>{d.title}</h3>
+                  <p>{d.text}</p>
+                </span>
+              </li>
             ))}
-          </div>
+          </ol>
         </div>
       </section>
       <Process />

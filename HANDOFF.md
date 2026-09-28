@@ -545,8 +545,9 @@ OpenGraph image) and `heroes/`.
   style reference) on 2026-09-29. The first commercial image showed an escalator and was
   regenerated with a panoramic glass lift instead — keep escalators out of any imagery.
 - "THE MASTER DIFFERENCE": new heading (ความแตกต่าง / อยู่ในวิธีที่เราคิด) and subtext; items
-  01–05 unchanged (real copy, incl. the catalog safety list). Added `.engineering-visual`
-  (polish.css) under the heading: `core-component` (catalog p.5, previously unused) plus new
-  catalog crops `hoistway-cutaway` (p.9), `control-cabinet` and `door-operator` (p.5), all in
-  scripts/prepare-catalog-images.mjs. Client rule: engineering/mechanism imagery here, never
-  cabin renders that already appear in the product sections.
+  01–05 keep the real copy (incl. the catalog safety list) and are now `.difference-card`s
+  (polish.css), each led by a catalog engineering visual: 01 hoistway-cutaway (SYSTEM, p.9),
+  02 control-cabinet (SAFETY CONTROL, p.5), 03 ceiling-handrail-floor (MATERIAL, p.28),
+  04 machine-room-diagram (TECHNICAL DRAWING, p.9), 05 core-component (MECHANISM, p.5). Crops
+  are in scripts/prepare-catalog-images.mjs. Client rule: engineering/material/drawing imagery in
+  these cards, never cabin renders that already appear in the product sections.
