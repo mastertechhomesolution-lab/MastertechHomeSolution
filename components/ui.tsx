@@ -163,8 +163,20 @@ export function Process() {
       <div className="container">
         <SectionHeading
           eyebrow="FROM VISION TO REALITY"
-          title="ขั้นตอนการทำงาน"
-          description="ดูแลทุกรายละเอียด ให้ทุกขั้นตอนเป็นเรื่องง่ายสำหรับคุณ"
+          title={
+            <>
+              จากแนวคิด
+              <br />
+              สู่โซลูชันที่ใช้งานได้จริง
+            </>
+          }
+          description={
+            <>
+              ทุกโครงการเริ่มจากการทำความเข้าใจ{' '}
+              <br />
+              และดำเนินต่ออย่างเป็นระบบจนถึงการดูแลหลังการขาย
+            </>
+          }
         />
         <ol className="process">
           {steps.map((s, i) => (

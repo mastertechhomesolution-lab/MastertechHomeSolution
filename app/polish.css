@@ -1384,7 +1384,8 @@ footer:before {
   .why-head > div > p:not(.eyebrow) {
     font-size: 14px;
   }
-  .why-head > div > p br {
+  .why-head > div > p br,
+  .process-section .section-heading .muted br {
     display: none;
   }
   .difference-card {
