@@ -764,9 +764,16 @@
   .nav-panel {
     padding-left: 32px;
   }
+  /* Five categories: three on the first row, two wider ones filling the second. */
   .category-bar {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
+    grid-template-columns: repeat(6, minmax(0, 1fr));
     row-gap: 8px;
+  }
+  .category-bar li {
+    grid-column: span 2;
+  }
+  .category-bar li:nth-child(n + 4) {
+    grid-column: span 3;
   }
   .category-bar li:nth-child(4) {
     border-left: 0;
@@ -988,6 +995,20 @@
     padding: 8px;
     border-radius: 20px;
   }
+  .category-bar li,
+  .category-bar li:nth-child(n + 4) {
+    grid-column: auto;
+  }
+  /* An odd last category spans the full row, centred, instead of leaving an empty cell. */
+  .category-bar li:last-child:nth-child(odd) {
+    grid-column: 1 / -1;
+    border-top: 1px solid #eae3d8;
+    padding-top: 6px;
+  }
+  .category-bar li:last-child:nth-child(odd) .category-item {
+    justify-content: center;
+    align-items: center;
+  }
   .category-bar li + li {
     border-left: 0;
   }
@@ -1092,6 +1113,14 @@
   }
   .category-bar li:nth-child(even) {
     border-left: 0;
+  }
+  .category-bar li:last-child:nth-child(odd) {
+    border-top: 0;
+    padding-top: 0;
+  }
+  .category-bar li:last-child:nth-child(odd) .category-item {
+    justify-content: flex-start;
+    align-items: flex-start;
   }
   .trust-inner {
     grid-template-columns: 1fr;
