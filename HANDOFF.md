@@ -551,3 +551,8 @@ OpenGraph image) and `heroes/`.
   04 machine-room-diagram (TECHNICAL DRAWING, p.9), 05 core-component (MECHANISM, p.5). Crops
   are in scripts/prepare-catalog-images.mjs. Client rule: engineering/material/drawing imagery in
   these cards, never cabin renders that already appear in the product sections.
+- Footer top (every page) is now a corporate closing: company name, "Driving the Future /
+  Through Science and Technology", Thai lead, and DRIVING INNOVATION. / CREATING SMARTER SPACES. /
+  SHAPING THE FUTURE. beside the CTA. "MASTERTECHHOMESOLUTION" + "SMARTER SPACES. SAFER LIVING."
+  were removed. Visual is CSS/SVG only (`.footer-top:before` grid + glow, inline `.footer-tech`
+  circuit lines at low opacity) — client rule: no product/lift imagery here.

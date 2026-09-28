@@ -425,20 +425,53 @@ export function Website({ children }: { children: ReactNode }) {
         <main id="main">{children}</main>
         <footer>
           <div className="container">
+            {/* Corporate closing: typography on navy with a faint technology graphic (grid, circuit
+                lines, light) — no product or lift imagery. */}
             <div className="footer-top">
-              <div>
-                <p className="micro">MASTERTECHHOMESOLUTION</p>
+              <svg className="footer-tech" viewBox="0 0 600 320" aria-hidden="true" focusable="false">
+                <g fill="none" stroke="currentColor" strokeWidth="1">
+                  <path d="M0 250 H140 L180 210 H320 L360 170 H600" />
+                  <path d="M60 300 H220 L260 260 H430 L470 220 H600" />
+                  <path d="M120 40 H260 L300 80 H470 L510 120 H600" />
+                  <path d="M380 0 V60 L420 100 V320" />
+                  <path d="M500 0 V150 L540 190 V320" />
+                  <circle cx="180" cy="210" r="4" />
+                  <circle cx="360" cy="170" r="4" />
+                  <circle cx="260" cy="260" r="4" />
+                  <circle cx="300" cy="80" r="4" />
+                  <circle cx="420" cy="100" r="4" />
+                  <circle cx="540" cy="190" r="4" />
+                  <circle cx="470" cy="220" r="3" />
+                  <circle cx="510" cy="120" r="3" />
+                </g>
+              </svg>
+              <div className="footer-statement">
+                <p className="micro">{company.name}</p>
                 <h2>
-                  SMARTER SPACES.
+                  Driving the Future
                   <br />
-                  <span>SAFER LIVING.</span>
+                  <span>Through Science and Technology</span>
                 </h2>
-                <p className="footer-company">{company.name}</p>
-                <p>{company.slogan}</p>
+                <p className="footer-lead">
+                  เรามุ่งนำวิทยาศาสตร์และเทคโนโลยี{' '}
+                  <br />
+                  มาสร้างโซลูชันที่เพิ่มความสะดวก ประสิทธิภาพ{' '}
+                  <br />
+                  ความปลอดภัย และการใช้พื้นที่อย่างชาญฉลาด
+                </p>
               </div>
-              <QuoteButton className="button button-outline">
-                เริ่มต้นโครงการของคุณ <ArrowUpRight size={18} />
-              </QuoteButton>
+              <div className="footer-closing">
+                <p lang="en">
+                  DRIVING INNOVATION.
+                  <br />
+                  CREATING SMARTER SPACES.
+                  <br />
+                  <span>SHAPING THE FUTURE.</span>
+                </p>
+                <QuoteButton className="button button-outline">
+                  เริ่มต้นโครงการของคุณ <ArrowUpRight size={18} />
+                </QuoteButton>
+              </div>
             </div>
             <div className="footer-columns">
               <div>
