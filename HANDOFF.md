@@ -582,9 +582,7 @@ out as an unverified compliance claim.
   the "แค็ตตาล็อกต้นฉบับ" accordion instead of the general-catalog page list).
 - LC- model codes are kept as printed (same policy as NY- codes).
 
-Known pre-existing issue (not caused by this change, reproduced on 0d5dc37): `qa-sweep` reports
-~8–20px horizontal overflow at ≤1024px on every hero page — the `.page-hero-visual` / hero image
-measures wider than the viewport (zoom animation), plus difference/collection cards on `/`.
+Overflow fix (2026-10-06, later): the ≤1024px sideways scroll on every page came from the footer closing — `.footer-top:before` (inset -40px) and `.footer-tech` (right -20px) bled past the container. `footer { overflow-x: clip }` in app/polish.css fixes it; `qa-sweep` is back to NO PROBLEMS FOUND (13 routes × 5 widths). The hero images the sweep listed were already clipped by `.page-hero` and were not the cause.
 - `Product.metaTitle` (optional) overrides the product `<title>` when the Thai name is too long;
   all routes are again ≤ 60-char titles and 70–160-char descriptions (prerendered-HTML audit).
 - ลิฟต์คนพิการ was added to the hard-coded range text: company description, homepage meta + FAQ,

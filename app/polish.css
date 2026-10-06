@@ -200,6 +200,9 @@ body {
 footer {
   position: relative;
   background: var(--strip-bg);
+  /* The closing's grid (.footer-top:before) and circuit lines (.footer-tech) bleed past the
+     container; clip them so narrow screens don't scroll sideways. */
+  overflow-x: clip;
 }
 footer:before {
   content: '';
