@@ -8,7 +8,7 @@ import { pageMeta } from '@/lib/seo';
 // catalog (Product/ข้อมูลบริษัทสินค้า.pdf). Product-spec figures stay attributed to the catalog.
 export const metadata = pageMeta(
   'เกี่ยวกับเรา',
-  'รู้จัก MASTER SCIENCE AND TECHNOLOGY CO., LTD. ผู้นำเข้าและจำหน่ายลิฟต์บ้าน ลิฟต์โดยสาร ลิฟต์ขนส่งสินค้า และประตูลิฟต์ แบรนด์ Neramit สำหรับบ้านและอาคาร',
+  'รู้จัก MASTER SCIENCE AND TECHNOLOGY CO., LTD. ผู้นำเข้าและจำหน่ายลิฟต์บ้าน ลิฟต์โดยสาร ลิฟต์ขนส่งสินค้า ลิฟต์คนพิการ และประตูลิฟต์ แบรนด์ Neramit',
   '/about',
 );
 export default function Page() {
@@ -40,7 +40,7 @@ export default function Page() {
               than as part of the range currently on /products. Do not delete it. */}
           <p>
             เรามุ่งเน้นโซลูชันขั้นสูงที่เพิ่มความสะดวก ประสิทธิภาพ ความปลอดภัย และการใช้พื้นที่อย่างคุ้มค่า
-            กลุ่มผลิตภัณฑ์ปัจจุบันประกอบด้วย Home Lift ลิฟต์โดยสาร ลิฟต์โรงพยาบาล ลิฟต์ขนส่งสินค้า
+            กลุ่มผลิตภัณฑ์ปัจจุบันประกอบด้วย Home Lift ลิฟต์โดยสาร ลิฟต์โรงพยาบาล ลิฟต์ขนส่งสินค้า ลิฟต์คนพิการ
             ประตูลิฟต์ และอุปกรณ์ตกแต่งห้องโดยสาร ที่ออกแบบให้ตอบความต้องการของอาคารสมัยใหม่ ที่พักอาศัย และพื้นที่เชิงพาณิชย์
             และมี Smart Parking Lift เป็นผลิตภัณฑ์ในแผนพัฒนาลำดับถัดไปของบริษัท
             โดยบริษัทนำเข้าผลิตภัณฑ์และจัดจำหน่ายภายใต้แบรนด์ของเราเอง Neramit

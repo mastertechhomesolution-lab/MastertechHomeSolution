@@ -559,3 +559,36 @@ OpenGraph image) and `heroes/`.
 - Footer bottom: Presentation Mode removed entirely (toggle, `?presentation=` state, CSS); the
   robots.ts disallow for `?presentation=` is kept as harmless cleanup for old URLs. Copyright reads
   "© <year> Master Science and Technology Co., Ltd. All Rights Reserved."
+
+## 2026-10-06 — Barrier-free lift category + Residential Elevator Series products
+
+Client supplied two supplier catalogs in `Mock/` (now git-ignored, like `Product/*.pdf`):
+`ลิฟต์คนพิการ.pdf` (Barrier-free Lift, A4) and `home elevator_260908_132627.pdf` (20 spreads).
+`scripts/prepare-new-catalogs.mjs` (chained from prepare-assets) crops product images only — no
+full pages, because every home-catalog spread prints the supplier name in its header, p.23 body
+text names it ("ZLLC"), and the MINI Lift renders carry the supplier logo. Not used: supplier
+cover/about/factory/service pages, client-logo and "classic cases" pages, ISO/CE claims, and images
+with people (hydraulic p.9 baby photo, HMI p.18 hand, touch screens LC-C301/C305, MINI Lift p.8
+lower-left reflection). GB 24806-2009 (Chinese standard on the barrier-free spec tables) was left
+out as an unverified compliance claim.
+
+- New category `accessibility` / ลิฟต์คนพิการ / Barrier-free Lift (`NERAMIT CARE`): Rack Lift,
+  Sprocket Lift, MINI Lift. Homepage hero category bar now has 6 items (1 row >1360px with a 64px
+  thumb, 3+3 at ≤1360, 2 columns ≤700, 1 column ≤374).
+- Home Elevator: hydraulic, Traction gantry/backpack (4 layout tables), Platform glass-shaft,
+  car series LC-V100 and LC-V200. Doors: landing doors LC-M. Interior & Control: HMI LC-C/LC-L,
+  luminous stone back plate LC-V300, starry ceiling + floor LC-CL/LC-D, door handle + handrail LC-F.
+- `Product.gallery` (extra crops in public/products) and `Product.source` (catalog name, shown in
+  the "แค็ตตาล็อกต้นฉบับ" accordion instead of the general-catalog page list).
+- LC- model codes are kept as printed (same policy as NY- codes).
+
+Known pre-existing issue (not caused by this change, reproduced on 0d5dc37): `qa-sweep` reports
+~8–20px horizontal overflow at ≤1024px on every hero page — the `.page-hero-visual` / hero image
+measures wider than the viewport (zoom animation), plus difference/collection cards on `/`.
+- `Product.metaTitle` (optional) overrides the product `<title>` when the Thai name is too long;
+  all routes are again ≤ 60-char titles and 70–160-char descriptions (prerendered-HTML audit).
+- ลิฟต์คนพิการ was added to the hard-coded range text: company description, homepage meta + FAQ,
+  about, services, products. New crops are up to 2400px so table text stays readable.
+- Verified: typecheck + build (56 static pages); qa-sweep has no status / broken-image / console
+  errors on 13 routes (only the pre-existing overflow above); hero bar read at 1440/1366/1180/
+  1024/768/390/320. Committed and pushed to main at the user's request (2026-10-06).

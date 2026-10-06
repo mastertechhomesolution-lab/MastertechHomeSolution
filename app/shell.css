@@ -635,7 +635,7 @@
 }
 .category-bar {
   display: grid;
-  grid-template-columns: repeat(5, minmax(0, 1fr));
+  grid-template-columns: repeat(6, minmax(0, 1fr));
   margin: 0;
   padding: 14px;
   list-style: none;
@@ -702,6 +702,20 @@
   border-radius: 50%;
   background: var(--round-go);
   color: #fff;
+}
+/* Six categories on one row: a smaller thumb leaves room for two-word Thai names. */
+@media (min-width: 1361px) {
+  .category-item {
+    gap: 12px;
+    padding: 8px 10px;
+  }
+  .category-thumb {
+    width: 64px;
+    height: 64px;
+  }
+  .category-text strong {
+    font-size: 14px;
+  }
 }
 
 /* Trust strip */
@@ -788,16 +802,10 @@
   .nav-panel {
     padding-left: 32px;
   }
-  /* Five categories: three on the first row, two wider ones filling the second. */
+  /* Six categories: two rows of three. */
   .category-bar {
-    grid-template-columns: repeat(6, minmax(0, 1fr));
+    grid-template-columns: repeat(3, minmax(0, 1fr));
     row-gap: 8px;
-  }
-  .category-bar li {
-    grid-column: span 2;
-  }
-  .category-bar li:nth-child(n + 4) {
-    grid-column: span 3;
   }
   .category-bar li:nth-child(4) {
     border-left: 0;

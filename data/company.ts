@@ -35,6 +35,6 @@ export const company = {
   brand: 'Neramit',
   slogan: 'Driving the Future Through Science and Technology',
   description:
-    'ลิฟต์บ้าน ลิฟต์โดยสาร ลิฟต์โรงพยาบาล ลิฟต์ขนส่งสินค้า ประตูลิฟต์ และอุปกรณ์ตกแต่งห้องโดยสาร แบรนด์ Neramit พร้อมให้คำปรึกษาและติดตั้ง',
+    'ลิฟต์บ้าน ลิฟต์โดยสาร ลิฟต์โรงพยาบาล ลิฟต์ขนส่งสินค้า ลิฟต์คนพิการ ประตูลิฟต์ และอุปกรณ์ตกแต่งห้องโดยสาร แบรนด์ Neramit พร้อมให้คำปรึกษาและติดตั้ง',
   contactSource: 'https://www.mastercraneandlift.com/contact-us/',
 };

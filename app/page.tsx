@@ -27,7 +27,7 @@ import path from 'node:path';
 // is spelled out here; every other route inherits "%s | MasterTechhomesolution".
 export const metadata = pageMeta(
   'ลิฟต์บ้าน ลิฟต์โดยสาร ประตูลิฟต์ | MasterTechhomesolution',
-  'นำเข้าและจำหน่ายลิฟต์บ้าน ลิฟต์โดยสาร ลิฟต์โรงพยาบาล ลิฟต์ขนส่งสินค้า ประตูลิฟต์ และอุปกรณ์ตกแต่งห้องโดยสาร แบรนด์ Neramit โดย MASTER SCIENCE AND TECHNOLOGY',
+  'นำเข้าและจำหน่ายลิฟต์บ้าน ลิฟต์โดยสาร ลิฟต์ขนส่งสินค้า ลิฟต์คนพิการ ประตูลิฟต์ และอุปกรณ์ตกแต่งห้องโดยสาร แบรนด์ Neramit โดย MASTER SCIENCE AND TECHNOLOGY',
   '/',
 );
 // NERAMIT COLLECTION cards. 2026-09-29: the client asked for images not shown anywhere else on the
@@ -197,7 +197,7 @@ const faqs = [
   ],
   [
     'บริษัทมีลิฟต์ประเภทใดบ้าง?',
-    'ลิฟต์บ้าน (Traction และ Steel Belt) ลิฟต์โดยสารแบบห้องเครื่องเล็กและไม่มีห้องเครื่อง ลิฟต์แก้ว ลิฟต์โรงพยาบาล ลิฟต์ขนส่งสินค้า และลิฟต์รถยนต์',
+    'ลิฟต์บ้าน (Traction, Steel Belt, ไฮดรอลิก และ Platform ปล่องกระจก) ลิฟต์โดยสารแบบห้องเครื่องเล็กและไม่มีห้องเครื่อง ลิฟต์แก้ว ลิฟต์โรงพยาบาล ลิฟต์ขนส่งสินค้า ลิฟต์รถยนต์ และลิฟต์คนพิการ (แบบรางบันไดตรง รางโค้ง และแท่นยกแนวตั้ง)',
   ],
   [
     'ขอใบเสนอราคาได้อย่างไร?',

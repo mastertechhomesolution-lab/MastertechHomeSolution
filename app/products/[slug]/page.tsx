@@ -13,7 +13,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   // The title template appends " | MasterTechhomesolution" (25 chars), so the page part has
   // to stay within 60 - 25 = 35 to survive SERP truncation; otherwise use the Thai name only.
   const withEn = p ? p.name + ' — ' + p.en : '';
-  return p ? pageMeta(withEn.length <= 35 ? withEn : p.name, p.description, '/products/' + p.slug) : {};
+  return p ? pageMeta(p.metaTitle ?? (withEn.length <= 35 ? withEn : p.name), p.description, '/products/' + p.slug) : {};
 }
 export default async function Page({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
@@ -50,7 +50,7 @@ export default async function Page({ params }: { params: Promise<{ slug: string 
           <span>{p.name}</span>
         </div>
         <div className="product-detail">
-          <ProductGallery image={p.image} pages={p.pages} name={p.name} comingSoon={p.comingSoon} />
+          <ProductGallery image={p.image} pages={p.pages} gallery={p.gallery} name={p.name} comingSoon={p.comingSoon} />
           <div className="product-info">
             <Eyebrow>{category.en} · {p.en}</Eyebrow>
             <h1>{p.name}</h1>
@@ -132,8 +132,11 @@ export default async function Page({ params }: { params: Promise<{ slug: string 
                   แค็ตตาล็อกต้นฉบับ <span>+</span>
                 </summary>
                 <p>
-                  ข้อมูลจาก THE ELEVATOR GENERAL CATALOG ของ MASTER SCIENCE AND TECHNOLOGY CO., LTD. หน้า{' '}
-                  {p.pages.join(', ')} — กดภาพย่อด้านซ้ายเพื่อดูหน้าแค็ตตาล็อก
+                  {p.source
+                    ? 'ข้อมูลจาก' + p.source + (p.gallery?.length ? ' — กดภาพย่อเพื่อดูภาพสินค้า รายละเอียด และแบบประกอบจากแค็ตตาล็อก' : '')
+                    : 'ข้อมูลจาก THE ELEVATOR GENERAL CATALOG ของ MASTER SCIENCE AND TECHNOLOGY CO., LTD. หน้า ' +
+                      p.pages.join(', ') +
+                      ' — กดภาพย่อด้านซ้ายเพื่อดูหน้าแค็ตตาล็อก'}
                 </p>
               </details>
               <details>

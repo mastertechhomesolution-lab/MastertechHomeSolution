@@ -14,3 +14,6 @@ Thumbs.db
 
 # Source catalog PDF is 375 MB (over GitHub's 100 MB limit); generated images live in public/
 Product/*.pdf
+
+# Supplementary supplier catalogs (2026-10) carry the supplier brand; generated crops live in public/products
+Mock/*.pdf

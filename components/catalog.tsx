@@ -138,16 +138,21 @@ export function ProjectGrid({ preview = false }: { preview?: boolean }) {
 export function ProductGallery({
   image,
   pages = [],
+  gallery = [],
   name,
   comingSoon = false,
 }: {
   image: string;
   pages?: number[];
+  gallery?: string[];
   name: string;
   comingSoon?: boolean;
 }) {
   const [active, setActive] = useState(0);
-  const images = ['/products/' + image + '.webp', ...pages.map(catalogPage)];
+  const images = ['/products/' + image + '.webp', ...gallery.map((g) => '/products/' + g + '.webp'), ...pages.map(catalogPage)];
+  // Thumbnails after the main photo: supplementary-catalog crops first, then general-catalog pages.
+  const label = (i: number) =>
+    i <= gallery.length ? 'ภาพสินค้า ' + name + ' ภาพที่ ' + (i + 1) : 'หน้าแค็ตตาล็อก ' + name + ' หน้า ' + pages[i - 1 - gallery.length];
   return (
     <div className="gallery">
       <div className={'gallery-main ' + (active > 0 ? 'catalog-image' : '')}>
@@ -155,7 +160,7 @@ export function ProductGallery({
         <Image
           key={active}
           src={images[active]}
-          alt={active === 0 ? name : 'หน้าแค็ตตาล็อก ' + name + ' หน้า ' + pages[active - 1]}
+          alt={active === 0 ? name : label(active)}
           fill
           sizes="(max-width:800px) 90vw, 50vw"
           priority={active === 0}
@@ -166,7 +171,7 @@ export function ProductGallery({
           <button
             key={src}
             className={active === i ? 'active' : ''}
-            aria-label={i === 0 ? 'ดูภาพสินค้า' : 'ดูหน้าแค็ตตาล็อก ' + pages[i - 1]}
+            aria-label={i === 0 ? 'ดูภาพสินค้า' : 'ดู' + label(i)}
             aria-pressed={active === i}
             onClick={() => setActive(i)}
           >
