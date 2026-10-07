@@ -237,9 +237,16 @@ export default function Home() {
           <div className="hero-copy">
             <p className="hero-eyebrow">SCIENCE &bull; TECHNOLOGY &bull; INNOVATION</p>
             <h1>
-              เทคโนโลยีที่คิดไกลกว่า
+              <span className="hero-magic">
+                เนรมิต
+                <i className="hero-spark" aria-hidden="true" />
+                <i className="hero-spark" aria-hidden="true" />
+                <i className="hero-spark" aria-hidden="true" />
+                <i className="hero-spark" aria-hidden="true" />
+              </span>{' '}
+              เทคโนโลยีที่ก้าวไกล
               <br />
-              <span>เพื่อพื้นที่ที่ไปได้ไกลกว่า</span>
+              <span>เพื่อทุกพื้นที่ที่ไปได้ไกลกว่า</span>
             </h1>
             <p className="hero-description">
               เรานำนวัตกรรมและเทคโนโลยีมาสร้างโซลูชัน
