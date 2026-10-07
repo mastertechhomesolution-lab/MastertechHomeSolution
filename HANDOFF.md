@@ -505,7 +505,7 @@ OpenGraph image) and `heroes/`.
 ## 2026-09-29 — New homepage hero copy; escalators off the homepage
 
 - Hero copy replaced as a set, per the client: eyebrow `SCIENCE • TECHNOLOGY • INNOVATION`,
-  h1 `เนรมิต เทคโนโลยีที่ก้าวไกล / เพื่อทุกพื้นที่ที่ไปได้ไกลกว่า` (second line gold; "เนรมิต" is `.hero-magic` with a CSS-only blur-in, flowing gold + glint, halo, underline and sparkles in app/shell.css), three-line description,
+  h1 `เนรมิต เทคโนโลยีที่ก้าวไกล / เพื่อทุกพื้นที่ที่ไปได้ไกลกว่า` (second line gold; "เนรมิต" is `.hero-magic` with a CSS-only blur-in, flowing gold + glint, halo, underline and sparkles in app/shell.css; it is 1.4em of the h1, and the desktop h1 is capped at 44px so each line fits the 560px hero copy without wrapping), three-line description,
   kicker `DRIVING THE FUTURE THROUGH SCIENCE AND TECHNOLOGY`, CTAs `สำรวจโซลูชัน` (gold → /products)
   and `รู้จัก MASTER` (ghost → /about). The right-hand "ELEVATE YOUR LIFESTYLE" mark was removed
   with the old set (its `.hero-lifestyle` CSS in shell.css is now unused).
