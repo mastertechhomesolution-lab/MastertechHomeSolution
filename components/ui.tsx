@@ -121,7 +121,7 @@ export function ProductCard({ product: p }: { product: Product }) {
           sizes="(max-width: 600px) 85vw, (max-width: 1000px) 45vw, 30vw"
         />
         <span className="image-index">
-          <Image src="/brand/neramit-logo.png" width={360} height={360} alt="" unoptimized />
+          <Image src="/brand/neramit-logo.png" width={640} height={480} alt="" unoptimized />
           {productCollection(p)}
         </span>
         {p.comingSoon && <ComingSoon />}

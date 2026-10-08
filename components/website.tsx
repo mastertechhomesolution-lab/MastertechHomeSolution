@@ -356,8 +356,8 @@ export function Website({ children }: { children: ReactNode }) {
                 <Image
                   className="brand-logo-neramit"
                   src="/brand/neramit-logo.png"
-                  width={360}
-                  height={360}
+                  width={640}
+                  height={480}
                   alt="Neramit"
                   priority
                   unoptimized

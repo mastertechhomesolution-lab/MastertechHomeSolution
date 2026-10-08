@@ -286,13 +286,14 @@
 /* "เนรมิต" signature word: it materialises out of a blur, then a molten-gold gradient
    keeps flowing while a white glint sweeps across, a halo breathes behind it and four
    sparkles twinkle around it. The padding keeps Thai upper vowels inside the clipped
-   gradient; the negative margin cancels it so the line box does not grow. */
+   gradient; the negative top/side margins cancel it, while the positive bottom margin
+   keeps the gold underline clear of the tall Thai marks on the line below. */
 .hero h1 .hero-magic {
   position: relative;
   isolation: isolate;
   display: inline-block;
   padding: 0.14em 0.06em 0.08em;
-  margin: -0.14em -0.06em -0.08em;
+  margin: -0.14em -0.06em 0.12em;
   font-size: 1.4em;
   font-weight: 800;
   background:
@@ -322,7 +323,7 @@
   position: absolute;
   left: 4%;
   right: 4%;
-  bottom: 0.02em;
+  bottom: 0.1em;
   height: 2px;
   border-radius: 2px;
   background: linear-gradient(90deg, #f6dc9a00, #f6dc9a, #fff, #f6dc9a, #f6dc9a00);

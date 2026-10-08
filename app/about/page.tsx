@@ -49,7 +49,7 @@ export default function Page() {
           <div className="about-brands">
             <Image src="/brand/mast-tech-logo.png" width={495} height={360} alt="Mast Tech" unoptimized />
             <span />
-            <Image src="/brand/neramit-logo.png" width={360} height={360} alt="Neramit" unoptimized />
+            <Image src="/brand/neramit-logo.png" width={640} height={480} alt="Neramit" unoptimized />
           </div>
         </div>
       </section>

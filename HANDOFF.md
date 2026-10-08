@@ -367,7 +367,7 @@ logo held in this repo instead.
   overlaid on the artwork; it already carries its own headline, model codes and feature strip.
   The heading keeps the crawlable Home Elevator text that the removed sections used to provide.
 - `scripts/prepare-homelift-card.mjs` (new, chained from `scripts/prepare-assets.mjs`) builds
-  `public/products/homelift-card.webp` from the client's `Product/homelift.jpg`. The supplied
+  `public/products/homelift-card-neramit.webp` (renamed 2026-10-08 to bust caches) from the client's `Product/homelift.jpg`. The supplied
   artwork carries an **older** Neramit mark top-right (white disc + "เนรมิตร ลิฟต์" arc). The
   script paints that rectangle out by rebuilding it from the wall behind it — the wall is a
   smooth gradient, so each row is interpolated between a clean pixel left of the patch and one
@@ -590,3 +590,22 @@ Overflow fix (2026-10-06, later): the ≤1024px sideways scroll on every page ca
 - Verified: typecheck + build (56 static pages); qa-sweep has no status / broken-image / console
   errors on 13 routes (only the pre-existing overflow above); hero bar read at 1440/1366/1180/
   1024/768/390/320. Committed and pushed to main at the user's request (2026-10-06).
+
+## 2026-10-08 — New Neramit logo (Brand/NewLogo.png)
+
+- New Neramit logo everywhere (header, about brands row, product-card badges, homelift card),
+  replacing the old gold-ring badge. Final artwork: `Brand/NewLogo.png` (1448×1086, made by the
+  client on transparency with its own rays and sparkles). Two earlier attempts to cut the
+  background out of `Brand/Logo.jpg` were rejected ("ดูไม่สวย"); the client's placement
+  reference is `Brand/ตัวอย่างนำไปใช้จริง.jpg`.
+- `scripts/prepare-neramit-logo.mjs` uses NewLogo.png as supplied (4:3 kept), only fading the
+  alpha over the top/bottom 6% where the light streak and rays meet the edge, and writes
+  `public/brand/neramit-logo.png` (640×480 palette PNG, ~116KB). Every `<Image>` of it now
+  declares width 640 / height 480; all slots size by height or object-fit: contain.
+- The ivory light variant is gone (`prepare-logo-light.mjs`, `neramit-logo-light.png` deleted);
+  the homelift card composites `neramit-logo.png` fitted in a 190px square and is now
+  `homelift-card-neramit.webp`: the old name kept serving the old logo from `/_next/image` caches.
+  `prepare-logos.mjs` only builds the Mast Tech logo now.
+- Hero h1 fix the same day: the gold underline under "เนรมิต" overlapped the next line's Thai
+  marks; `.hero-magic` bottom margin is now +0.12em and the line sits at bottom 0.1em
+  (checked at 1440/1024/768/390/320).

@@ -9,6 +9,6 @@ await import('./prepare-catalog-images.mjs');
 // Barrier-free lift and Residential Elevator Series catalogs (2026-10, Mock/*.pdf).
 await import('./prepare-new-catalogs.mjs');
 await import('./prepare-page-heroes.mjs');
-await import('./prepare-logo-light.mjs');
+await import('./prepare-neramit-logo.mjs');
 await import('./prepare-hero.mjs');
 await import('./prepare-homelift-card.mjs');

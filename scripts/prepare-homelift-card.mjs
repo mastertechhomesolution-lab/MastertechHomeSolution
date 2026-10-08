@@ -8,8 +8,8 @@
 //     a smooth gradient, so each row is interpolated between a clean pixel to the left of the
 //     patch and a clean pixel to its right; the patch is then feathered on the left, right and
 //     bottom edges so it blends into the untouched photo.
-//  2. Composites public/brand/neramit-logo-light.png (the knocked-out mark whose "NERA" is
-//     ivory, so it reads on a dark surface) where the old disc was.
+//  2. Composites public/brand/neramit-logo.png (the transparent mark; its own white glow keeps
+//     the navy "NERA" legible on the dark wall) where the old disc was.
 //
 // Geometry below was measured from the 1254x1254 original by scanning for bright pixels:
 // the mark spans x 1044..1210, y 23..196, and rows 197..212 are clean wall.
@@ -17,8 +17,9 @@ import sharp from 'sharp';
 import { mkdir } from 'node:fs/promises';
 
 const SRC = 'Product/homelift.jpg';
-const OUT = 'public/products/homelift-card.webp';
-const LOGO = 'public/brand/neramit-logo-light.png';
+// Renamed 2026-10-08 with the new Neramit logo so cached copies of the old card are not reused.
+const OUT = 'public/products/homelift-card-neramit.webp';
+const LOGO = 'public/brand/neramit-logo.png';
 
 // Patch rectangle (inclusive left/top, exclusive right/bottom) and its feather width.
 const PATCH = { left: 1024, top: 0, right: 1236, bottom: 210 };
@@ -27,7 +28,8 @@ const FEATHER = 12;
 const SAMPLE_LEFT = 1018;
 const SAMPLE_RIGHT = 1242;
 // Where the replacement logo goes: centred on the space the old mark occupied.
-const LOGO_SIZE = 166;
+// The 4:3 logo is fitted inside this square, so it is drawn a little larger than the old mark.
+const LOGO_SIZE = 190;
 const LOGO_CENTER = { x: 1129, y: 112 };
 
 const w = PATCH.right - PATCH.left;

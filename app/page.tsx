@@ -337,7 +337,7 @@ export default function Home() {
                 <Link href={c.href} className="product-picture">
                   <Image src={c.image} alt={c.alt} fill sizes="(max-width: 700px) 85vw, 30vw" />
                   <span className="image-index">
-                    <Image src="/brand/neramit-logo.png" width={360} height={360} alt="" unoptimized />
+                    <Image src="/brand/neramit-logo.png" width={640} height={480} alt="" unoptimized />
                     {c.label}
                   </span>
                   <span className="round-arrow">
@@ -364,7 +364,7 @@ export default function Home() {
       {/* 2026-09-23: the client removed the editorial showcase and the escalator/hall-door
           pair — they repeated the category bar above. This single supplied card replaces both.
           The artwork is built by scripts/prepare-homelift-card.mjs, which paints out the old
-          Neramit mark on the photo and composites public/brand/neramit-logo-light.png instead. */}
+          Neramit mark on the photo and composites public/brand/neramit-logo.png instead. */}
       <section className="section homelift-section">
         <div className="container">
           <SectionHeading
@@ -376,7 +376,7 @@ export default function Home() {
           />
           <Link href="/products?category=elevators" className="homelift-card">
             <Image
-              src="/products/homelift-card.webp"
+              src="/products/homelift-card-neramit.webp"
               width={1254}
               height={1254}
               sizes="(max-width: 900px) 92vw, 1000px"
