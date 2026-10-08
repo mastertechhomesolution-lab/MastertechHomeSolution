@@ -17,8 +17,9 @@ import sharp from 'sharp';
 import { mkdir } from 'node:fs/promises';
 
 const SRC = 'Product/homelift.jpg';
-// Renamed 2026-10-08 with the new Neramit logo so cached copies of the old card are not reused.
-const OUT = 'public/products/homelift-card-neramit.webp';
+// Renamed on every logo change (2026-10-08: -v3 for the client's final emblem) so cached copies
+// of an older card are not reused by /_next/image.
+const OUT = 'public/products/homelift-card-neramit-v3.webp';
 const LOGO = 'public/brand/neramit-logo.png';
 
 // Patch rectangle (inclusive left/top, exclusive right/bottom) and its feather width.

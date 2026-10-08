@@ -1,13 +1,13 @@
-// Builds the site's Neramit logo from the client's final artwork, Brand/NewLogo.png
-// (2026-10-08: 1448x1086 transparent PNG, gold mark + NERAMIT wordmark with rays and sparkles
-// already on transparency; it replaces the earlier Brand/Logo.jpg attempts).
-// The artwork is used as supplied, keeping its 4:3 shape. Only the top and bottom edges are
-// touched: the vertical light streak and the lower rays run into them, so the light fades out
-// over a short band there instead of ending at a hard line. The result is resized for
-// high-DPI screens and saved as a palette PNG to keep the header light.
+// Builds the site's Neramit logo from the client's final artwork,
+// "Brand/Polished Golden NERAMIT Emblem.png" (supplied 2026-10-08: 1448x1086, transparent,
+// gold mark + NERAMIT wordmark with its own starburst of rays and sparkles).
+// The client asked that their logo is never redrawn or restyled, so the artwork is used as
+// supplied, keeping its 4:3 shape. Only the top and bottom edges are touched: a few rays reach
+// them, so the light fades out over a short band there instead of ending at a hard line. The
+// result is resized for high-DPI screens and saved as a palette PNG to keep the header light.
 import sharp from 'sharp';
 
-const SRC = 'Brand/NewLogo.png';
+const SRC = 'Brand/Polished Golden NERAMIT Emblem.png';
 const OUT = 'public/brand/neramit-logo.png';
 const OUT_WIDTH = 640;
 const FADE = 0.06; // share of the height that fades out at the top and bottom edges

@@ -376,7 +376,7 @@ export default function Home() {
           />
           <Link href="/products?category=elevators" className="homelift-card">
             <Image
-              src="/products/homelift-card-neramit.webp"
+              src="/products/homelift-card-neramit-v3.webp"
               width={1254}
               height={1254}
               sizes="(max-width: 900px) 92vw, 1000px"
